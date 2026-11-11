@@ -2,21 +2,21 @@
   "skill": "ultragoal",
   "phase": "blocked",
   "active": true,
-  "activated_at": "2026-11-11T06:14:13.470Z",
-  "updated_at": "2026-11-11T06:14:13.470Z",
+  "activated_at": "2026-11-11T06:32:22.083Z",
+  "updated_at": "2026-11-11T06:32:22.083Z",
   "session_id": "01a1c902-e179-706e-bcc4-376863c57bb2",
   "hud": {
     "version": 1,
     "chips": [
       {
         "label": "blocked",
-        "value": "1",
+        "value": "2",
         "priority": 5,
         "severity": "blocked"
       },
       {
         "label": "goals",
-        "value": "0/1",
+        "value": "0/2",
         "priority": 10
       },
       {
@@ -35,7 +35,7 @@
         "priority": 35
       }
     ],
-    "updated_at": "2026-11-11T06:14:13.469Z"
+    "updated_at": "2026-11-11T06:32:22.082Z"
   },
   "receipt": {
     "version": 1,
@@ -44,15 +44,15 @@
     "command": "gjc ultragoal (reconcile)",
     "state_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c902-e179-706e-bcc4-376863c57bb2/state/skill-active-state.json",
     "storage_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c902-e179-706e-bcc4-376863c57bb2/state/ultragoal-state.json",
-    "mutated_at": "2026-11-11T06:14:13.463Z",
-    "fresh_until": "2026-11-11T06:44:13.463Z",
+    "mutated_at": "2026-11-11T06:32:22.077Z",
+    "fresh_until": "2026-11-11T07:02:22.077Z",
     "status": "fresh",
-    "mutation_id": "ultragoal:reconcile:2026-11-11T06:14:13.463Z",
+    "mutation_id": "ultragoal:reconcile:2026-11-11T06:32:22.077Z",
     "verb": "reconcile",
     "forced": true,
     "from_phase": "blocked",
     "to_phase": "blocked"
   },
-  "source_state_revision": 10,
-  "state_revision": 10
+  "source_state_revision": 13,
+  "state_revision": 13
 }

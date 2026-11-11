@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { levels } from '../src/levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from '../src/sprites.js';
-import { createState as createGameState, createTitleState as createGameTitle, transition as transitionGame, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
+import { createState as createGameState, createTitleState as createGameTitle, transition as transitionGame, transitionEffects, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
 import { hudText, screenLines as gameScreenLines } from '../src/strings.js';
+import { createAudio } from '../src/audio.js';
+import { createBestScoreStore } from '../src/storage.js';
 
 const level = levels[0].map;
 // Single-level fixtures retain the chapter 2 60-second baseline for core-rule regressions.
@@ -12,7 +14,7 @@ const definitions = (map) => [{ map, duration: 60000 }];
 const createState = (map, now = 0) => createGameState(definitions(map), now);
 const createTitleState = (map) => createGameTitle(definitions(map));
 const transition = (state, event, map, now) => transitionGame(state, event, definitions(map), now);
-const screenLines = (state) => gameScreenLines(state, 1);
+const screenLines = (state) => gameScreenLines(state, 0);
 
 const down = (state, key, now, map = level, repeat = false) => transition(state, { type: 'keydown', key, repeat }, map, now);
 const up = (state, key, now, map = level) => transition(state, { type: 'keyup', key }, map, now);
@@ -306,7 +308,7 @@ test('AC-20/22: five lights earn 500 plus floor seconds times 10, once', () => {
       state = up(state, 'ArrowRight', now, map);
     }
     state = down(state, 'ArrowRight', 60000 - remainingMs, map);
-    assert.equal(state.status, 'cleared');
+    assert.equal(state.status, 'final');
     assert.deepEqual(hudValues(state), { time: shown, score: 500 + bonus, remaining: 0 });
     assert.equal(tick(state, 90000, map), state);
     assert.equal(down(state, 'ArrowLeft', 90000, map), state);
@@ -367,7 +369,7 @@ test('X1 / AC-20: final light shows the destination cell immediately, including 
   ]) {
     const initial = createState(map);
     const cleared = down(initial, key, 1000, map);
-    assert.equal(cleared.status, 'cleared');
+    assert.equal(cleared.status, 'final');
     assert.equal(cleared.score, 100 + 59 * 10);
     assert.deepEqual(cleared.position, target);
     for (const now of [1000, 1060, 1120, 90000]) {
@@ -403,7 +405,7 @@ test('AC-24/25: title waits beyond 60000ms; fresh Enter starts a new full 60 sec
   assert.equal(up(title, 'ArrowRight', 60000), title);
   assert.equal(title.startedAt, null);
   assert.equal(title.nextGhostAt, Infinity);
-  assert.deepEqual(screenLines(title), ['폭풍 전의 등불', 'ENTER로 시작']);
+  assert.deepEqual(screenLines(title), ['폭풍 전의 등불', 'ENTER로 시작', '최고 점수 0']);
   const playing = down(title, 'Enter', 60000);
   assert.equal(playing.status, 'playing');
   assert.equal(playing.startedAt, 60000);
@@ -478,7 +480,7 @@ test('AC-28/29: scored timeout returns to zero-score title; next start resets th
   assert.equal(state.animation, null);
 });
 
-test('AC-27/39: a last-level clear displays 620 points once and cannot leave clear', () => {
+test('AC-41/42: last-level final freezes 620 points and a fresh Enter returns only to title', () => {
   const map = ['PLLLLL'];
   let state = down(createTitleState(map), 'Enter', 0, map);
   state = up(state, 'Enter', 0, map);
@@ -487,17 +489,22 @@ test('AC-27/39: a last-level clear displays 620 points once and cannot leave cle
     state = up(state, 'ArrowRight', now, map);
   }
   const cleared = structuredClone(state);
-  assert.equal(state.status, 'cleared');
-  assert.deepEqual(screenLines(state), ['등불을 모두 켰다', '점수 620']);
-  for (const [type, repeat, now] of [
-    ['keydown', false, 47002], ['keydown', true, 90000],
-    ['keyup', false, 90001], ['keydown', false, 90002],
-  ]) {
-    state = transition(state, { type, key: 'Enter', repeat }, map, now);
-    assert.deepEqual({ ...state, enterPressed: cleared.enterPressed }, cleared);
-    assert.equal(tick(state, now + 1, map), state);
-    assert.equal(down(state, 'ArrowLeft', now + 1, map), state);
-  }
+  assert.equal(state.status, 'final');
+  assert.deepEqual(gameScreenLines(state, 620), ['모든 등불을 켰다', '점수 620', '최고 점수 620', 'ENTER로 타이틀']);
+  assert.equal(tick(state, 90000, map), state);
+  assert.equal(down(state, 'ArrowLeft', 90000, map), state);
+  assert.equal(down(state, 'Enter', 90000, map, true).status, 'final');
+  state = down(state, 'Enter', 90001, map);
+  assert.equal(state.status, 'title');
+  assert.equal(state.score, 0);
+  assert.equal(down(state, 'Enter', 90002, map).status, 'title');
+  assert.equal(down(state, 'Enter', 90002, map, true).status, 'title');
+  state = down(up(state, 'Enter', 90003, map), 'Enter', 90004, map);
+  assert.equal(state.status, 'playing');
+  assert.equal(state.score, 0);
+  assert.deepEqual(state.pressed, []);
+  assert.equal(state.animation, null);
+  assert.equal(cleared.score, 620);
 });
 
 test('AC-28/31: held Enter cannot pass through collision failure and title in one press', () => {
@@ -588,7 +595,7 @@ function clearActualLevel(initial) {
       now += 240;
     }
   }
-  assert.equal(state.status, 'cleared');
+  assert.equal(state.status, state.levelIndex === 2 ? 'final' : 'cleared');
   assert.ok(state.finishedAt - state.startedAt < levels[state.levelIndex].duration);
   return state;
 }
@@ -690,7 +697,7 @@ test('AC-38: b/c collisions and swaps cannot be hidden by the first ghost or a l
   }
 });
 
-test('AC-35/36/37/39: actual three-level campaign clears safely, carries score once and consumes Enter', () => {
+test('AC-35/36/37/41/42: actual campaign clears safely, carries score and ends at final', () => {
   let state = gameKey(createGameTitle(levels), 'keydown', 'Enter', 10000);
   state = gameKey(state, 'keyup', 'Enter', 10000);
   for (let index = 0; index < 3; index += 1) {
@@ -700,22 +707,23 @@ test('AC-35/36/37/39: actual three-level campaign clears safely, carries score o
     assert.equal(cleared.score, expected);
     assert.equal(cleared.levelIndex, index);
     assert.equal(hudValues(cleared).remaining, 0);
-    const lines = ['등불을 모두 켰다', `점수 ${expected}`];
-    if (index < 2) lines.push('ENTER로 다음 레벨');
-    assert.deepEqual(gameScreenLines(cleared, levels.length), lines);
+    const lines = index < 2 ? ['등불을 모두 켰다', `점수 ${expected}`, 'ENTER로 다음 레벨']
+      : ['모든 등불을 켰다', `점수 ${expected}`, `최고 점수 ${expected}`, 'ENTER로 타이틀'];
+    assert.deepEqual(gameScreenLines(cleared, expected), lines);
     const now = cleared.finishedAt + 100000;
     assert.equal(gameTick(cleared, now), cleared);
     assert.equal(gameKey(cleared, 'keydown', 'ArrowRight', now), cleared);
     const snapshot = structuredClone(cleared);
     state = gameKey(cleared, 'keydown', 'Enter', now);
     assert.deepEqual(cleared, snapshot);
-    assert.equal(state.score, expected);
     if (index === 2) {
-      assert.equal(state.status, 'cleared');
-      assert.equal(state.levelIndex, 2);
-      assert.equal(gameKey(state, 'keydown', 'Enter', now + 1, true).status, 'cleared');
+      assert.equal(state.status, 'title');
+      assert.equal(state.score, 0);
+      assert.equal(state.levelIndex, 0);
+      assert.equal(gameKey(state, 'keydown', 'Enter', now + 1, true).status, 'title');
       continue;
     }
+    assert.equal(state.score, expected);
     assert.equal(state.status, 'playing');
     assert.equal(state.levelIndex, index + 1);
     assert.equal(state.startedAt, now);
@@ -745,14 +753,16 @@ test('AC-35/37: documented 12999ms bonus accumulates 620 to 1440 to 2460 exactly
       state = gameKey(state, 'keydown', 'ArrowRight', now, false, campaign);
       state = gameKey(state, 'keyup', 'ArrowRight', now, false, campaign);
     }
-    assert.equal(state.status, 'cleared');
+    assert.equal(state.status, index === 2 ? 'final' : 'cleared');
     assert.deepEqual(hudValues(state), { time: 13, score: [620, 1440, 2460][index], remaining: 0 });
     assert.equal(gameTick(state, state.finishedAt + 100000, campaign), state);
-    const next = gameKey(state, 'keydown', 'Enter', state.finishedAt + 100000, false, campaign);
-    assert.equal(next.score, [620, 1440, 2460][index]);
-    state = next;
+    if (index < 2) {
+      const next = gameKey(state, 'keydown', 'Enter', state.finishedAt + 100000, false, campaign);
+      assert.equal(next.score, [620, 1440][index]);
+      state = next;
+    }
   }
-  assert.equal(state.status, 'cleared');
+  assert.equal(state.status, 'final');
   assert.equal(state.levelIndex, 2);
 });
 
@@ -794,4 +804,218 @@ test('AC-38: exact 75/90-second final light loses to timeout and cannot earn new
     assert.equal(late.finishedAt, 10000 + duration);
     assert.equal(late.score, 720);
   }
+});
+
+function fakeAudioContext(state = 'running') {
+  const context = { state, currentTime: 10, destination: {}, gains: [], oscillators: [], resumes: 0 };
+  context.createGain = () => {
+    const node = {
+      gain: {
+        value: 1, events: [],
+        setValueAtTime(value, at) { this.events.push(['set', value, at]); },
+        linearRampToValueAtTime(value, at) { this.events.push(['ramp', value, at]); },
+      },
+      connect(target) { this.target = target; },
+      disconnect() { this.disconnected = true; },
+    };
+    context.gains.push(node);
+    return node;
+  };
+  context.createOscillator = () => {
+    const node = {
+      frequency: { events: [], setValueAtTime(value, at) { this.events.push([value, at]); } },
+      starts: [], stops: [],
+      connect(target) { this.target = target; },
+      disconnect() { this.disconnected = true; },
+      start(at) { this.starts.push(at); },
+      stop(at) { this.stops.push(at); },
+    };
+    context.oscillators.push(node);
+    return node;
+  };
+  context.resume = async () => { context.resumes += 1; context.state = 'running'; };
+  return context;
+}
+
+test('AC-43: four synthesized sounds use the chapter 7 wave, frequencies, attack and durations', () => {
+  for (const [name, wave, frequencies, duration] of [
+    ['lantern', 'sine', [880], 0.08], ['cleared', 'sine', [660, 880], 0.08],
+    ['failed', 'triangle', [220, 110], 0.1], ['final', 'sine', [660, 880, 1100], 0.1],
+  ]) {
+    const context = fakeAudioContext();
+    let creations = 0;
+    const audio = createAudio(() => { creations += 1; return context; });
+    audio.play(name);
+    assert.equal(creations, 0, 'No AudioContext before the actual gesture boundary unlocks it');
+    audio.unlock();
+    audio.unlock();
+    assert.equal(creations, 1);
+    audio.play(name);
+    assert.equal(context.gains[0].gain.value, 0.10);
+    assert.equal(context.gains[0].target, context.destination);
+    assert.equal(context.oscillators.length, frequencies.length);
+    for (const [index, oscillator] of context.oscillators.entries()) {
+      const at = 10 + index * duration;
+      assert.equal(oscillator.type, wave);
+      assert.deepEqual(oscillator.frequency.events, [[frequencies[index], at]]);
+      assert.deepEqual(oscillator.starts, [at]);
+      assert.deepEqual(oscillator.stops, [at + duration]);
+      const gain = context.gains[index + 1];
+      assert.equal(oscillator.target, gain);
+      assert.equal(gain.target, context.gains[0]);
+      assert.deepEqual(gain.gain.events, [['set', 0, at], ['ramp', 1, at + 0.005], ['ramp', 0, at + duration]]);
+      oscillator.onended();
+      assert.equal(oscillator.disconnected, true);
+      assert.equal(gain.disconnected, true);
+    }
+    assert.ok(Math.abs(context.oscillators.at(-1).stops[0] - (10 + frequencies.length * duration)) < 1e-10);
+  }
+});
+
+test('AC-44: replacing a sound cancels every old voice and suspension cannot queue stale audio', () => {
+  const context = fakeAudioContext();
+  const audio = createAudio(() => context);
+  audio.unlock();
+  audio.play('final');
+  const old = [...context.oscillators];
+  audio.play('lantern');
+  assert.ok(old.every((node) => node.stops.length === 2 && node.disconnected));
+  const current = context.oscillators.at(-1);
+  old.forEach((node) => node.onended());
+  context.state = 'suspended';
+  context.onstatechange();
+  assert.equal(current.disconnected, true);
+  assert.equal(current.stops.length, 2);
+  audio.play('failed');
+  assert.equal(context.oscillators.length, 4);
+  context.state = 'running';
+  context.onstatechange();
+  assert.equal(context.oscillators.length, 4, 'Resuming must not replay a dropped sound');
+  audio.play('failed');
+  assert.equal(context.oscillators.length, 6);
+});
+
+test('AC-43/44: unavailable, rejected or still-pending audio never queues or throws into gameplay', async () => {
+  const missing = createAudio(() => { throw new Error('unsupported'); });
+  assert.doesNotThrow(() => { missing.play('failed'); missing.unlock(); missing.play('final'); });
+  const context = fakeAudioContext('suspended');
+  context.resume = () => { context.resumes += 1; return Promise.reject(new Error('denied')); };
+  const audio = createAudio(() => context);
+  audio.unlock();
+  audio.unlock();
+  audio.play('final');
+  assert.equal(context.resumes, 1);
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(context.oscillators.length, 0);
+  context.resume = async () => { context.resumes += 1; context.state = 'running'; };
+  audio.unlock();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(context.resumes, 2);
+  assert.equal(context.oscillators.length, 0);
+  audio.play('lantern');
+  assert.equal(context.oscillators.length, 1);
+  context.createOscillator = () => { throw new Error('audio creation failure'); };
+  assert.doesNotThrow(() => audio.play('failed'));
+  assert.ok(context.gains.slice(1).every((node) => node.disconnected));
+});
+
+test('AC-45/47: only canonical decimal best scores from 0 through the documented 4350 bound load', () => {
+  for (const value of [null, '', ' ', '-1', '1.5', 'NaN', 'Infinity', '{}', '1e3', '01', '+100', '4351', '9007199254740992']) {
+    let reads = 0;
+    const store = createBestScoreStore(() => ({ getItem(key) { reads += 1; assert.equal(key, 'dotgame.bestScore'); return value; }, setItem() { assert.fail('No write on startup'); } }));
+    assert.equal(store.value, 0);
+    assert.equal(store.value, 0);
+    assert.equal(reads, 1);
+  }
+  for (const value of ['0', '620', '1440', '2460', '4350']) {
+    const store = createBestScoreStore(() => ({ getItem: () => value }));
+    assert.equal(store.value, Number(value));
+  }
+});
+
+test('AC-45/46: one key, startup read once, strictly higher writes only and reload reads the durable best', () => {
+  const data = new Map();
+  const writes = [];
+  let reads = 0;
+  const storage = {
+    getItem(key) { reads += 1; return data.get(key) ?? null; },
+    setItem(key, value) { writes.push([key, value]); data.set(key, value); },
+  };
+  const store = createBestScoreStore(() => storage);
+  assert.equal(store.record(620), 620);
+  assert.equal(store.record(620), 620);
+  assert.equal(store.record(100), 620);
+  assert.equal(store.record(2460), 2460);
+  assert.deepEqual(writes, [['dotgame.bestScore', '620'], ['dotgame.bestScore', '2460']]);
+  assert.equal(reads, 1);
+  assert.equal(data.size, 1);
+  const loaded = createBestScoreStore(() => storage);
+  assert.equal(loaded.value, 2460);
+  assert.equal(reads, 2);
+  assert.deepEqual(gameScreenLines(createGameTitle(levels), loaded.value), ['폭풍 전의 등불', 'ENTER로 시작', '최고 점수 2460']);
+});
+
+test('AC-47: storage getter/read/write exceptions preserve tab best without repeat retries', () => {
+  for (const getStorage of [() => { throw new Error('SecurityError'); }, () => ({ getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } })]) {
+    const store = createBestScoreStore(getStorage);
+    assert.equal(store.value, 0);
+    assert.equal(store.record(100), 100);
+  }
+  let attempts = 0;
+  const storage = { getItem: () => '620', setItem() { attempts += 1; throw new Error('QuotaExceededError'); } };
+  const store = createBestScoreStore(() => storage);
+  assert.equal(store.record(1440), 1440);
+  assert.equal(store.record(1440), 1440);
+  assert.equal(store.record(620), 1440);
+  assert.equal(attempts, 1);
+  assert.equal(store.record(2460), 2460);
+  assert.equal(attempts, 2);
+  assert.equal(createBestScoreStore(() => storage).value, 620, 'Failed writes cannot survive reload');
+});
+
+test('AC-43/44/46: terminal effects beat last-light sound and middle clears never save', () => {
+  const campaign = [{ map: ['PLL'], duration: 60000 }, { map: ['PL'], duration: 75000 }];
+  let state = createGameState(campaign);
+  const first = gameKey(state, 'keydown', 'ArrowRight', 0, false, campaign);
+  assert.deepEqual(transitionEffects(state, first), { sound: 'lantern', recordScore: null });
+  state = gameKey(first, 'keyup', 'ArrowRight', 0, false, campaign);
+  assert.deepEqual(transitionEffects(first, state), { sound: null, recordScore: null });
+  const cleared = gameKey(state, 'keydown', 'ArrowRight', 120, false, campaign);
+  assert.equal(cleared.status, 'cleared');
+  assert.deepEqual(transitionEffects(state, cleared), { sound: 'cleared', recordScore: null });
+  const finalStart = createGameState(campaign, 10000, 1, 620);
+  const final = gameKey(finalStart, 'keydown', 'ArrowRight', 72001, false, campaign);
+  assert.deepEqual(transitionEffects(finalStart, final), { sound: 'final', recordScore: 840 });
+  assert.deepEqual(transitionEffects(final, gameTick(final, 999999, campaign)), { sound: null, recordScore: null });
+  const timedStart = createGameState(campaign, 10000, 1, 620);
+  const failed = gameKey(timedStart, 'keydown', 'ArrowRight', 85000, false, campaign);
+  assert.equal(failed.failureReason, 'timeout');
+  assert.equal(hudValues(failed).remaining, 0);
+  assert.deepEqual(transitionEffects(timedStart, failed), { sound: 'failed', recordScore: 620 });
+});
+
+test('AC-44/46: a late keyup discovers one 75-second failure sound/write and no successor repeats it', () => {
+  const context = fakeAudioContext();
+  const audio = createAudio(() => context);
+  audio.unlock();
+  const writes = [];
+  const store = createBestScoreStore(() => ({ getItem: () => null, setItem: (...args) => writes.push(args) }));
+  let state = createGameState(levels, 10000, 1, 100);
+  function dispatch(event, now) {
+    const previous = state;
+    state = transitionGame(state, event, levels, now);
+    const effects = transitionEffects(previous, state);
+    if (effects.recordScore !== null) store.record(effects.recordScore);
+    if (effects.sound !== null) audio.play(effects.sound);
+  }
+  dispatch({ type: 'keyup', key: 'ArrowRight' }, 85001);
+  assert.equal(state.finishedAt, 85000);
+  assert.equal(state.failureReason, 'timeout');
+  assert.equal(context.oscillators.length, 2);
+  assert.deepEqual(context.oscillators.map((node) => node.frequency.events[0][0]), [220, 110]);
+  assert.deepEqual(writes, [['dotgame.bestScore', '100']]);
+  for (const event of [{ type: 'tick' }, { type: 'keyup', key: 'ArrowRight' }, { type: 'keydown', key: 'Enter' }, { type: 'keydown', key: 'Enter', repeat: true }, { type: 'blur' }]) dispatch(event, 85002);
+  assert.equal(context.oscillators.length, 2);
+  assert.equal(writes.length, 1);
+  assert.equal(store.value, 100);
 });

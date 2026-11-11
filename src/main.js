@@ -1,12 +1,16 @@
 import { levels } from './levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from './sprites.js';
-import { createTitleState, transition, displayPosition, hudValues } from './logic.js';
+import { createTitleState, transition, transitionEffects, displayPosition, hudValues } from './logic.js';
 import { hudText, screenLines } from './strings.js';
+import { createAudio } from './audio.js';
+import { createBestScoreStore } from './storage.js';
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 context.imageSmoothingEnabled = false;
 let state = createTitleState(levels);
+const audio = createAudio();
+const bestScore = createBestScoreStore();
 const textCanvas = document.createElement('canvas');
 textCanvas.width = 240;
 textCanvas.height = 16;
@@ -70,7 +74,15 @@ function drawSprite(sprite, x, y) {
 }
 
 function dispatch(event, now) {
-  state = transition(state, event, levels, now);
+  const previous = state;
+  state = transition(previous, event, levels, now);
+  const navigated = (previous.status === 'title' || previous.status === 'cleared')
+    ? state.status === 'playing' : state.status === 'title';
+  if (event.isTrusted && event.type === 'keydown' && event.key === 'Enter'
+    && !event.repeat && !previous.enterPressed && navigated) audio.unlock();
+  const effects = transitionEffects(previous, state);
+  if (effects.recordScore !== null) bestScore.record(effects.recordScore);
+  if (effects.sound !== null) audio.play(effects.sound);
 }
 
 for (const type of ['keydown', 'keyup']) {
@@ -106,7 +118,7 @@ function render() {
     drawSprite(player, Math.round(position.x * 16), 16 + Math.round(position.y * 16));
     drawText(hudText(hudValues(state)), 3, 0, 10);
   } else {
-    const lines = screenLines(state, levels.length);
+    const lines = screenLines(state, bestScore.value);
     const top = lines.length === 2 ? 64 : 48;
     for (let index = 0; index < lines.length; index += 1) {
       drawText(lines[index], null, top + index * 32, 14);

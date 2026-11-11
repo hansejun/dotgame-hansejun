@@ -1,0 +1,39 @@
+{
+  "goal": "goal-5",
+  "humanAcceptance": "User reports localhost AC-41..48 checked on 2026-11-11 via Claude Code. AC-43/44 are synthesized audio call observations instead of listening; actual listening is unverified. Optional Pages is deferred.",
+  "userReport": {
+    "source": "User-supplied report, browser, user delegate Claude Code; not newly executed by this agent",
+    "date": "2026-11-11",
+    "finalScore": 4050,
+    "bestScore": 4050,
+    "finalWithoutExtraEnter": true,
+    "returnAndNewGame": true,
+    "storageKey": "dotgame.bestScore",
+    "reloadAndLowerScorePreserveRecord": true,
+    "invalidStoredValue": "abc",
+    "invalidValueShowsBestZero": true,
+    "audioEvidence": "OscillatorNode.start: idle0, first lantern1, calls through full completion; no listening",
+    "moduleOrTextClippingErrors": false,
+    "pages": "not deployed; deferred"
+  },
+  "tests": {"command": "node --test test/", "passed": 43, "failed": 0, "coverage": ["instant last-level final, bonus and fresh Enter title/reset", "four waveform/frequency/duration schedules and 5ms attack with master gain 0.10", "gesture-bound lazy context, interrupted voices, resume rejection and no stale sound queue", "canonical 0..4350 best-score reads, one-key strictly higher writes, blocked getter/read/write and reload", "late keyup discovers one 75-second failure sound and one write, successor inputs add none", "all prior map, timer, collision, scoring and campaign regressions"]},
+  "liveBrowser": {
+    "url": "http://localhost:8000/",
+    "method": "Actual Chromium game and trusted keyboard input. Routes derived from actual fetched grids, no game-state injection, no fixture, no virtual clock. Observational wrappers call the native Web Audio and Storage methods unchanged and record their calls.",
+    "title": {"audioContextsBeforeGesture": 0, "bestScoreReads": 1, "writes": 0, "bestScoreShown": 0},
+    "campaign": [
+      {"level": 1, "keyboardMoves": 49, "totalSynthesizedNotes": 6, "contexts": 1, "writes": 0},
+      {"level": 2, "keyboardMoves": 55, "totalSynthesizedNotes": 14, "contexts": 1, "writes": 0},
+      {"level": 3, "keyboardMoves": 62, "totalSynthesizedNotes": 25, "contexts": 1, "writes": [["dotgame.bestScore", "4090"]]}
+    ],
+    "final": {"visible": ["모든 등불을 켰다", "점수 4090", "최고 점수 4090", "ENTER로 타이틀"], "lastNoteFrequencies": [660, 880, 1100], "canvasFrozenAfterArrowAndWait": true},
+    "returnAndReload": {"heldEnterAndRepeatReturnedOnlyToTitle": true, "noAdditionalNotesOrWrites": true, "reloadBest": "4090", "reloadContexts": 0, "reloadReads": 1, "reloadWrites": 0},
+    "lowerFailure": {"visibleScore": 100, "lastNoteFrequencies": [220, 110], "writes": 0, "persistedBest": "4090"},
+    "deniedCapabilities": {"method": "Test environment overrides localStorage getter to throw SecurityError and removes AudioContext before loading the actual app; no game-state injection", "actualKeyboardPlayAndCollisionSucceeded": true, "returnedTitleMemoryBest": 100, "uncaughtErrors": []},
+    "malformedStorage": {"preparedValue": "01", "visibleBest": 0, "startupReads": 1, "startupWrites": 0, "invalidValueUnchanged": true, "automatedTestBest4090RestoredAfterward": true},
+    "observedResources": ["src/main.js", "src/levels.js", "src/sprites.js", "src/logic.js", "src/strings.js", "src/audio.js", "src/storage.js"],
+    "screenshots": ["goal-5-final.png", "goal-5-reloaded.png", "goal-5-denied-memory-best.png"],
+    "limitations": "Headless audio scheduling and real UI/storage were observed; no human listening or acceptance is claimed. API denial is an explicit browser test environment, not an observed OS storage policy. Optional GitHub Pages/cross-origin check was not run. The actual human must confirm AC-41..48."
+  },
+  "scope": {"AGENTSModified": false, "commitCreated": false, "externalAudioOrBGM": false}
+}

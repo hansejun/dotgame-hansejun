@@ -87,7 +87,7 @@ function movePlayer(state, event, map, now) {
   };
 }
 
-function update(state, event, map, now, duration) {
+function update(state, event, map, now, duration, lastLevel) {
   const moved = movePlayer(state, event, map, now);
   const ghostDue = state.nextGhostAt === now;
   const ghosts = ghostDue ? state.ghosts.map((ghost) => {
@@ -112,14 +112,14 @@ function update(state, event, map, now, duration) {
     nextGhostAt: ghostDue ? state.nextGhostAt + ghostInterval : state.nextGhostAt,
     score: state.score + (failureReason ? 0 : newLights * 100)
       + (cleared ? Math.floor(remainingMs / 1000) * 10 : 0),
-    status: failureReason ? 'failed' : cleared ? 'cleared' : 'playing',
+    status: failureReason ? 'failed' : cleared ? (lastLevel ? 'final' : 'cleared') : 'playing',
     failureReason,
     updatedAt: now,
     finishedAt: failureReason || cleared ? now : null,
   };
 }
 
-function advancePlaying(state, event, { map, duration }, now) {
+function advancePlaying(state, event, { map, duration }, now, lastLevel) {
   if (state.status !== 'playing') return state;
   if (event.type !== 'tick' && event.type !== 'blur'
     && !((event.type === 'keydown' || event.type === 'keyup') && Object.hasOwn(directions, event.key))) return state;
@@ -127,36 +127,47 @@ function advancePlaying(state, event, { map, duration }, now) {
   let next = state;
   let due = Math.min(next.nextGhostAt, next.startedAt + duration);
   while (due < now) {
-    next = update(next, { type: 'tick' }, map, due, duration);
+    next = update(next, { type: 'tick' }, map, due, duration, lastLevel);
     if (next.status !== 'playing') return next;
     due = Math.min(next.nextGhostAt, next.startedAt + duration);
   }
-  return update(next, event, map, now, duration);
+  return update(next, event, map, now, duration, lastLevel);
 }
 
 export function transition(state, event, levels, now) {
   const definition = levels[state.levelIndex];
+  const lastLevel = state.levelIndex === levels.length - 1;
   if (event.type === 'blur') {
-    const next = advancePlaying(state, event, definition, now);
+    const next = advancePlaying(state, event, definition, now, lastLevel);
     if (!next.enterPressed && next.pressed.length === 0) return next;
     return { ...next, enterPressed: false, pressed: [] };
   }
   if (event.key !== 'Enter' || (event.type !== 'keydown' && event.type !== 'keyup')) {
-    return advancePlaying(state, event, definition, now);
+    return advancePlaying(state, event, definition, now, lastLevel);
   }
   const pressed = event.type === 'keydown';
   const freshPress = pressed && !event.repeat && !state.enterPressed;
   if (freshPress && state.status === 'title') {
     return { ...createState(levels, now), enterPressed: true };
   }
-  if (freshPress && state.status === 'failed') {
+  if (freshPress && (state.status === 'failed' || state.status === 'final')) {
     return { ...createTitleState(levels), enterPressed: true };
   }
   if (freshPress && state.status === 'cleared' && state.levelIndex + 1 < levels.length) {
     return { ...createState(levels, now, state.levelIndex + 1, state.score), enterPressed: true };
   }
-  const next = advancePlaying(state, { type: 'tick' }, definition, now);
+  const next = advancePlaying(state, { type: 'tick' }, definition, now, lastLevel);
   return next.enterPressed === pressed ? next : { ...next, enterPressed: pressed };
+}
+
+export function transitionEffects(previous, next) {
+  if (previous.status !== 'playing') return { sound: null, recordScore: null };
+  if (next.status === 'failed' || next.status === 'final') {
+    return { sound: next.status, recordScore: next.score };
+  }
+  if (next.status === 'cleared') return { sound: 'cleared', recordScore: null };
+  const newLight = next.lanterns.some((lamp, index) => lamp.lit && !previous.lanterns[index].lit);
+  return { sound: newLight ? 'lantern' : null, recordScore: null };
 }
 
 export function hudValues(state) {
