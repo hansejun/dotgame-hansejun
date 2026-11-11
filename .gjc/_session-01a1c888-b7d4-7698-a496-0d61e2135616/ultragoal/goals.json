@@ -8,15 +8,38 @@
       "id": "G001",
       "title": "goal-1: 맵 위에서 캐릭터가 한 칸씩 움직이고 벽에 막힌다. Approved plan .gjc/_session-01a1c888-b7d...",
       "objective": "goal-1: 맵 위에서 캐릭터가 한 칸씩 움직이고 벽에 막힌다. Approved plan .gjc/_session-01a1c888-b7d4-7698-a496-0d61e2135616/plans/ralplan/01a1c888-b7d4-7698-a496-0d61e2135616/pending-approval.md sha256 6ccdf14eeb6cd84dd7ceb620aa5773e1787779d20b6be5f477be83006cdda8ee. Implement GAME_DESIGN.md v1 chapters2/4/5/6 with AGENTS.md: Canvas 240x192 CSS720x576, actual15x11 grid16px tiles+16px blank HUD, palette indexed sprites, immediate logical move/120ms visual-only, no repeat/queued movement, wall/bounds no feedback/lock. Exactly one goal. No R2/R3, docs edits, package.json/deps, debug UI or commit. Complete only when actual human browser confirms chapter9 AC-1~AC-7; automatic tests/fixtures not sufficient. Tests node --test test/. Human confirmation may require human_blocked pause after all autonomous verification.",
-      "status": "active",
+      "status": "complete",
       "createdAt": "2026-11-11T03:05:39.819Z",
-      "updatedAt": "2026-11-11T08:05:17.149Z",
+      "updatedAt": "2026-11-11T08:11:18.496Z",
       "startedAt": "2026-11-11T03:05:40.089Z",
-      "evidence": "User authorizes last formal goal1 completion after goals2-5 native receipts. Activate for genuine frozen-source four-lane review only; preserve historical acceptance and later authorized UI evolution, no new E2E/completion claim."
+      "evidence": "Actual current four-lane review passed; attributed historicalAC1-7 acceptance and explicit user completion approval, authorized later HUD/screens evolution; unchanged product/test-source335e9cb baseline,retained actual browser E2E,current43pass TAP. JPEG lossy/originalPNG and timing/trace/palette proof limits explicit, no newbrowser/hearing/Pages claims.",
+      "completedAt": "2026-11-11T08:11:18.496Z",
+      "completionVerification": {
+        "schemaVersion": 1,
+        "receiptId": "0ea27c95-5b1f-454f-8c1c-bca144845f77",
+        "verifiedAt": "2026-11-11T08:11:18.496Z",
+        "goalId": "G001",
+        "receiptKind": "final-aggregate",
+        "goalStatusBeforeCheckpoint": "active",
+        "gjcGoalMode": "aggregate",
+        "gjcObjective": "Complete the durable ultragoal plan in .gjc/ultragoal/goals.json, including later accepted/appended stories, under the original brief constraints; use .gjc/ultragoal/ledger.jsonl as the audit trail.",
+        "qualityGateHash": "2169af4c443f16447b219a307e0d6d3581120e4e9d860abfc25aee572228f99c",
+        "planGeneration": "d8ef5159e7948e16dd3924cee3dfae4bd2be12a3777fcc03c6f158e16617c239",
+        "basis": {
+          "planHashBeforeCheckpoint": "a4e1b747b5375471c7db9847fe6e7a591570860f12905a52a4463967ef11f707",
+          "latestRelevantLedgerEventIdBeforeCheckpoint": "ab2ea2fe-f273-43f0-890f-fd7e3d204291",
+          "goalUpdatedAtBeforeCheckpoint": "2026-11-11T08:11:18.496Z",
+          "relevantGoalIdsBeforeCheckpoint": [
+            "G001"
+          ],
+          "requiredGoalSetHashBeforeCheckpoint": "11cbf082381f677382c35fc781290d8aabc9e545313e3501663f04a89eb31bc2"
+        },
+        "checkpointLedgerEventId": "8230f50b-5f4b-4ef0-bff4-116f30897887"
+      }
     }
   ],
   "createdAt": "2026-11-11T03:05:39.819Z",
-  "updatedAt": "2026-11-11T08:05:17.149Z",
+  "updatedAt": "2026-11-11T08:11:18.496Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -25,5 +48,5 @@
     "head": "f1319930345be137293abef716e02fce558a3504",
     "branch": "main"
   },
-  "state_revision": 14
+  "state_revision": 15
 }
