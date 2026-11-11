@@ -1,59 +1,62 @@
 {
   "version": 1,
   "active": true,
-  "skill": "deep-interview",
-  "phase": "handoff",
-  "updated_at": "2026-11-11T02:30:34.150Z",
+  "skill": "ralplan",
+  "phase": "final",
+  "updated_at": "2026-11-11T02:48:24.937Z",
   "session_id": "01a1c851-6892-733d-9f93-49c114e9c76e",
   "active_skills": [
     {
-      "skill": "deep-interview",
-      "phase": "handoff",
+      "skill": "ralplan",
+      "phase": "final",
       "active": true,
-      "activated_at": "2026-11-11T02:30:34.150Z",
-      "updated_at": "2026-11-11T02:30:34.150Z",
+      "activated_at": "2026-11-11T02:48:24.937Z",
+      "updated_at": "2026-11-11T02:48:24.937Z",
       "session_id": "01a1c851-6892-733d-9f93-49c114e9c76e",
       "hud": {
         "version": 1,
+        "summary": "persisted final stage 2",
         "chips": [
           {
-            "label": "phase",
-            "value": "handoff",
+            "label": "pending",
+            "value": "approval",
+            "priority": 5,
+            "severity": "warning"
+          },
+          {
+            "label": "stage",
+            "value": "final",
             "priority": 10
           },
           {
-            "label": "ambiguity",
-            "value": "2%/5%",
-            "priority": 20
-          },
-          {
-            "label": "round",
-            "value": "25",
+            "label": "iter",
+            "value": "2",
             "priority": 30
           },
           {
-            "label": "target",
-            "value": "lighthouse-game",
-            "priority": 40
+            "label": "stages",
+            "value": "R·C·A·I·D·F",
+            "priority": 35
           },
           {
-            "label": "weakest",
-            "value": "criteria",
-            "priority": 50
+            "label": "verdict",
+            "value": "CLEAR",
+            "priority": 40,
+            "severity": "success"
           },
           {
-            "label": "spec",
-            "value": "persisted",
-            "priority": 60
+            "label": "handoff",
+            "value": "off→off",
+            "priority": 45
           }
         ],
-        "updated_at": "2026-11-11T02:30:34.150Z"
+        "updated_at": "2026-11-11T02:48:24.936Z"
       },
-      "source_state_revision": 48,
-      "state_revision": 47
+      "source_state_revision": 10,
+      "state_revision": 10
     }
   ],
   "active_subskills": [],
-  "source_state_revision": 74,
-  "state_revision": 74
+  "source_state_revision": 85,
+  "state_revision": 85
 }
