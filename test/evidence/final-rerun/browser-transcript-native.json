@@ -1,0 +1,1482 @@
+{
+  "schemaVersion": 1,
+  "kind": "browser-automation-transcript",
+  "surface": "web",
+  "tool": "Chromium Puppeteer browser_tool; native APIs observed without changing gameplay",
+  "url": "http://127.0.0.1:8001/",
+  "head": "335e9cb71059e2d4d865f586abb8426e721eb12d",
+  "rawTranscript": "test/evidence/final-rerun/browser-transcript.json",
+  "serialization": "Exact original timestamps and data preserved. Per-step assertion observations interleaved chronologically with original actions;the actual last assertion retained as terminal assertion. No time or result invented. Original raw transcript is unchanged.",
+  "actions": [
+    {
+      "type": "goto",
+      "url": "http://127.0.0.1:8001/",
+      "timestamp": 1794380545414
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380546103,
+      "path": "test/evidence/final-rerun/00-title.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380546103,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Fresh actual title before trusted gesture, best0; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380630672
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380630943,
+      "path": "test/evidence/final-rerun/01-level1-start.png"
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380630943
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380630943,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual level1 start via fresh trusted Enter; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631092
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631242
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631392
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631543
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631694
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631843
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380631992
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380632143
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380632292
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380632442
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380632592
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380632741
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380632892
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633042
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633192
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633342
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380633491
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633642
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633792
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380633942
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380634091
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380634242
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380634392
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380634542
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380634692
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380634842
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380634992
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635142
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635291
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635442
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635591
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635742
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380635891
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380636041
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380636192
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380636341
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380636492
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380636642
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380636792
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380636942
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637091
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637241
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637392
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637541
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637692
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637842
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380637992
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380638142
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380638385,
+      "path": "test/evidence/final-rerun/02-level1-clear.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380638385,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual ordinary-keyboard intermediate clear; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380639689
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380639774,
+      "path": "test/evidence/final-rerun/03-level2-start.png"
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380639774
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380639774,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual level2 start via fresh trusted Enter; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380639924
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640074
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640224
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640374
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640524
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640673
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640824
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380640974
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380641124
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380641274
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380641424
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380641574
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380641725
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380641874
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642024
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642174
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380642324
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642474
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642624
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642774
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380642924
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380643074
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380643224
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380643374
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380643525
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380643675
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380643824
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380643974
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380644124
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380644274
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380644424
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380644574
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380644724
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380644874
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645024
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645174
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645324
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645474
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380645624
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645774
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380645924
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380646074
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380646224
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380646374
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380646524
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380646675
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380646825
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380646974
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647124
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647274
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647425
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647574
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647725
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380647874
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380648116,
+      "path": "test/evidence/final-rerun/04-level2-clear.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380648116,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual ordinary-keyboard intermediate clear; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380649419
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380649528,
+      "path": "test/evidence/final-rerun/05-level3-start.png"
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380649528
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380649528,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual level3 start via fresh trusted Enter; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380649676
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380649825
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380649974
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650124
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650275
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650424
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650574
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650725
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380650874
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380651025
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380651175
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380651324
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380651475
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380651624
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380651774
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380651924
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652074
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652224
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652374
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652524
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652674
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380652824
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380652974
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380653124
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380653275
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380653424
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380653575
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380653725
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380653874
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654024
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654174
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654324
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654475
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654624
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654774
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380654924
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380655074
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380655225
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380655374
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380655524
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380655675
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380655824
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380655974
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656124
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656274
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656425
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656575
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656725
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380656875
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380657025
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380657175
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380657325
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380657474
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380657624
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380657774
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380657921
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380658068
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380658214
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380658361
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380658508
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380658655
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380658885,
+      "path": "test/evidence/final-rerun/06-final-clear.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380658885,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual ordinary-keyboard immediate final without extra Enter; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380658886
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380659140,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual safe route1→2→3 immediate final;notes6/14/25,onecontext,no middle writes,one final write,direction freezes;no fixture/state/clock injection"
+      }
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "key": "Enter",
+      "eventType": "keydown",
+      "timestamp": 1794380710778
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380710889,
+      "path": "test/evidence/final-rerun/07-return-title.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380710889,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Final fresh Enter returns only to title with best4090; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "goto",
+      "url": "http://127.0.0.1:8001/",
+      "timestamp": 1794380710994,
+      "description": "actual page reload"
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380711636,
+      "path": "test/evidence/final-rerun/08-reloaded-title.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380711636,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual reload returns title and keeps stored highest4090; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380711637,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Final Enter→title only;held repeat cannot pass through;native single-key high score persists actual reload;no additional sound/write"
+      }
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380765191
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380765349,
+      "path": "test/evidence/final-rerun/09-new-game.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380765349,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Fresh Enter after reload starts actual level1 time60 score0 lantern5; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowUp",
+      "selector": "canvas",
+      "timestamp": 1794380765352
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380765769
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380766119
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380766414,
+      "path": "test/evidence/final-rerun/10-first-lantern.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380766414,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual first lantern lights,score100,one synthesized880Hz start; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380766420
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380766565
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380766715
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380766866
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380767014
+    },
+    {
+      "type": "press",
+      "key": "ArrowDown",
+      "selector": "canvas",
+      "timestamp": 1794380767165
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380767314
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380767464
+    },
+    {
+      "type": "wait",
+      "selector": "canvas",
+      "ms": 3300,
+      "timestamp": 1794380767614,
+      "description": "Actual patrol collision wait,no virtual time"
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380771021,
+      "path": "test/evidence/final-rerun/11-collision-failure.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380771021,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual patrol collision after lighting: failure score100; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowLeft",
+      "selector": "canvas",
+      "timestamp": 1794380771023
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380771475
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380771591,
+      "path": "test/evidence/final-rerun/12-collision-return-title.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380771591,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual collision failure fresh Enter returns title;best4090 remains; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380771592,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Real wall,held/repeat,fresh press,animation-time discard,first lamp100+880Hz,patrol collision100+220/110Hz,lower score no write,frozen failure and Entertitle verified by pixels/native calls"
+      }
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380814457
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380814599,
+      "path": "test/evidence/final-rerun/13-timeout-start.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380814599,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual fresh level1 safe P start,time60,score0; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "wait",
+      "selector": "canvas",
+      "ms": 61000,
+      "timestamp": 1794380814601,
+      "description": "Real wall-clock wait exceeding level1 60000ms deadline;no injected clock or state"
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380875704,
+      "path": "test/evidence/final-rerun/14-timeout-failure.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380875704,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual 60-second deadline elapsed at untouched safe start;timeout result score0; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "press",
+      "key": "ArrowRight",
+      "selector": "canvas",
+      "timestamp": 1794380875706
+    },
+    {
+      "type": "press",
+      "key": "Enter",
+      "selector": "canvas",
+      "timestamp": 1794380875909
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794380876017,
+      "path": "test/evidence/final-rerun/15-timeout-return-title.png"
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380876017,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual timeout Enter returns title with best4090; actual canvas nonuniform, CSS720x576, logical240x192"
+      }
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380876018,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "Actual real-time timeout,one failure sound pair,no lower write,terminal freeze,Entertitle and highest preserved",
+        "elapsedMs": 61136
+      }
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794380953394,
+      "description": "Recorded assertion observation from the original actual run",
+      "result": {
+        "status": "passed",
+        "description": "All16actual canvas PNGs decoded unmodified:1440x1152,nonuniform;gameplay8colors,terminal2intentionalpalettecolors"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "timestamp": 1794380953394,
+      "status": "passed",
+      "selector": "canvas",
+      "description": "All16actual canvas PNGs decoded unmodified:1440x1152,nonuniform;gameplay8colors,terminal2intentionalpalettecolors"
+    }
+  ],
+  "screenshot": "test/evidence/final-rerun/03-level2-start.png"
+}

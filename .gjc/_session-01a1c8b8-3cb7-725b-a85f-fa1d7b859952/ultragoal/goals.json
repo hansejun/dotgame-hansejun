@@ -10,9 +10,9 @@
       "objective": "문서 선행 갱신·사람 검토 후 L5·유령1·400ms 왕복·60초·100점·보너스floor초*10·같은칸/맞교환 충돌·실패우선·HUDceil·terminal 구현. test/logic.test.js 숫자기반 회귀 추가와 node --test test/ 통과. 실제 사람이 AC8-23과 이동회귀를 확인해야 완료.",
       "status": "blocked",
       "createdAt": "2026-11-11T04:11:43.328Z",
-      "updatedAt": "2026-11-11T04:44:25.614Z",
+      "updatedAt": "2026-11-11T07:27:20.916Z",
       "startedAt": "2026-11-11T04:11:43.602Z",
-      "evidence": "제품완료수용증거는 test/evidence/goal-2-verification.json와GAME_DESIGN9장AC8-23에기록됨. nativecomplete는 unable to resolve an authoritative integration base exit1로거절,성공영수증없음. 사용자지시대로사유ledger기록후재시도/도구수정/상태우회중단. 제품미검증과구분한다."
+      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
     },
     {
       "id": "G002",
@@ -20,12 +20,12 @@
       "objective": "goal-2 사람 확인 후 타이틀/플레이/클리어/실패·최소문구 strings.js·Enter/reset 구현. R2클리어Enter무동작, 다음레벨R3goal4. 실패Enter타이틀점수0, 반복/동일누름재사용방지. test/logic.test.js 숫자기반 테스트와 node --test test/ 통과. 실제 사람이 AC24-32와 core회귀 확인해야 완료.",
       "status": "blocked",
       "createdAt": "2026-11-11T04:11:43.328Z",
-      "updatedAt": "2026-11-11T05:07:52.851Z",
-      "evidence": "제품수용완료:AC24-32사용자대행브라우저전부통과,verify27/27PASS,기획서표시/증거파일완료. nativecomplete는 unable to resolve an authoritative integration base exit1로거절되어영수증없음. 사용자지시대로사유만ledger기록후도구수정/추가시도없음. 사람AC미확인blocker는해소됨. test/evidence/goal-3-verification.json참조."
+      "updatedAt": "2026-11-11T07:27:22.883Z",
+      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
     }
   ],
   "createdAt": "2026-11-11T04:11:43.328Z",
-  "updatedAt": "2026-11-11T05:07:52.851Z",
+  "updatedAt": "2026-11-11T07:27:22.883Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -34,5 +34,5 @@
     "head": "debba1252d8664e78626982f622dfe674fa81d6c",
     "branch": "main"
   },
-  "state_revision": 16
+  "state_revision": 28
 }

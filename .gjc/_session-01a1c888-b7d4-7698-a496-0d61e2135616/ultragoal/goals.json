@@ -10,13 +10,13 @@
       "objective": "goal-1: 맵 위에서 캐릭터가 한 칸씩 움직이고 벽에 막힌다. Approved plan .gjc/_session-01a1c888-b7d4-7698-a496-0d61e2135616/plans/ralplan/01a1c888-b7d4-7698-a496-0d61e2135616/pending-approval.md sha256 6ccdf14eeb6cd84dd7ceb620aa5773e1787779d20b6be5f477be83006cdda8ee. Implement GAME_DESIGN.md v1 chapters2/4/5/6 with AGENTS.md: Canvas 240x192 CSS720x576, actual15x11 grid16px tiles+16px blank HUD, palette indexed sprites, immediate logical move/120ms visual-only, no repeat/queued movement, wall/bounds no feedback/lock. Exactly one goal. No R2/R3, docs edits, package.json/deps, debug UI or commit. Complete only when actual human browser confirms chapter9 AC-1~AC-7; automatic tests/fixtures not sufficient. Tests node --test test/. Human confirmation may require human_blocked pause after all autonomous verification.",
       "status": "blocked",
       "createdAt": "2026-11-11T03:05:39.819Z",
-      "updatedAt": "2026-11-11T03:45:53.515Z",
+      "updatedAt": "2026-11-11T07:27:18.961Z",
       "startedAt": "2026-11-11T03:05:40.089Z",
-      "evidence": "Human explicitly approves goal-1 product completion from AC1~7 browser evidence and requests supported native override; full approval successfully recorded by annotate_ledger. Protected AGENTS template restored exactly, directory entry test/index.js single import, both node --test test/ and node --test test/*.test.js8/8 pass. record-critic-gate-override refused: requires durably recorded terminal critic hard stop (none exists; not fabricated). Requested G001 complete attempted; first state review_blocked rejection resolved via active checkpoint, then complete refused by source_hash_mismatch/critic_verdict_not_okay/actualPNG evidence rejection. User approval cannot be made effective through existing documented native CLI; external runtime support/remediation required. User did not authorize direct .gjc state edits, fake critical verdicts/hardstops, ignored runtime paths, installed-binary patch or commits. Completion refusal and actual operator approval retained in test/evidence/goal-1-verification.json and ledger. No product defect or missing human acceptance asserted; exact oneG001 preserved. No successful complete or aggregate receipt exists."
+      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
     }
   ],
   "createdAt": "2026-11-11T03:05:39.819Z",
-  "updatedAt": "2026-11-11T03:45:53.515Z",
+  "updatedAt": "2026-11-11T07:27:18.961Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -25,5 +25,5 @@
     "head": "f1319930345be137293abef716e02fce558a3504",
     "branch": "main"
   },
-  "state_revision": 7
+  "state_revision": 13
 }
