@@ -8,11 +8,34 @@
       "id": "G001",
       "title": "goal-4 다중 레벨과 유령 경로 및 누적 점수",
       "objective": "Apply approved ten-chapter v3 doc-first. Implement fixed15x11 level2 L7 ghosts2 duration75000, level3 L9 ghosts3 duration90000 with approved a/b/c grids copied exactly. Level1/2 clear fresh Enter next level retaining score, independent clock and reset objects/input/animation; level3 clear frozen, Enter no-op, no final/audio/storage yet. Preserve immediate input120ms display,400ms patrol, time-ordered earliest terminal/failure priority, score100+floor bonus once. Extend test/logic.test.js with doc-derived map/connectivity/reachable clears,75/90s boundaries,multi-ghost b/c collision,score620→1440→2460,Enter lifetimes/reset/freeze/immutability. Tests must pass. Human must review v3 and actual localhost browser AC33-40 and regressions; do not check AC or call story complete until human confirms. After implementation and all feasible verification/review, record genuine human-only blocker and pause with terminal critic if human has not confirmed. Do not start goal-5.",
-      "status": "active",
+      "status": "complete",
       "createdAt": "2026-11-11T05:50:05.128Z",
-      "updatedAt": "2026-11-11T07:32:51.907Z",
+      "updatedAt": "2026-11-11T07:46:12.640Z",
       "startedAt": "2026-11-11T05:50:05.411Z",
-      "evidence": "User requests renewed formal completion after committing runtime tracking cleanup and real final-rerun evidence. Actual full43pass/campaign/collision/realtime61.136sectimeout/reload evidence retained;newcurrent full node suite passed. Product/AGENTS/GAME_DESIGN unchanged from335e9cb. Activate only to satisfy supported complete precondition before freezing alltargets sourcehash;not a completion claim. No commits or fake reviews/images/hashes."
+      "evidence": "Actual frozen-source four-lane review passed; schema-only provenance relocation preserves all content, verdicts and sourceHash. Retained actual335e9cb browser execution supports unchanged product and test sources; current43pass tests; humanAC33-40 acceptance and authorized later supersession; JPEG lossy copies/PNG originals disclosed.",
+      "completedAt": "2026-11-11T07:46:12.640Z",
+      "completionVerification": {
+        "schemaVersion": 1,
+        "receiptId": "334420b8-750b-4cd5-9632-f06a0b8d5b45",
+        "verifiedAt": "2026-11-11T07:46:12.640Z",
+        "goalId": "G001",
+        "receiptKind": "per-goal",
+        "goalStatusBeforeCheckpoint": "active",
+        "gjcGoalMode": "aggregate",
+        "gjcObjective": "Complete the durable ultragoal plan in .gjc/ultragoal/goals.json, including later accepted/appended stories, under the original brief constraints; use .gjc/ultragoal/ledger.jsonl as the audit trail.",
+        "qualityGateHash": "607944e29ff619b552f38d17803fb5c99cf98c9902fb422c380a7b6f39994610",
+        "planGeneration": "13c8fc27b533ae5c4a001a3dbd8c05331a7e5e07784fa5b7c8ccbbb0dabd27cb",
+        "basis": {
+          "planHashBeforeCheckpoint": "a5e969c4633e87a581d56ba9092232bf4f03756bfdb843b0ad8b1d137a01cccf",
+          "latestRelevantLedgerEventIdBeforeCheckpoint": "e08669de-8e52-42a4-a2ea-8d865b2aefc3",
+          "goalUpdatedAtBeforeCheckpoint": "2026-11-11T07:46:12.640Z",
+          "relevantGoalIdsBeforeCheckpoint": [
+            "G001"
+          ],
+          "requiredGoalSetHashBeforeCheckpoint": "bb375fa5d289cd741926ec98ecc90b775eb875985c36998edbaf04e5ae5dc5e0"
+        },
+        "checkpointLedgerEventId": "a45d01df-a97e-4fda-bd31-7526cec105d3"
+      }
     },
     {
       "id": "G002",
@@ -30,7 +53,7 @@
     }
   ],
   "createdAt": "2026-11-11T05:50:05.128Z",
-  "updatedAt": "2026-11-11T07:32:51.907Z",
+  "updatedAt": "2026-11-11T07:46:12.640Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -39,5 +62,5 @@
     "head": "36ccdb6141352e2312ac4ea9d72d1fc8e2565490",
     "branch": "main"
   },
-  "state_revision": 19
+  "state_revision": 20
 }
