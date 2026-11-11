@@ -15,7 +15,10 @@
 
 - 기록: `.gjc/_session-01a1c888-b7d4-7698-a496-0d61e2135616/ultragoal/ledger.jsonl` 9줄(`review_blocked`), 10줄(`blocker_classified: human_blocked` — "native GJC verifier cannot produce a stable frozen digest while it includes generated .gjc runtime files"), 14~15줄(사람 승인 후에도 `blocked`). 커밋 `debba12`.
 - 경과: 사람 확인 AC-1~7 통과 → `ultragoal checkpoint --status complete` 시 네이티브 검증기가 스스로 갱신하는 `.gjc` 런타임 파일까지 해시해 source hash가 매번 어긋남 → `record-critic-gate-override`도 "critic hard-stop 기록 필요"로 거부.
-- 판정: **기획서 쪽도 에이전트 쪽도 아닌 harness(도구) 쪽**. 제품 결함은 없었고(critic OKAY, 16줄) 에이전트는 완료를 허위 기록하지 않았다. 사람이 "도구 결함으로 기록하고 진행"을 결정했고, 이후 모든 goal(R2 ledger 21·31줄, R3 ledger 10줄)이 같은 이유로 `blocked` 상태에서 사람 승인 기록과 함께 커밋됐다.
+- 판정: **기획서 쪽도 에이전트 쪽도 아닌 harness(도구·운영) 쪽**. 제품 결함은 없었고(critic OKAY, 16줄) 에이전트는 완료를 허위 기록하지 않았다. 이후 goal-2~5도 같은 이유로 `blocked`에 머물렀다(R2 ledger 21·31줄, R3 ledger 10줄).
+- 실제 원인(제출 직전에 확인): ① 원격 저장소가 없어 완료 검증의 integration base(`origin/main`)를 해석하지 못했다. ② source hash가 gjc 자신이 실행 중 계속 갱신하는 `.gjc` 런타임 파일(`runtime/`, `state/`, `.session-activity.json`, `token-logs/`)까지 포함해 리뷰 시점과 체크포인트 시점의 해시가 어긋났다. ③ 스크린샷 비균일 검사가 "압축 해제 바이트 고유값 16개 이상"을 요구해, 8색 규칙을 지킨 무손실 PNG는 실제 화면도 거부됐다(7~15개).
+- 조치: push로 `origin/main` 생성 → 런타임 파일만 `.gitignore`(`d057565`, `.gjc` 자체와 plans·specs·goals·ledger는 추적 유지) → 같은 실제 프레임의 JPEG 사본을 증거로 추가(`0594c11`, 원본 PNG 보존) → 고정 스냅샷에서 cleaner·architect·QA·terminal-critic을 goal마다 다시 실행. 첫 재리뷰는 게이트 초안의 서술(세대 해시 혼재, JPEG를 원본처럼 기술)을 이유로 반려됐고, 사실대로 고친 뒤 통과했다.
+- 결과: 5개 goal 모두 정식 `complete` — R1 ledger 24줄(G001), R2 ledger 47·49줄(G001·G002), R3 ledger 27·29줄(G001·G002). 기록 커밋 `a51cc8f`·`a5c0c1c`·`f82960a`.
 - replan이 없었던 이유: 명세 5.2의 신호가 한 번도 충족되지 않았다. nudge는 R2 ledger 6줄의 1회(`attempt 1, budget 6`)뿐으로 예산을 소진한 goal이 없고, 사람 확인 X는 4건 모두 1회 지적으로 해결돼 "같은 항목 2회 연속 X"가 없었으며, 범위 밖 기능도 0개였다. 대신 **실행 전 replan**이 한 번 있었다: R1 첫 플랜(`.gjc/_session-01a1c851-…/plans/ralplan/01a1c851-…/pending-approval.md` S02 M01/M02)을 중단 → 기획서 보완(`f131993`) → R1 재계획(`.gjc/_session-01a1c888-…/plans/ralplan/…/pending-approval.md`) 순서다.
 
 ## 3. harness가 막은 것과 못 막은 것
@@ -29,7 +32,7 @@
 못 막은 것
 - **에이전트가 AGENTS.md를 두 번 수정**(goal-1 테스트 명령 줄, goal-4 실행 줄). 템플릿 "게임 이름만 채운다" 규칙이 금지 사항에 없었다 → 되돌리고 금지 사항에 한 줄 추가(`2400a60`).
 - **file:// 더블클릭 실행 불가**: AGENTS.md의 "ES modules"와 명세 4.2의 "서버 없이 더블클릭"이 충돌한다(Chrome이 `origin null` 모듈을 CORS 차단). 8장에 "정적 서버/Pages로 연다"를 명시했다. 템플릿 단계에서 실행 방식을 하나로 정했어야 막혔다.
-- **도구 결함으로 goal 완료 상태가 남지 않음**(2절). ultragoal 검증기 해시 범위에서 `.gjc` 런타임 파일을 빼는 설정이 있었다면 막혔다.
+- **goal 완료 처리가 제출 직전까지 막힘**(2절). 저장소 준비 단계에서 원격을 먼저 만들고 `.gjc` 런타임 파일을 `.gitignore`에 넣어 두었다면 각 goal을 끝낸 시점에 바로 complete가 됐을 것이다. 8색 픽셀아트와 스크린샷 비균일 검사의 충돌은 harness 쪽 기준 조정이 필요하다.
 - gjc가 응답 없이 30분 멈춘 1회(goal-4 마무리) — Esc 후 재지시로 해소. 시간 상한이 없었다.
 
 ## 4. 사람이 개입한 횟수와 이유
@@ -48,5 +51,5 @@
 
 | harness | 맡긴 goal | 사람 개입 | 좋았던 점 | 문제 | 범위 밖 기능 |
 |---|---|---|---|---|---|
-| gjc ralplan → ultragoal | goal-2 | 플랜 질문 5 + 승인 2 + 확인 X 2 | 4회 revision으로 시간 경계·실패 우선이 기획서와 테스트에 먼저 고정됨 | 약 1시간 이상 소요, 네이티브 완료 처리 실패 | 0 |
+| gjc ralplan → ultragoal | goal-2 | 플랜 질문 5 + 승인 2 + 확인 X 2 | 4회 revision으로 시간 경계·실패 우선이 기획서와 테스트에 먼저 고정됨 | 약 1시간 이상 소요, 정식 complete까지 원격·런타임 파일 설정과 재리뷰가 추가로 필요 | 0 |
 | Claude Code 단독 (AGENTS.md만, 워크플로 없음) | goal-2 | 1 (첫 지시) | 약 5분, 19개 테스트로 2장 수치를 그대로 옮김 | 기획서에 없는 "충돌·시간 소진 동시 실패 원인"을 임의로 정하고 보고만 함(기획서 선행 수정 규칙 위반 소지) | 0 |
