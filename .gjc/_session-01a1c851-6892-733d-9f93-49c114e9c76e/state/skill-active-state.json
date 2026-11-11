@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "active": true,
+  "skill": "deep-interview",
+  "phase": "handoff",
+  "updated_at": "2026-11-11T02:30:34.150Z",
+  "session_id": "01a1c851-6892-733d-9f93-49c114e9c76e",
+  "active_skills": [
+    {
+      "skill": "deep-interview",
+      "phase": "handoff",
+      "active": true,
+      "activated_at": "2026-11-11T02:30:34.150Z",
+      "updated_at": "2026-11-11T02:30:34.150Z",
+      "session_id": "01a1c851-6892-733d-9f93-49c114e9c76e",
+      "hud": {
+        "version": 1,
+        "chips": [
+          {
+            "label": "phase",
+            "value": "handoff",
+            "priority": 10
+          },
+          {
+            "label": "ambiguity",
+            "value": "2%/5%",
+            "priority": 20
+          },
+          {
+            "label": "round",
+            "value": "25",
+            "priority": 30
+          },
+          {
+            "label": "target",
+            "value": "lighthouse-game",
+            "priority": 40
+          },
+          {
+            "label": "weakest",
+            "value": "criteria",
+            "priority": 50
+          },
+          {
+            "label": "spec",
+            "value": "persisted",
+            "priority": 60
+          }
+        ],
+        "updated_at": "2026-11-11T02:30:34.150Z"
+      },
+      "source_state_revision": 48,
+      "state_revision": 47
+    }
+  ],
+  "active_subskills": [],
+  "source_state_revision": 74,
+  "state_revision": 74
+}

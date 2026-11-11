@@ -1,0 +1,3418 @@
+{
+  "active": false,
+  "version": 2,
+  "current_phase": "handoff",
+  "skill": "deep-interview",
+  "cwd": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
+  "updated_at": "2026-11-11T02:33:36.784Z",
+  "session_id": "01a1c851-6892-733d-9f93-49c114e9c76e",
+  "threshold": 0.05,
+  "threshold_source": "default",
+  "receipt": {
+    "version": 1,
+    "skill": "deep-interview",
+    "owner": "gjc-state-cli",
+    "command": "gjc state deep-interview write",
+    "state_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c851-6892-733d-9f93-49c114e9c76e/state/skill-active-state.json",
+    "storage_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c851-6892-733d-9f93-49c114e9c76e/state/deep-interview-state.json",
+    "mutated_at": "2026-11-11T02:33:36.784Z",
+    "fresh_until": "2026-11-11T03:03:36.784Z",
+    "status": "fresh",
+    "mutation_id": "deep-interview:2026-11-11T02:33:36.784Z",
+    "content_sha256": {
+      "algorithm": "sha256",
+      "value": "f8251d1e201c887d25a58cc6610f3a3ab1ad172d9e8735b3d5edde500ccf9c9b",
+      "covered_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c851-6892-733d-9f93-49c114e9c76e/state/deep-interview-state.json",
+      "computed_at": "2026-11-11T02:33:36.786Z"
+    }
+  },
+  "last_applied_draft_id": "4151e657-b28a-4a6f-ac99-0cf858f8c335",
+  "spec_slug": "lighthouse-r0",
+  "spec_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c851-6892-733d-9f93-49c114e9c76e/specs/deep-interview-lighthouse-r0.md",
+  "spec_sha256": "b627ff408461466cceda7d7e34d335aeab73392405cc06361c2afb98b8b0e170",
+  "spec_stage": "final",
+  "spec_persisted_at": "2026-11-11T02:30:34.135Z",
+  "state": {
+    "threshold": 0.05,
+    "threshold_source": "default",
+    "rounds": [
+      {
+        "round_key": "nointerview::rid:topology-0",
+        "round_id": "topology-0",
+        "round": 0,
+        "question_id": "game-topology",
+        "question_text": "Round 0 | Topology confirmation | Ambiguity: 아직 평가하지 않음\n\n최상위 구성 요소는 1개로 이해했습니다.\n1. 등대지기의 등불 점등 게임: 한 화면에서 바다 유령을 피하며 폭풍이 오기 전에 꺼진 등불을 모두 켜는 플레이.\n\n확정할 의도:\n- 산출물 — artifact:game-spec: 게임 규칙·화면 디자인·수용 기준을 담은 기획 명세. GAME_DESIGN.md로 정리할 기준이며 이번 인터뷰에서는 구현하지 않음.\n- 화면 — surface:game: 한 화면짜리 도트 게임.\n- 시스템 경계 — integration:browser: 서버와 외부 의존성 없이 브라우저에서 HTML·Canvas 2D·JavaScript ES modules로 실행.\n- 제약 — constraint:core: 등대지기·바다 유령 회피·폭풍 전 모든 꺼진 등불 점등이라는 핵심 목표를 유지.\n- 제약 — constraint:repo: AGENTS.md의 기술·기능 제한을 따르고 기획서에 없는 기능은 추가하지 않음.\n\n이 구성과 의도가 맞나요? 구성 요소를 수정하거나 일부를 보류할 수도 있습니다.",
+        "question_hash": "93adb71e07d9914b44a10cea5d1ae12d",
+        "answer_hash": "9a790b7767d116ca7b43be92613e326cba13205f3066906a9a190a3b6a8385eb",
+        "selected_options": [
+          "이 범위가 맞아요"
+        ],
+        "component": "review-topology",
+        "dimension": "topology",
+        "ambiguity_at_ask": 1,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:04:20.518Z"
+      },
+      {
+        "round_key": "nointerview::rid:lighting-1",
+        "round_id": "lighting-1",
+        "round": 1,
+        "question_id": "lighting-action",
+        "question_text": "Round 1 | Component: 등대지기의 등불 점등 게임 | Targeting: 목표 명확성 | Ambiguity: 아직 평가하지 않음\n\n플레이어가 등불을 켤 때 어떤 행동을 해야 하나요? 자동 점등은 이동·회피에 집중하고, 별도 조작이나 대기는 점등 순간의 위험을 더합니다.",
+        "question_hash": "965597a40cfa9b89e5815bc5d8a08acf",
+        "answer_hash": "aa8872dd25a631d3a18ac586500124fa0378a88b22e92ff75e45abb597448c18",
+        "selected_options": [
+          "등불에 닿으면 즉시 자동 점등"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "goal",
+        "ambiguity_at_ask": 1,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:05:39.820Z",
+        "ambiguity": 0.485,
+        "scores": {
+          "goal": 0.65,
+          "constraints": 0.65,
+          "criteria": 0.2
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.65,
+            "constraints": 0.65,
+            "criteria": 0.2,
+            "gaps": {
+              "goal": "이동 방식과 유령 행동 미정",
+              "constraints": "시간·맵·개수 미정",
+              "criteria": "실패 조건과 승패 판정 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "goal",
+          "prior_dimension_score": null,
+          "new_dimension_score": 0.65,
+          "prior_ambiguity": 1,
+          "new_ambiguity": 0.485,
+          "evidence": [
+            "등불에 닿으면 즉시 자동 점등"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "위치"
+              ],
+              "relationships": [
+                "등불에 접촉하여 점등"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "등대지기 접촉으로 켜짐"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "등대지기가 회피"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 완료의 시한"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": null,
+          "new": 4,
+          "changed": 0,
+          "stable": 0,
+          "matching_reasoning": "첫 라운드이므로 4개 개체 모두 신규"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:ghost-contact-2",
+        "round_id": "ghost-contact-2",
+        "round": 2,
+        "question_id": "ghost-contact",
+        "question_text": "Round 2 | Component: 등대지기의 등불 점등 게임 | Targeting: 수용 기준 | Ambiguity: 48.5%\n\n바다 유령에 닿으면 어떻게 되나요? 즉시 실패는 긴장감을 높이고, 복귀나 잠시 정지는 실수 후에도 계속할 수 있게 합니다.",
+        "question_hash": "fde5e34cd0df93f423da0748acbd5fac",
+        "answer_hash": "94bee43ebed125b7ce25f7045248dd7898fa9e612a5def7e3821000693592b54",
+        "selected_options": [
+          "닿으면 즉시 실패"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.485,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:07:32.446Z",
+        "ambiguity": 0.315,
+        "scores": {
+          "goal": 0.7,
+          "constraints": 0.65,
+          "criteria": 0.7
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.7,
+            "constraints": 0.65,
+            "criteria": 0.7,
+            "gaps": {
+              "goal": "이동과 유령 행동 미정",
+              "constraints": "시간·맵·개수 미정",
+              "criteria": "시간 초과와 동시 판정 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "criteria",
+          "prior_dimension_score": 0.2,
+          "new_dimension_score": 0.7,
+          "prior_ambiguity": 0.485,
+          "new_ambiguity": 0.315,
+          "evidence": [
+            "닿으면 즉시 실패"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "위치",
+                "생존 여부"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 접촉 시 실패"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "등대지기 접촉으로 켜짐"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "위치"
+              ],
+              "relationships": [
+                "등대지기 접촉 시 실패"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "removed": 0,
+          "changed": 0,
+          "stable": 4,
+          "matching_reasoning": "등대지기·등불·바다 유령·폭풍을 이름으로 대응"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:movement-3",
+        "round_id": "movement-3",
+        "round": 3,
+        "question_id": "movement-model",
+        "question_text": "Round 3 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 31.5%\n\n등대지기는 어떻게 이동하나요? 격자 이동은 칸별 경로 판단에, 자유 이동은 실시간 회피 조작에 초점을 둡니다.",
+        "question_hash": "4ca3c7740d0f3a63faa1262589201107",
+        "answer_hash": "da2b4d004a987786a0eb16751735730b8d911f89e439cf3d9986a9888a87ce5d",
+        "selected_options": [],
+        "custom_input": "방향키 한 번에 정확히 한 칸 격자 이동. 한 칸 이동은 120ms에 걸쳐 진행하고, 이동 중 들어온 입력은 무시한다. 키를 누르고 있어도 반복 이동은 없다(한 번 누름 = 한 칸).",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.315,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:08:33.445Z",
+        "ambiguity": 0.27,
+        "scores": {
+          "goal": 0.75,
+          "constraints": 0.75,
+          "criteria": 0.6833333333333333
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.75,
+            "constraints": 0.75,
+            "criteria": 0.6833333333333333,
+            "gaps": {
+              "goal": "유령 행동 미정",
+              "constraints": "맵·시간·개수 미정",
+              "criteria": "이동 중 접촉 판정 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.65,
+          "new_dimension_score": 0.75,
+          "prior_ambiguity": 0.315,
+          "new_ambiguity": 0.27,
+          "evidence": [
+            "격자 한 칸 120ms, 이동 중 입력 무시, 누르고 있어도 반복 없음",
+            "해석 확인: 이대로 확정"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "위치",
+                "이동 상태",
+                "이동 시간 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "접촉 점등"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "위치"
+              ],
+              "relationships": [
+                "접촉 실패"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "stable": 4,
+          "new": 0,
+          "changed": 0,
+          "removed": 0,
+          "matching_reasoning": "4개 개체 이름 동일, 새 개체 없음"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:movement-refine-3",
+        "round_id": "movement-refine-3",
+        "round": 3,
+        "question_id": "movement-refine",
+        "question_text": "**결정**\n방향키를 한 번 누르면 정확히 한 칸 이동한다. 한 칸 이동은 120ms에 걸쳐 진행한다.\n\n**사용자가 정한 제약**\n이동 중 들어온 입력은 무시한다. 키를 누르고 있어도 반복 이동하지 않는다. 한 번 누름은 한 칸 이동이다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "4b745d70db14885b8e004f8ae00fa1a8",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.315,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:08:48.538Z"
+      },
+      {
+        "round_key": "nointerview::rid:contact-timing-4",
+        "round_id": "contact-timing-4",
+        "round": 4,
+        "question_id": "contact-timing",
+        "question_text": "Round 4 | Component: 등대지기의 등불 점등 게임 | Targeting: 수용 기준 | Ambiguity: 27%\n\n한 칸 이동하는 120ms 동안 등불·유령 접촉을 언제 판정하나요? 도착 순간만 판정하면 단순하고, 이동 중에도 판정하면 화면에서 스치는 접촉도 결과에 영향을 줍니다.",
+        "question_hash": "bb6ee1e17556c842a4aef85a05116e6e",
+        "answer_hash": "48806c075bbb693a4bb8f76796ab68f715fc5a13476da32ce1f4040791a13f50",
+        "selected_options": [],
+        "custom_input": "판정은 칸 단위 논리 위치로만 한다. 키 입력 순간 플레이어의 논리 위치가 목표 칸으로 바뀌고, 120ms는 화면 애니메이션일 뿐이다. 등불은 플레이어 논리 위치가 그 칸이 되는 순간 켜진다. 유령 충돌로 실패하는 경우는 두 가지: (a) 플레이어와 유령의 논리 위치가 같은 칸이 될 때, (b) 같은 갱신에서 플레이어와 유령이 서로 자리를 맞바꿔 지나칠 때.",
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.27,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:10:27.782Z",
+        "ambiguity": 0.185,
+        "scores": {
+          "goal": 0.83,
+          "constraints": 0.75,
+          "criteria": 0.86
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.83,
+            "constraints": 0.75,
+            "criteria": 0.86,
+            "gaps": {
+              "goal": "유령 행동 미정",
+              "constraints": "유령 이동·맵·시간·개수 미정",
+              "criteria": "동시 승패 우선순위 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "criteria",
+          "prior_dimension_score": 0.6833333333333333,
+          "new_dimension_score": 0.86,
+          "prior_ambiguity": 0.27,
+          "new_ambiguity": 0.185,
+          "evidence": [
+            "입력 즉시 논리 위치 이동, 120ms는 애니메이션",
+            "같은 칸 또는 같은 갱신의 자리 교환이면 충돌",
+            "해석 확인: 이대로 확정"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "위치",
+                "이동 상태",
+                "이동 시간 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "접촉 점등"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "위치"
+              ],
+              "relationships": [
+                "접촉 실패"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 4,
+          "removed": 0,
+          "matching_reasoning": "이름으로 4개 개체 모두 대응"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:contact-timing-refine-4",
+        "round_id": "contact-timing-refine-4",
+        "round": 4,
+        "question_id": "contact-timing-refine",
+        "question_text": "**결정**\n판정에는 칸 단위 논리 위치만 사용한다. 이동 입력을 받는 순간 플레이어의 논리 위치는 목표 칸으로 바뀌고, 120ms는 화면 애니메이션에만 사용한다. 등불은 플레이어의 논리 위치가 해당 칸이 되는 순간 켜진다.\n\n**사용자가 정한 제약**\n유령 충돌 실패는 두 경우다.\n(a) 플레이어와 유령의 논리 위치가 같은 칸이 될 때.\n(b) 같은 갱신에서 플레이어와 유령이 서로 자리를 맞바꿔 지나칠 때.\n\n이동 중 입력 무시와 키 반복 없음이라는 앞선 조건은 유지한다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "a27e70f154f786e9fa5245c219bde17a",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.27,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:10:45.747Z"
+      },
+      {
+        "round_key": "nointerview::rid:ghost-behavior-5",
+        "round_id": "ghost-behavior-5",
+        "round": 5,
+        "question_id": "ghost-behavior",
+        "question_text": "Round 5 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 18.5%\n\n바다 유령은 어떤 규칙으로 이동하나요? 고정 순찰은 경로 예측에, 추적은 지속적인 도주에 초점을 둡니다.",
+        "question_hash": "74f31a845dde7ffa94b36d4c4ef57c0b",
+        "answer_hash": "86fa4e73f53394c5c24a484eba67edb4f9d1321d2be35b8ea348ef7eb727cf65",
+        "selected_options": [],
+        "custom_input": "레벨 맵에 고정된 직선 경로를 왕복 순찰한다. 400ms마다 한 칸 이동하고, 경로 끝에 닿으면 반대 방향으로 돌아선다. 유령은 벽을 통과하지 않고 플레이어를 추적하지 않는다. 유령 수는 레벨 1/2/3에서 각각 1/2/3마리.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.185,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:11:35.285Z",
+        "ambiguity": 0.194,
+        "scores": {
+          "goal": 0.83,
+          "constraints": 0.72,
+          "criteria": 0.86
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.83,
+            "constraints": 0.72,
+            "criteria": 0.86,
+            "gaps": {
+              "goal": "레벨 진행 목표 미정",
+              "constraints": "새로 등장한 레벨의 전체 범위·맵·시간·등불 수 미정",
+              "criteria": "동시 승패 및 레벨 전환 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [
+            "D scope expansion"
+          ],
+          "trigger_status": "present",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.75,
+          "new_dimension_score": 0.72,
+          "prior_ambiguity": 0.185,
+          "new_ambiguity": 0.194,
+          "evidence": [
+            "새로 레벨 1/2/3과 각 유령 수 1/2/3을 지정"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 0.8,
+          "new": 1,
+          "changed": 0,
+          "stable": 4,
+          "removed": 0,
+          "matching_reasoning": "기존 4개는 이름 대응, 레벨 1개 신규"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:ghost-behavior-refine-5",
+        "round_id": "ghost-behavior-refine-5",
+        "round": 5,
+        "question_id": "ghost-behavior-refine",
+        "question_text": "**결정**\n유령은 레벨 맵에 고정된 직선 경로를 왕복 순찰한다. 400ms마다 한 칸 이동하고, 경로 끝에 닿으면 반대 방향으로 돌아선다.\n\n**사용자가 정한 제약**\n유령은 벽을 통과하지 않고 플레이어를 추적하지 않는다. 유령 수는 레벨 1에서 1마리, 레벨 2에서 2마리, 레벨 3에서 3마리다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "04aa7b0d3d7e9b70b64aa6e745497b4b",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.185,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:11:53.261Z"
+      },
+      {
+        "round_key": "nointerview::rid:level-scope-6",
+        "round_id": "level-scope-6",
+        "round": 6,
+        "question_id": "level-scope",
+        "question_text": "Round 6 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 19.4%\n\n전체 게임은 레벨 1→2→3을 순서대로 진행하고 레벨 3을 마치면 최종 승리하는 구성인가요? 이는 레벨 선택 화면 없이 하나의 연속된 게임으로 범위를 고정합니다.",
+        "question_hash": "e6818c47919011691017e21941c5cb16",
+        "answer_hash": "91a39b816217077f174dde673c643361489d95631a936bfeaa30a60a0d020dce",
+        "selected_options": [],
+        "custom_input": "네, 레벨 선택 없이 1→2→3 순서로 진행한다. 레벨은 그 레벨의 등불을 모두 켜는 즉시 클리어한다(등대로 돌아갈 필요 없음). 클리어 화면에서 Enter를 누르면 다음 레벨로 가고, 레벨 3을 클리어하면 최종 화면이 뜬다. 실패하면 실패 화면이 뜨고, Enter를 누르면 타이틀로 돌아가며 점수는 0으로 초기화된다.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.194,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:12:47.997Z",
+        "ambiguity": 0.2,
+        "scores": {
+          "goal": 0.83,
+          "constraints": 0.7,
+          "criteria": 0.86
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.83,
+            "constraints": 0.7,
+            "criteria": 0.86,
+            "gaps": {
+              "goal": "점수의 역할 미정",
+              "constraints": "새 점수 규칙 및 맵·시간·등불 수 미정",
+              "criteria": "동시 승패·최종 화면 복귀 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [
+            "D scope expansion"
+          ],
+          "trigger_status": "present",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.72,
+          "new_dimension_score": 0.7,
+          "prior_ambiguity": 0.194,
+          "new_ambiguity": 0.2,
+          "evidence": [
+            "레벨 진행은 명확해졌으나 점수라는 새 상태와 규칙이 추가됨"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 0.7142857142857143,
+          "new": 2,
+          "changed": 0,
+          "stable": 5,
+          "removed": 0,
+          "matching_reasoning": "기존 5개 이름 대응, 점수·화면 신규"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:level-scope-refine-6",
+        "round_id": "level-scope-refine-6",
+        "round": 6,
+        "question_id": "level-scope-refine",
+        "question_text": "**결정**\n레벨 선택 없이 1→2→3 순서로 진행한다. 해당 레벨의 모든 등불을 켜는 즉시 클리어하며, 등대로 돌아갈 필요는 없다. 레벨 1·2의 클리어 화면에서 Enter를 누르면 다음 레벨로 진행한다. 레벨 3을 클리어하면 최종 화면이 뜬다.\n\n**사용자가 정한 제약**\n실패하면 실패 화면이 뜬다. 실패 화면에서 Enter를 누르면 타이틀로 돌아가며 점수는 0으로 초기화된다.\n\n**미확정 사항**\n점수 계산 방식은 아직 정하지 않았다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "f960e57273281cf22bf662d0ef331339",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.194,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:13:06.049Z"
+      },
+      {
+        "round_key": "nointerview::rid:score-role-7",
+        "round_id": "score-role-7",
+        "round": 7,
+        "question_id": "score-role",
+        "question_text": "Round 7 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 20%\n\n이 게임에서 점수는 어떤 역할인가요? 기록용이면 승패는 점등·유령·시간만으로 정하고, 진행 조건이면 점수에 따른 별도 규칙이 필요합니다.",
+        "question_hash": "1ccb173139f09f6887b72919df8f583d",
+        "answer_hash": "f0ad3d6e1d180a9dbe5243cb427590c86088c46e20c1aa20a1d863799103bc35",
+        "selected_options": [],
+        "custom_input": "점수는 기록용이고 승패에는 영향이 없다. 등불 하나를 켜면 100점, 레벨을 클리어하면 남은 시간(초, 소수점 버림) × 10점을 보너스로 더한다. 점수는 레벨 1→3 동안 누적된다. 제한 시간은 레벨 1/2/3에서 각각 60/75/90초이고, 0초가 되면 실패한다.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.2,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:14:07.109Z",
+        "ambiguity": 0.109,
+        "scores": {
+          "goal": 0.93,
+          "constraints": 0.83,
+          "criteria": 0.9
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.93,
+            "constraints": 0.83,
+            "criteria": 0.9,
+            "gaps": {
+              "goal": "ほぼ明確",
+              "constraints": "맵·등불 수·화면 디자인 미정",
+              "criteria": "동시 승패·최종 화면 복귀 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.7,
+          "new_dimension_score": 0.83,
+          "prior_ambiguity": 0.2,
+          "new_ambiguity": 0.109,
+          "evidence": [
+            "기록용 점수, 등불 100점, 남은 정수 초 ×10 보너스, 누적",
+            "레벨별 제한 60/75/90초, 0초 실패"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 개체를 이름으로 대응, 새 개체 없음"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:score-refine-7",
+        "round_id": "score-refine-7",
+        "round": 7,
+        "question_id": "score-refine",
+        "question_text": "**결정**\n점수는 기록용이며 승패에 영향을 주지 않는다. 등불 하나를 켜면 100점을 얻는다. 레벨 클리어 시 남은 시간의 초 단위 소수점을 버린 값 × 10점을 보너스로 더한다. 점수는 레벨 1→3 동안 누적된다.\n\n**사용자가 정한 제약**\n제한 시간은 레벨 1·2·3에서 각각 60·75·90초다. 남은 시간이 0초가 되면 실패한다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "d589e52eefef7815d595a516858b2997",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.2,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:14:25.179Z"
+      },
+      {
+        "round_key": "nointerview::rid:map-scale-8",
+        "round_id": "map-scale-8",
+        "round": 8,
+        "question_id": "map-scale",
+        "question_text": "Round 8 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 10.9%\n\n3개 레벨의 고정 맵은 어느 크기로 할까요? 세 레벨의 크기를 같게 두면 한 화면 레이아웃을 유지하면서 벽·등불·순찰 경로만 바꿀 수 있습니다.",
+        "question_hash": "ebce7d3c0aa8f53d0228394909e765df",
+        "answer_hash": "88e773a4203ce017795e9340a68876be60bed43647363deb43c2a33bf600fc43",
+        "selected_options": [],
+        "custom_input": "세 레벨 모두 15×11칸, 타일은 16px. 맵 위에 시간·점수·남은 등불 수를 보여 주는 HUD 한 줄(16px)을 둔다. 캔버스 논리 크기는 240×192px이고 CSS로 3배 고정 확대(720×576px)한다. 반응형 확대는 하지 않는다.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.109,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:15:18.724Z",
+        "ambiguity": 0.083,
+        "scores": {
+          "goal": 0.95,
+          "constraints": 0.89,
+          "criteria": 0.9
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.95,
+            "constraints": 0.89,
+            "criteria": 0.9,
+            "gaps": {
+              "goal": "명확",
+              "constraints": "실제 맵 배치·등불 수·8색 디자인 미정",
+              "criteria": "동시 승패·화면 전환 세부 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.83,
+          "new_dimension_score": 0.89,
+          "prior_ambiguity": 0.109,
+          "new_ambiguity": 0.083,
+          "evidence": [
+            "15×11칸, 타일16px, HUD16px, 논리240×192, 표시720×576 고정"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "등대지기·등불·바다 유령·폭풍·레벨·점수·화면 모두 이름 대응"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:map-scale-refine-8",
+        "round_id": "map-scale-refine-8",
+        "round": 8,
+        "question_id": "map-scale-refine",
+        "question_text": "**결정**\n세 레벨의 맵은 모두 15×11칸이며 타일 크기는 16px이다. 맵 위에 높이 16px인 HUD 한 줄을 두고 시간·점수·남은 등불 수를 표시한다.\n\n**사용자가 정한 제약**\n캔버스 논리 크기는 240×192px이다. CSS로 정확히 3배 확대하여 720×576px로 표시한다. 반응형 확대는 하지 않는다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "20a9f279fd0deb84fee8703f03fc3441",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.109,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:15:37.376Z"
+      },
+      {
+        "round_key": "nointerview::rid:lamp-counts-9",
+        "round_id": "lamp-counts-9",
+        "round": 9,
+        "question_id": "lamp-counts",
+        "question_text": "Round 9 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 8.3%\n\n레벨 1·2·3의 등불 수를 어떻게 둘까요? 개수를 늘리면 이동 경로와 기본 점수도 늘어나며, 동일하게 두면 유령 수와 맵 배치로만 난도를 높입니다.",
+        "question_hash": "611189b665031fd1f307913064d68c42",
+        "answer_hash": "a076b209f9936682a93200ec1903177bae06f267966140d9551a3a27f474f440",
+        "selected_options": [],
+        "custom_input": "등불 수는 레벨 1/2/3에서 각각 5/7/9개.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.083,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:16:36.393Z",
+        "ambiguity": 0.075,
+        "scores": {
+          "goal": 0.97,
+          "constraints": 0.89,
+          "criteria": 0.9
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.97,
+            "constraints": 0.89,
+            "criteria": 0.9,
+            "gaps": {
+              "constraints": "실제 맵과 디자인 미정",
+              "criteria": "동시 승패 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.89,
+          "new_dimension_score": 0.89,
+          "prior_ambiguity": 0.083,
+          "new_ambiguity": 0.075,
+          "evidence": [
+            "레벨별 등불5/7/9개"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 개체 모두 이름 대응"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:fixed-maps-10",
+        "round_id": "fixed-maps-10",
+        "round": 10,
+        "question_id": "fixed-maps",
+        "question_text": "Round 10 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 7.5%\n\n아래 3개 고정 맵을 기획서의 문자 격자로 확정할까요?\n범례: # 벽, . 바닥, P 시작점, L 등불. a/b/c는 서로 다른 유령의 직선 왕복 경로이며 바닥처럼 이동할 수 있습니다. 각 유령은 자기 경로의 맨 왼쪽 칸에서 오른쪽을 향해 시작합니다. 경로 문자는 화면에 표시하지 않습니다.\n\n레벨 1 — 등불 5개·유령 1마리\n```\n###############\n#P.....L.....L#\n#.............#\n#..###........#\n#.............#\n#...aaaaaaa...#\n#.............#\n#........###..#\n#.............#\n#L.....L.....L#\n###############\n```\n레벨 2 — 등불 7개·유령 2마리\n```\n###############\n#P.....L.....L#\n#..#..........#\n#..#.aaaaaaa..#\n#..#..........#\n#L....###....L#\n#..........#..#\n#..bbbbbbb.#..#\n#..........#..#\n#L.....L.....L#\n###############\n```\n레벨 3 — 등불 9개·유령 3마리\n```\n###############\n#P.....L.....L#\n#...#.aaaa#...#\n#...#L...L#...#\n#.............#\n#Lbbbb###....L#\n#.............#\n#...#.....#...#\n#...#ccccc#...#\n#L.....L.....L#\n###############\n```",
+        "question_hash": "63133f444b42a9077c05b3f6583cfcab",
+        "answer_hash": "4ef864980536d04cbe68ad1e8bfc620b4c4e3a896648423b1ce0bbd45e044e9b",
+        "selected_options": [],
+        "custom_input": "문자 격자 규칙만 확정한다. 범례는 # 벽, . 바닥, P 시작점, L 등불, a/b/c 유령 경로(바닥처럼 지나갈 수 있고 화면에는 표시하지 않음). 유령은 가로 경로면 맨 왼쪽 칸에서 오른쪽을 향해, 세로 경로면 맨 위 칸에서 아래를 향해 출발한다. 구체적인 맵 배치는 지금 확정하지 않는다. 기획은 라운드마다 키우는 방식이므로 레벨 1 맵은 R1에서, 레벨 2·3 맵은 R3에서 기획서에 추가한다. 제안한 맵은 참고안으로만 남긴다.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.075,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:18:10.094Z",
+        "ambiguity": 0.102,
+        "scores": {
+          "goal": 0.94,
+          "constraints": 0.84,
+          "criteria": 0.9
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "constraints",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.94,
+            "constraints": 0.84,
+            "criteria": 0.9,
+            "gaps": {
+              "goal": "이번 명세의 단계별 산출 범위 확인 필요",
+              "constraints": "R1/R3의 단계 의미·디자인 미정",
+              "criteria": "동시 승패·화면 전환 세부 미정"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [
+            "D scope expansion"
+          ],
+          "trigger_status": "present",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.89,
+          "new_dimension_score": 0.84,
+          "prior_ambiguity": 0.075,
+          "new_ambiguity": 0.102,
+          "evidence": [
+            "기획을 R1/R3에서 확장하는 단계 구조가 새로 등장; 구체 맵은 명시적으로 보류"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 개체 모두 이름 대응; R1/R3은 도메인 개체가 아닌 기획 단계 명칭"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:maps-refine-10",
+        "round_id": "maps-refine-10",
+        "round": 10,
+        "question_id": "maps-refine",
+        "question_text": "**결정**\n문자 격자의 범례만 확정한다: # 벽, . 바닥, P 시작점, L 등불, a/b/c 유령 경로. 유령 경로는 바닥처럼 지나갈 수 있고 화면에는 표시하지 않는다.\n유령은 가로 경로의 맨 왼쪽 칸에서 오른쪽을 향해, 세로 경로의 맨 위 칸에서 아래를 향해 출발한다.\n\n**사용자가 정한 제약**\n기획은 라운드마다 확장한다. 레벨 1 맵은 R1에서, 레벨 2·3 맵은 R3에서 기획서에 추가한다.\n\n**이번에 확정하지 않는 범위**\n구체적인 맵 배치는 지금 확정하지 않는다. 앞서 제안한 3개 맵은 참고안일 뿐 구현 기준이 아니다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "fec3a08cf7331632cf948af6618df206",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.075,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:18:33.109Z"
+      },
+      {
+        "round_key": "nointerview::rid:planning-stages-11",
+        "round_id": "planning-stages-11",
+        "round": 11,
+        "question_id": "planning-stages",
+        "question_text": "Round 11 | Component: 등대지기의 등불 점등 게임 | Targeting: 제약 | Ambiguity: 10.2%\n\n말씀하신 R1·R3은 무엇을 뜻하나요? 단계별로 기획을 추가하고 구현·사람의 브라우저 확인을 거치는 개발 라운드인지, 현재 인터뷰의 질문 차수인지 구분해야 맵 보류 시점을 정확히 기록할 수 있습니다.",
+        "question_hash": "8735f988225e65f3b3ed6f273422e3eb",
+        "answer_hash": "18c8527dd3bf94247ac88dddfe9a64e443172c4b9cad92f382a120af2e5b34da",
+        "selected_options": [],
+        "custom_input": "인터뷰 이후의 기획·개발 라운드다. R0은 이 인터뷰와 기획서 v0. R1(walking skeleton)은 레벨 1 맵 위에서 한 칸 이동과 벽 충돌, 기획서에 오브젝트·레벨 1 맵·팔레트 추가. R2(core loop)는 등불·유령·타이머, 승패와 화면 전환. R3(shell)는 레벨 2·3 맵, 효과음, 최고 점수 저장, 최종 화면. 각 라운드는 계획 승인 → 구현 → 사람의 브라우저 확인 순서로 진행한다.",
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.102,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:19:31.299Z",
+        "ambiguity": 0.057,
+        "scores": {
+          "goal": 0.97,
+          "constraints": 0.96,
+          "criteria": 0.89
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.97,
+            "constraints": 0.96,
+            "criteria": 0.89,
+            "gaps": {
+              "goal": "R0 요구사항 정리로 명확",
+              "constraints": "향후 상세는 사용자 확인으로 라운드별 보류",
+              "criteria": "동시 승패 우선순위와 R0 승인 기준 확인 필요"
+            }
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "resolved-by-explicit-deferral",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.84,
+          "new_dimension_score": 0.96,
+          "prior_ambiguity": 0.102,
+          "new_ambiguity": 0.057,
+          "evidence": [
+            "R0의 산출 범위와 R1/R2/R3 개발 단계·승인 절차를 명확히 확인",
+            "R3 효과음·최고 점수 세부는 현재 활성 범위가 아님"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 핵심 개체 유지; 효과음·저장은 R3 보류 항목"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:planning-stages-refine-11",
+        "round_id": "planning-stages-refine-11",
+        "round": 11,
+        "question_id": "planning-stages-refine",
+        "question_text": "**결정**\nR0은 현재 인터뷰와 기획서 v0이다.\nR1(walking skeleton): 레벨 1 맵에서 한 칸 이동과 벽 충돌을 구현한다. 기획서에 오브젝트·레벨 1 맵·팔레트를 추가한다.\nR2(core loop): 등불·유령·타이머, 승패와 화면 전환을 구현한다.\nR3(shell): 레벨 2·3 맵, 효과음, 최고 점수 저장, 최종 화면을 구현한다.\n\n**사용자가 정한 제약**\n각 라운드는 계획 승인 → 구현 → 사람의 브라우저 확인 순서로 진행한다. 이번 인터뷰에서 구현을 시작하지 않는다.\n\n**이번에 확정하지 않는 범위**\nR1에서 추가할 구체적인 맵·오브젝트·팔레트와 R3 항목의 세부 동작은 해당 라운드의 기획·승인 전까지 구현 기준으로 확정하지 않는다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "ca60573502374978f2cf4ffa59e4b251",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.102,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:19:51.763Z"
+      },
+      {
+        "round_key": "nointerview::rid:outcome-priority-12",
+        "round_id": "outcome-priority-12",
+        "round": 12,
+        "question_id": "outcome-priority",
+        "question_text": "Round 12 | Component: 등대지기의 등불 점등 게임 | Targeting: 수용 기준 | Ambiguity: 5.7%\n\n같은 갱신에서 마지막 등불 점등과 유령 충돌 또는 시간 0초가 겹치면 무엇을 우선할까요? 실패 우선이면 위험·제한 시간을 끝까지 지켜야 하고, 클리어 우선이면 마지막 점등이 플레이어를 구합니다.",
+        "question_hash": "1ff2f890eaa5cb6c18356e63a345563f",
+        "answer_hash": "ec37786b8c124a1b9500325defcb68c9ad9466eaac6a9217d413d92a14870780",
+        "selected_options": [
+          "실패 우선: 유령 충돌·시간 0이면 실패"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.057,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:20:54.559Z",
+        "ambiguity": 0.026,
+        "scores": {
+          "goal": 0.98,
+          "constraints": 0.97,
+          "criteria": 0.97
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.98,
+            "constraints": 0.97,
+            "criteria": 0.97,
+            "gaps": {}
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "criteria",
+          "prior_dimension_score": 0.89,
+          "new_dimension_score": 0.97,
+          "prior_ambiguity": 0.057,
+          "new_ambiguity": 0.026,
+          "evidence": [
+            "유령 충돌·시간0 실패가 마지막 등불 클리어보다 우선"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 개체 모두 이름 대응"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:closure-audit-13",
+        "round_id": "closure-audit-13",
+        "round": 13,
+        "question_id": "closure-audit",
+        "question_text": "종료 점검 결과를 확인해 주세요.\n\n- 이번 인터뷰 명세에는 확정된 규칙·수치·R0~R3 범위·승인 절차를 기록한다.\n- R0 전체 완료는 GAME_DESIGN.md v0 작성 후 사람이 기획을 검토하는 시점이다. 현재 GAME_DESIGN.md와 게임 코드는 아직 없다.\n- 기획서 5장의 레벨 1 맵, 6장의 오브젝트·팔레트는 R1에서 추가한다. 레벨 2·3 맵과 효과음·최고 점수·최종 화면 상세는 R3에서 추가한다.\n- 아직 정하지 않은 타이틀 시작 입력 등 화면 전환 상세는 R2, 최종 화면 복귀 동작은 R3에서 정한다.\n- 9장에는 번호가 있는 라운드별 수용 기준을 두며, 구현한 라운드는 사람이 브라우저에서 확인해야 완료된다. 구현하지 않는 R0에는 게임 실행 검증을 요구하지 않는다.\n- 참고 맵은 미승인 상태를 유지하고, 이번 확인은 코드 구현이나 다음 라운드 착수 승인이 아니다.\n\n이 경계를 명세에 반영해도 되나요?",
+        "question_hash": "183517cf54092bae6520c491eac35a56",
+        "answer_hash": "4cf40a5755e6a6ed8116795d6b7c21ade4d2b2a090819883c515b07690961982",
+        "selected_options": [],
+        "custom_input": "이 경계로 확정하되 장 번호는 다음 10장 구조를 따른다. 1 한 줄 콘셉트, 2 규칙(이동·점수), 3 화면 흐름, 4 오브젝트, 5 레벨 맵, 6 팔레트, 7 사운드·UI 텍스트, 8 기술 스펙, 9 수용 기준, 10 범위 밖. R1에서 추가하는 것은 4장 오브젝트(등대지기·바닥·벽), 5장 레벨 1 맵, 6장 팔레트(8색 hex). R2에서는 2장 나머지 규칙과 점수, 3장 화면 흐름, 9장 수용 기준(20항목 이상). R3에서는 5장 레벨 2·3, 7장, 8장, 10장 갱신.",
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.026,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:22:55.268Z",
+        "ambiguity": 0.018,
+        "scores": {
+          "goal": 0.985,
+          "constraints": 0.98,
+          "criteria": 0.98
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.985,
+            "constraints": 0.98,
+            "criteria": 0.98,
+            "gaps": {}
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "criteria",
+          "prior_dimension_score": 0.97,
+          "new_dimension_score": 0.98,
+          "prior_ambiguity": 0.026,
+          "new_ambiguity": 0.018,
+          "evidence": [
+            "종료 경계 확인 및 기획서10장·라운드별 갱신 규칙 확정",
+            "R2 수용 기준20항목 이상"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "7개 핵심 개체 이름 대응; 문서의 장은 별도 도메인 개체 아님"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:chapter-structure-refine-13",
+        "round_id": "chapter-structure-refine-13",
+        "round": 13,
+        "question_id": "chapter-structure-refine",
+        "question_text": "**결정**\n기획서는 다음 10장 구조를 따른다.\n1 한 줄 콘셉트\n2 규칙(이동·점수)\n3 화면 흐름\n4 오브젝트\n5 레벨 맵\n6 팔레트\n7 사운드·UI 텍스트\n8 기술 스펙\n9 수용 기준\n10 범위 밖\n\n**사용자가 정한 제약**\nR1: 4장에 등대지기·바닥·벽, 5장에 레벨 1 맵, 6장에 8색 hex 팔레트를 추가한다.\nR2: 2장에 나머지 규칙과 점수, 3장에 화면 흐름, 9장에 20항목 이상의 수용 기준을 추가한다.\nR3: 5장에 레벨 2·3 맵을 추가하고 7·8·10장을 갱신한다.\n앞서 확인한 R0 완료 경계와 라운드별 승인·사람의 검토 절차는 유지한다.\n\n**기록 구분**\n이미 합의한 후속 라운드 규칙은 인터뷰 명세에 보존하되, 이를 근거로 후속 라운드를 미리 구현하거나 보류된 맵·팔레트를 확정하지 않는다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "643ae0dd68f58253109fdfbf746ab298",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "criteria",
+        "ambiguity_at_ask": 0.026,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:23:19.177Z"
+      },
+      {
+        "round_key": "nointerview::rid:restate-goal-14",
+        "round_id": "restate-goal-14",
+        "round": 14,
+        "question_id": "restate-goal",
+        "question_text": "등대지기가 폭풍 전에 바다 유령을 피해 모든 등불을 켜는 3레벨 단일 화면 도트 게임의 확정 규칙과 수치를 10장 구조의 GAME_DESIGN.md v0를 위한 R0 명세로 정리하고, 맵·팔레트·기능 상세는 합의된 R1~R3에서 보완하며 각 구현은 별도의 계획 승인과 사람의 브라우저 확인을 거친다.\n\n누군가 이 한 문장만 읽어도 의도한 결과를 동일하게 이해할까요?",
+        "question_hash": "3068f54eaadac7458fd7ffeaf9c42b17",
+        "answer_hash": "a359ad81752ab86300a3e1436fa8cc0151c1e70eae512811b0b98f753b505210",
+        "selected_options": [],
+        "custom_input": "목표 문장은 이대로 확정한다. 다만 10장 범위 밖에 AGENTS.md 금지 사항과 함께 이 게임 전용 항목을 넣는다: 일시정지, 목숨(라이프)·이어하기, 아이템·파워업, 유령의 플레이어 추적 AI, 등불 연쇄 점등, 시야 제한·조명 연출, 등대 귀환 조건, 레벨 선택 화면. 조작은 방향키 4개와 Enter뿐이다.",
+        "component": "lighthouse-game",
+        "dimension": "goal",
+        "ambiguity_at_ask": 0.018,
+        "lifecycle": "scored",
+        "answered_at": "2026-11-11T02:24:16.705Z",
+        "ambiguity": 0.015,
+        "scores": {
+          "goal": 0.985,
+          "constraints": 0.99,
+          "criteria": 0.98
+        },
+        "weakest_component_id": "lighthouse-game",
+        "weakest_dimension": "criteria",
+        "component_scores": {
+          "lighthouse-game": {
+            "goal": 0.985,
+            "constraints": 0.99,
+            "criteria": 0.98,
+            "gaps": {}
+          }
+        },
+        "structured_scorer_output": {
+          "triggers": [],
+          "trigger_status": "none",
+          "affected_component": "lighthouse-game",
+          "affected_dimension": "constraints",
+          "prior_dimension_score": 0.98,
+          "new_dimension_score": 0.99,
+          "prior_ambiguity": 0.018,
+          "new_ambiguity": 0.015,
+          "evidence": [
+            "목표 문장 확정; 게임 전용 제외 항목과 키 제한 확정"
+          ],
+          "contradicted_established_fact": null
+        },
+        "ontology": {
+          "entities": [
+            {
+              "name": "등대지기",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "애니메이션 120ms"
+              ],
+              "relationships": [
+                "등불 점등",
+                "유령 회피"
+              ]
+            },
+            {
+              "name": "등불",
+              "type": "core domain",
+              "fields": [
+                "점등 여부"
+              ],
+              "relationships": [
+                "레벨에 배치"
+              ]
+            },
+            {
+              "name": "바다 유령",
+              "type": "core domain",
+              "fields": [
+                "논리 위치",
+                "방향",
+                "이동 간격 400ms",
+                "직선 경로"
+              ],
+              "relationships": [
+                "레벨별 1/2/3마리",
+                "왕복 순찰"
+              ]
+            },
+            {
+              "name": "폭풍",
+              "type": "core domain",
+              "fields": [],
+              "relationships": [
+                "점등 시한"
+              ]
+            },
+            {
+              "name": "레벨",
+              "type": "core domain",
+              "fields": [
+                "번호",
+                "맵"
+              ],
+              "relationships": [
+                "등불·유령 배치"
+              ]
+            },
+            {
+              "name": "점수",
+              "type": "supporting",
+              "fields": [
+                "실패 후 0 초기화"
+              ],
+              "relationships": [
+                "게임 진행 기록"
+              ]
+            },
+            {
+              "name": "화면",
+              "type": "supporting",
+              "fields": [
+                "타이틀",
+                "플레이",
+                "클리어",
+                "실패",
+                "최종"
+              ],
+              "relationships": [
+                "Enter로 전환"
+              ]
+            }
+          ]
+        },
+        "ontology_stability": {
+          "stability_ratio": 1,
+          "new": 0,
+          "changed": 0,
+          "stable": 7,
+          "removed": 0,
+          "matching_reasoning": "기존7개 이름 대응; 금지 항목은 새 도메인 개체로 추가하지 않음"
+        }
+      },
+      {
+        "round_key": "nointerview::rid:non-goals-refine-14",
+        "round_id": "non-goals-refine-14",
+        "round": 14,
+        "question_id": "non-goals-refine",
+        "question_text": "**결정**\n앞서 제시한 목표 문장은 그대로 확정한다. 기획서 10장 ‘범위 밖’에 AGENTS.md의 금지 사항과 아래 게임 전용 제외 항목을 기록한다.\n\n**사용자가 정한 제외 항목**\n일시정지, 목숨(라이프)·이어하기, 아이템·파워업, 유령의 플레이어 추적 AI, 등불 연쇄 점등, 시야 제한·조명 연출, 등대 귀환 조건, 레벨 선택 화면.\n\n**사용자가 정한 제약**\n조작 키는 방향키 4개와 Enter뿐이다.\n\n이 해석에 빠지거나 달라진 내용이 없나요?",
+        "question_hash": "96a59fef34cfdd0ec8fe9e62279f2f1e",
+        "answer_hash": "7d29351b811c95a016ee78673ae49d38eeede0b12e701d869144d6a4c6ab6b1a",
+        "selected_options": [
+          "이대로 확정"
+        ],
+        "component": "lighthouse-game",
+        "dimension": "constraints",
+        "ambiguity_at_ask": 0.018,
+        "lifecycle": "answered",
+        "answered_at": "2026-11-11T02:24:35.649Z"
+      }
+    ],
+    "established_facts": [
+      {
+        "id": "contact-lighting",
+        "statement": "등불에 닿으면 즉시 자동 점등한다.",
+        "round": 1,
+        "disputed": false
+      },
+      {
+        "id": "ghost-contact-failure",
+        "statement": "바다 유령에 닿으면 즉시 실패한다.",
+        "round": 2,
+        "disputed": false
+      },
+      {
+        "id": "movement-grid",
+        "statement": "방향키 한 번에 한 칸, 이동 120ms. 이동 중 입력 무시. 키를 누르고 있어도 반복 이동 없음.",
+        "round": 3,
+        "disputed": false
+      },
+      {
+        "id": "logical-movement",
+        "statement": "이동 입력 순간 논리 위치를 목표 칸으로 변경하며 120ms는 화면 애니메이션이다. 등불은 논리 위치가 해당 칸이 되는 순간 켜진다.",
+        "round": 4,
+        "disputed": false
+      },
+      {
+        "id": "collision-rules",
+        "statement": "유령과 같은 논리 칸이 되거나 같은 갱신에서 플레이어·유령이 자리를 교환하면 실패한다.",
+        "round": 4,
+        "disputed": false
+      },
+      {
+        "id": "ghost-patrol",
+        "statement": "유령은 맵에 고정된 직선 경로를 400ms마다 한 칸씩 왕복하며 끝에서 반전한다. 벽을 통과하거나 플레이어를 추적하지 않는다.",
+        "round": 5,
+        "disputed": false
+      },
+      {
+        "id": "ghost-counts",
+        "statement": "레벨 1/2/3의 유령 수는 각각 1/2/3마리다. 전체 레벨 수는 아직 확인하지 않았다.",
+        "round": 5,
+        "disputed": false
+      },
+      {
+        "id": "three-level-flow",
+        "statement": "총 3레벨, 선택 없이 1→2→3. 각 레벨 모든 등불 점등 즉시 클리어하며 등대 복귀 불필요. 레벨 1·2 클리어 화면에서 Enter로 다음 레벨, 레벨 3 클리어 시 최종 화면.",
+        "round": 6,
+        "disputed": false
+      },
+      {
+        "id": "failure-flow",
+        "statement": "실패 화면에서 Enter를 누르면 타이틀로 돌아가며 점수를 0으로 초기화한다.",
+        "round": 6,
+        "disputed": false
+      },
+      {
+        "id": "score-rules",
+        "statement": "점수는 기록용으로 승패에 영향 없음. 등불 신규 점등 100점, 레벨 클리어 시 floor(남은 초)×10 보너스. 레벨 1→3 누적.",
+        "round": 7,
+        "disputed": false
+      },
+      {
+        "id": "time-limits",
+        "statement": "레벨 1/2/3 제한 시간 60/75/90초. 남은 시간이 0초가 되면 실패.",
+        "round": 7,
+        "disputed": false
+      },
+      {
+        "id": "map-display",
+        "statement": "모든 레벨 15×11칸, 타일16px. 위쪽 HUD16px에 시간·점수·남은 등불 수 표시. 논리240×192px, CSS3배 고정720×576px. 반응형 확대 없음.",
+        "round": 8,
+        "disputed": false
+      },
+      {
+        "id": "lamp-counts",
+        "statement": "레벨1/2/3 등불 수는 각각5/7/9개.",
+        "round": 9,
+        "disputed": false
+      },
+      {
+        "id": "map-symbols",
+        "statement": "# 벽, . 바닥, P 시작점, L 등불, a/b/c 유령 경로. 경로는 통행 가능하고 화면에는 표시하지 않는다. 가로 경로는 왼쪽부터 오른쪽으로, 세로 경로는 위에서 아래로 시작.",
+        "round": 10,
+        "disputed": false
+      },
+      {
+        "id": "map-deferral",
+        "statement": "구체 맵 미확정. 레벨1은 R1, 레벨2·3은 R3에서 기획서에 추가. 제안 맵은 참고안일 뿐 구현 기준 아님. R1/R3의 단계 의미는 후속 확인.",
+        "round": 10,
+        "disputed": false
+      },
+      {
+        "id": "development-rounds",
+        "statement": "R0=인터뷰와 기획서v0. R1=이동·벽 충돌 구현 및 오브젝트·레벨1맵·팔레트 추가. R2=등불·유령·타이머·승패·화면 전환. R3=레벨2·3맵·효과음·최고 점수 저장·최종 화면. 매 라운드 계획 승인→구현→사람의 브라우저 확인.",
+        "round": 11,
+        "disputed": false
+      },
+      {
+        "id": "deferred-details",
+        "statement": "R1 구체 맵·오브젝트·팔레트와 R3 항목 세부는 해당 라운드 기획·승인 전 구현 기준으로 확정하지 않는다.",
+        "round": 11,
+        "disputed": false
+      },
+      {
+        "id": "failure-priority",
+        "statement": "같은 갱신에서 마지막 등불 점등과 유령 충돌 또는 시간0이 겹치면 실패가 클리어보다 우선한다.",
+        "round": 12,
+        "disputed": false
+      },
+      {
+        "id": "ten-chapters",
+        "statement": "기획서10장: 1한줄콘셉트 2규칙(이동·점수) 3화면흐름 4오브젝트 5레벨맵 6팔레트 7사운드·UI텍스트 8기술스펙 9수용기준 10범위밖. R1=4장등대지기·바닥·벽/5장레벨1/6장8색hex. R2=2장나머지규칙·점수/3장화면흐름/9장수용기준20항목이상. R3=5장레벨2·3과7·8·10장갱신.",
+        "round": 13,
+        "disputed": false
+      },
+      {
+        "id": "R0-acceptance",
+        "statement": "인터뷰 명세와R0완료를구분. R0완료는GAME_DESIGN.md v0작성후사람의기획검토. 코드·다음라운드착수승인아님. 참고맵미승인유지. 미정화면상세는R2,최종화면복귀는R3보류.",
+        "round": 13,
+        "disputed": false
+      },
+      {
+        "id": "game-non-goals",
+        "statement": "10장에 AGENTS.md 금지 사항 및 일시정지, 라이프·이어하기, 아이템·파워업, 유령 추적AI, 등불 연쇄점등, 시야제한·조명연출, 등대귀환조건, 레벨선택화면을 제외한다고 기록.",
+        "round": 14,
+        "disputed": false
+      },
+      {
+        "id": "allowed-keys",
+        "statement": "조작 키는 방향키4개와Enter뿐.",
+        "round": 14,
+        "disputed": false
+      }
+    ],
+    "type": "greenfield",
+    "initial_idea": "등대지기가 폭풍이 오기 전에 바다 유령을 피해 꺼진 등불을 모두 켠다",
+    "language": {
+      "instruction": "사용자에게 보이는 설명과 질문, 선택지 및 명세는 한국어로 작성한다."
+    },
+    "codebase_context": "AGENTS.md만 존재하며 GAME_DESIGN.md, src/, index.html은 없다. HTML + Canvas 2D + JavaScript ES modules, 의존성 0, 단일 화면 도트 게임. 기획서가 구현의 유일한 기준이며 브라우저에서 사람이 수용 기준을 확인해야 완료된다.",
+    "topology": {
+      "status": "confirmed",
+      "confirmed_at": "2026-11-11T01:56:09.432Z",
+      "components": [
+        {
+          "id": "lighthouse-game",
+          "name": "등대지기의 등불 점등 게임",
+          "description": "한 화면에서 바다 유령을 피하며 폭풍이 오기 전에 꺼진 등불을 모두 켜는 플레이",
+          "status": "active",
+          "evidence": [
+            "초기 아이디어",
+            "Round 0 확인"
+          ],
+          "clarity_scores": {
+            "goal": 0.985,
+            "constraints": 0.99,
+            "criteria": 0.98,
+            "context": null
+          },
+          "weakest_dimension": "criteria"
+        }
+      ],
+      "deferrals": [],
+      "last_targeted_component_id": "lighthouse-game"
+    },
+    "ontology_snapshots": [
+      {
+        "round": 1,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "위치"
+            ],
+            "relationships": [
+              "등불에 접촉하여 점등"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "등대지기 접촉으로 켜짐"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "등대지기가 회피"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 완료의 시한"
+            ]
+          }
+        ],
+        "stability_ratio": null,
+        "new": 4,
+        "changed": 0,
+        "stable": 0,
+        "matching_reasoning": "첫 라운드이므로 4개 개체 모두 신규"
+      },
+      {
+        "round": 2,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "위치",
+              "생존 여부"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 접촉 시 실패"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "등대지기 접촉으로 켜짐"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "위치"
+            ],
+            "relationships": [
+              "등대지기 접촉 시 실패"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "removed": 0,
+        "changed": 0,
+        "stable": 4,
+        "matching_reasoning": "등대지기·등불·바다 유령·폭풍을 이름으로 대응"
+      },
+      {
+        "round": 3,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "위치",
+              "이동 상태",
+              "이동 시간 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "접촉 점등"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "위치"
+            ],
+            "relationships": [
+              "접촉 실패"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "stable": 4,
+        "new": 0,
+        "changed": 0,
+        "removed": 0,
+        "matching_reasoning": "4개 개체 이름 동일, 새 개체 없음"
+      },
+      {
+        "round": 4,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "위치",
+              "이동 상태",
+              "이동 시간 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "접촉 점등"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "위치"
+            ],
+            "relationships": [
+              "접촉 실패"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 4,
+        "removed": 0,
+        "matching_reasoning": "이름으로 4개 개체 모두 대응"
+      },
+      {
+        "round": 5,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          }
+        ],
+        "stability_ratio": 0.8,
+        "new": 1,
+        "changed": 0,
+        "stable": 4,
+        "removed": 0,
+        "matching_reasoning": "기존 4개는 이름 대응, 레벨 1개 신규"
+      },
+      {
+        "round": 6,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 0.7142857142857143,
+        "new": 2,
+        "changed": 0,
+        "stable": 5,
+        "removed": 0,
+        "matching_reasoning": "기존 5개 이름 대응, 점수·화면 신규"
+      },
+      {
+        "round": 7,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 개체를 이름으로 대응, 새 개체 없음"
+      },
+      {
+        "round": 8,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "등대지기·등불·바다 유령·폭풍·레벨·점수·화면 모두 이름 대응"
+      },
+      {
+        "round": 9,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 개체 모두 이름 대응"
+      },
+      {
+        "round": 10,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 개체 모두 이름 대응; R1/R3은 도메인 개체가 아닌 기획 단계 명칭"
+      },
+      {
+        "round": 11,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 핵심 개체 유지; 효과음·저장은 R3 보류 항목"
+      },
+      {
+        "round": 12,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 개체 모두 이름 대응"
+      },
+      {
+        "round": 13,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "7개 핵심 개체 이름 대응; 문서의 장은 별도 도메인 개체 아님"
+      },
+      {
+        "round": 14,
+        "entities": [
+          {
+            "name": "등대지기",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "애니메이션 120ms"
+            ],
+            "relationships": [
+              "등불 점등",
+              "유령 회피"
+            ]
+          },
+          {
+            "name": "등불",
+            "type": "core domain",
+            "fields": [
+              "점등 여부"
+            ],
+            "relationships": [
+              "레벨에 배치"
+            ]
+          },
+          {
+            "name": "바다 유령",
+            "type": "core domain",
+            "fields": [
+              "논리 위치",
+              "방향",
+              "이동 간격 400ms",
+              "직선 경로"
+            ],
+            "relationships": [
+              "레벨별 1/2/3마리",
+              "왕복 순찰"
+            ]
+          },
+          {
+            "name": "폭풍",
+            "type": "core domain",
+            "fields": [],
+            "relationships": [
+              "점등 시한"
+            ]
+          },
+          {
+            "name": "레벨",
+            "type": "core domain",
+            "fields": [
+              "번호",
+              "맵"
+            ],
+            "relationships": [
+              "등불·유령 배치"
+            ]
+          },
+          {
+            "name": "점수",
+            "type": "supporting",
+            "fields": [
+              "실패 후 0 초기화"
+            ],
+            "relationships": [
+              "게임 진행 기록"
+            ]
+          },
+          {
+            "name": "화면",
+            "type": "supporting",
+            "fields": [
+              "타이틀",
+              "플레이",
+              "클리어",
+              "실패",
+              "최종"
+            ],
+            "relationships": [
+              "Enter로 전환"
+            ]
+          }
+        ],
+        "stability_ratio": 1,
+        "new": 0,
+        "changed": 0,
+        "stable": 7,
+        "removed": 0,
+        "matching_reasoning": "기존7개 이름 대응; 금지 항목은 새 도메인 개체로 추가하지 않음"
+      }
+    ],
+    "auto_answered_rounds": [],
+    "lateral_reviews": [
+      {
+        "round": 1,
+        "transition": "initial→progress",
+        "personas": [
+          "researcher",
+          "contrarian",
+          "simplifier"
+        ],
+        "findings": "유령을 피한다는 표현만으로 접촉 즉시 실패를 가정하지 말고, 충돌 결과를 다음 단일 질문으로 확인한다."
+      },
+      {
+        "round": 3,
+        "transition": "progress→refined",
+        "personas": [
+          "researcher",
+          "contrarian",
+          "simplifier"
+        ],
+        "findings": "응답 형식 검증 실패로 자동 제안은 채택하지 않고 직접 질문 경로를 유지",
+        "validation": "failed"
+      },
+      {
+        "round": 12,
+        "transition": "refined→ready",
+        "personas": [
+          "researcher",
+          "contrarian",
+          "simplifier"
+        ],
+        "findings": "현재 면담은 종료 가능. R0 완료에는 GAME_DESIGN.md v0 작성·사람의 기획 검토가 별도로 필요. 구체 맵·팔레트·미정 화면 동작은 담당 라운드로 보류하고 구현 승인과 구분."
+      }
+    ],
+    "auto_answer_streak": 0,
+    "refined_rounds": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14
+    ],
+    "closure_overrides": [],
+    "ambiguity_milestone": "ready",
+    "architect_failures": 0,
+    "lateral_panel_failures": 3,
+    "ambiguity_floor": {
+      "floor": 0,
+      "disputed_fact_count": 0,
+      "unscored_active_component_count": 0,
+      "auto_answer_ratio": 0
+    },
+    "intent_contract": {
+      "version": 1,
+      "items": [
+        {
+          "id": "artifact:game-spec",
+          "category": "artifact",
+          "statement": "게임 규칙·화면 디자인·수용 기준을 담은 기획 명세. GAME_DESIGN.md로 정리할 기준이며 이번 인터뷰에서는 구현하지 않음."
+        },
+        {
+          "id": "constraint:core",
+          "category": "constraint",
+          "statement": "등대지기·바다 유령 회피·폭풍 전 모든 꺼진 등불 점등이라는 핵심 목표를 유지."
+        },
+        {
+          "id": "constraint:repo",
+          "category": "constraint",
+          "statement": "AGENTS.md의 기술·기능 제한을 따르고 기획서에 없는 기능은 추가하지 않음."
+        },
+        {
+          "id": "integration:browser",
+          "category": "integration",
+          "statement": "서버와 외부 의존성 없이 브라우저에서 HTML·Canvas 2D·JavaScript ES modules로 실행."
+        },
+        {
+          "id": "surface:game",
+          "category": "surface",
+          "statement": "한 화면짜리 도트 게임."
+        }
+      ],
+      "digest": "e0e1cd473ccbcab851798696c54c86c46362c501a242d4f3608b4d04e1c3fe9c",
+      "confirmation_round": 0,
+      "confirmation_answer_hash": "9a790b7767d116ca7b43be92613e326cba13205f3066906a9a190a3b6a8385eb",
+      "confirmation_evidence": "answer_hash:9a790b7767d116ca7b43be92613e326cba13205f3066906a9a190a3b6a8385eb"
+    },
+    "current_ambiguity": 0.015,
+    "design_deferrals": [
+      {
+        "item": "레벨1 구체 맵",
+        "stage": "R1",
+        "evidence_round": 10
+      },
+      {
+        "item": "레벨2·3 구체 맵",
+        "stage": "R3",
+        "evidence_round": 10
+      }
+    ],
+    "reference_maps_status": "unapproved-reference-only",
+    "active_deliverable": "R0 인터뷰 및 기획서 v0; 구현 없음",
+    "roadmap": {
+      "R0": "인터뷰와 기획서 v0",
+      "R1": "이동·벽 충돌; 오브젝트·레벨1맵·팔레트 추가",
+      "R2": "등불·유령·타이머·승패·화면 전환",
+      "R3": "레벨2·3맵·효과음·최고 점수 저장·최종 화면"
+    },
+    "scope_deferrals": [
+      {
+        "item": "오브젝트·레벨1맵·8색hex팔레트",
+        "stage": "R1",
+        "evidence_round": 13
+      },
+      {
+        "item": "미확정 타이틀 시작 입력·화면 전환 상세",
+        "stage": "R2",
+        "evidence_round": 13
+      },
+      {
+        "item": "레벨2·3맵·효과음·최고 점수 저장·최종 화면 상세",
+        "stage": "R3",
+        "evidence_round": 13
+      }
+    ],
+    "closure_audit": {
+      "status": "passed-user-confirmed",
+      "round": 13,
+      "rechecked_after_round": 14,
+      "active_components_covered": [
+        "lighthouse-game"
+      ],
+      "unresolved_material_R0_gaps": [],
+      "disputed_facts": [],
+      "execution_approved": false
+    },
+    "interview_id": "0a2aaa88-5869-4491-bdbe-9ec99d8826ac",
+    "restated_goal": "등대지기가 폭풍 전에 바다 유령을 피해 모든 등불을 켜는 3레벨 단일 화면 도트 게임의 확정 규칙과 수치를 10장 구조의 GAME_DESIGN.md v0를 위한 R0 명세로 정리하고, 맵·팔레트·기능 상세는 합의된 R1~R3에서 보완하며 각 구현은 별도의 계획 승인과 사람의 브라우저 확인을 거친다.",
+    "restated_goal_confirmed": true,
+    "intent_review": {
+      "status": "not_required",
+      "supporting_substitutions": [],
+      "version": 1,
+      "locked_digest": "e0e1cd473ccbcab851798696c54c86c46362c501a242d4f3608b4d04e1c3fe9c",
+      "observed_digest": "c6e2a38b5156e69da5ee3f3600dd9596b6fa92ec657219fe6707c4eb9be188d3",
+      "removed_locked_ids": []
+    },
+    "completion_reason": "사용자가 별도 워크플로 없이 문서 2개만 직접 작성하도록 명시적으로 요청함. 인터뷰 명세와 기록을 보존하며 코드 구현·커밋·R1 착수는 제외."
+  },
+  "state_revision": 47
+}
