@@ -7,11 +7,11 @@ const directions = {
 
 export const moveDuration = 120;
 export const ghostInterval = 400;
-export const levelDuration = 60000;
 
 const sameCell = (a, b) => a.x === b.x && a.y === b.y;
 
-export function createState(map, now = 0) {
+export function createState(levels, now = 0, levelIndex = 0, score = 0) {
+  const { map, duration } = levels[levelIndex];
   const starts = [];
   const lanterns = [];
   const paths = new Map();
@@ -42,7 +42,7 @@ export function createState(map, now = 0) {
   });
   return {
     position: starts[0], pressed: [], enterPressed: false, animation: null,
-    lanterns, ghosts, score: 0, remainingMs: levelDuration,
+    lanterns, ghosts, score, levelIndex, remainingMs: duration,
     status: 'playing', failureReason: null,
     startedAt: now, updatedAt: now,
     nextGhostAt: ghosts.length ? now + ghostInterval : Infinity,
@@ -50,9 +50,9 @@ export function createState(map, now = 0) {
   };
 }
 
-export function createTitleState(map) {
+export function createTitleState(levels) {
   return {
-    ...createState(map),
+    ...createState(levels),
     status: 'title', startedAt: null, updatedAt: null, nextGhostAt: Infinity,
   };
 }
@@ -87,7 +87,7 @@ function movePlayer(state, event, map, now) {
   };
 }
 
-function update(state, event, map, now) {
+function update(state, event, map, now, duration) {
   const moved = movePlayer(state, event, map, now);
   const ghostDue = state.nextGhostAt === now;
   const ghosts = ghostDue ? state.ghosts.map((ghost) => {
@@ -101,7 +101,7 @@ function update(state, event, map, now) {
     newLights += 1;
     return { ...lantern, lit: true };
   });
-  const remainingMs = Math.max(0, levelDuration - (now - state.startedAt));
+  const remainingMs = Math.max(0, duration - (now - state.startedAt));
   const collision = ghosts.some((ghost, index) => sameCell(ghost.position, moved.position)
     || (sameCell(state.position, ghost.position)
       && sameCell(moved.position, state.ghosts[index].position)));
@@ -119,39 +119,43 @@ function update(state, event, map, now) {
   };
 }
 
-function advancePlaying(state, event, map, now) {
+function advancePlaying(state, event, { map, duration }, now) {
   if (state.status !== 'playing') return state;
   if (event.type !== 'tick' && event.type !== 'blur'
     && !((event.type === 'keydown' || event.type === 'keyup') && Object.hasOwn(directions, event.key))) return state;
   if (now < state.updatedAt) throw new Error('Time must not move backwards');
   let next = state;
-  let due = Math.min(next.nextGhostAt, next.startedAt + levelDuration);
+  let due = Math.min(next.nextGhostAt, next.startedAt + duration);
   while (due < now) {
-    next = update(next, { type: 'tick' }, map, due);
+    next = update(next, { type: 'tick' }, map, due, duration);
     if (next.status !== 'playing') return next;
-    due = Math.min(next.nextGhostAt, next.startedAt + levelDuration);
+    due = Math.min(next.nextGhostAt, next.startedAt + duration);
   }
-  return update(next, event, map, now);
+  return update(next, event, map, now, duration);
 }
 
-export function transition(state, event, map, now) {
+export function transition(state, event, levels, now) {
+  const definition = levels[state.levelIndex];
   if (event.type === 'blur') {
-    const next = advancePlaying(state, event, map, now);
+    const next = advancePlaying(state, event, definition, now);
     if (!next.enterPressed && next.pressed.length === 0) return next;
     return { ...next, enterPressed: false, pressed: [] };
   }
   if (event.key !== 'Enter' || (event.type !== 'keydown' && event.type !== 'keyup')) {
-    return advancePlaying(state, event, map, now);
+    return advancePlaying(state, event, definition, now);
   }
   const pressed = event.type === 'keydown';
   const freshPress = pressed && !event.repeat && !state.enterPressed;
   if (freshPress && state.status === 'title') {
-    return { ...createState(map, now), enterPressed: true };
+    return { ...createState(levels, now), enterPressed: true };
   }
   if (freshPress && state.status === 'failed') {
-    return { ...createTitleState(map), enterPressed: true };
+    return { ...createTitleState(levels), enterPressed: true };
   }
-  const next = advancePlaying(state, { type: 'tick' }, map, now);
+  if (freshPress && state.status === 'cleared' && state.levelIndex + 1 < levels.length) {
+    return { ...createState(levels, now, state.levelIndex + 1, state.score), enterPressed: true };
+  }
+  const next = advancePlaying(state, { type: 'tick' }, definition, now);
   return next.enterPressed === pressed ? next : { ...next, enterPressed: pressed };
 }
 

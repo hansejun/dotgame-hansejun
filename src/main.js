@@ -1,4 +1,4 @@
-import { level } from './levels.js';
+import { levels } from './levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from './sprites.js';
 import { createTitleState, transition, displayPosition, hudValues } from './logic.js';
 import { hudText, screenLines } from './strings.js';
@@ -6,7 +6,7 @@ import { hudText, screenLines } from './strings.js';
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 context.imageSmoothingEnabled = false;
-let state = createTitleState(level);
+let state = createTitleState(levels);
 const textCanvas = document.createElement('canvas');
 textCanvas.width = 240;
 textCanvas.height = 16;
@@ -69,23 +69,28 @@ function drawSprite(sprite, x, y) {
   }
 }
 
+function dispatch(event, now) {
+  state = transition(state, event, levels, now);
+}
+
 for (const type of ['keydown', 'keyup']) {
   window.addEventListener(type, (event) => {
     if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(event.key)) return;
     event.preventDefault();
-    state = transition(state, event, level, performance.now());
+    dispatch(event, performance.now());
   });
 }
 window.addEventListener('blur', () => {
-  state = transition(state, { type: 'blur' }, level, performance.now());
+  dispatch({ type: 'blur' }, performance.now());
 });
 
 function render() {
   const now = performance.now();
-  state = transition(state, { type: 'tick' }, level, now);
+  dispatch({ type: 'tick' }, now);
   context.fillStyle = palette[0];
   context.fillRect(0, 0, canvas.width, canvas.height);
   if (state.status === 'playing') {
+    const level = levels[state.levelIndex].map;
     for (let y = 0; y < level.length; y += 1) {
       for (let x = 0; x < level[y].length; x += 1) {
         drawSprite(level[y][x] === '#' ? wall : floor, x * 16, 16 + y * 16);
@@ -101,7 +106,7 @@ function render() {
     drawSprite(player, Math.round(position.x * 16), 16 + Math.round(position.y * 16));
     drawText(hudText(hudValues(state)), 3, 0, 10);
   } else {
-    const lines = screenLines(state);
+    const lines = screenLines(state, levels.length);
     const top = lines.length === 2 ? 64 : 48;
     for (let index = 0; index < lines.length; index += 1) {
       drawText(lines[index], null, top + index * 32, 14);

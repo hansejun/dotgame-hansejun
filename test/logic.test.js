@@ -1,17 +1,26 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { level } from '../src/levels.js';
+import { levels } from '../src/levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from '../src/sprites.js';
-import { createState, createTitleState, transition, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
-import { hudText, screenLines } from '../src/strings.js';
+import { createState as createGameState, createTitleState as createGameTitle, transition as transitionGame, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
+import { hudText, screenLines as gameScreenLines } from '../src/strings.js';
+
+const level = levels[0].map;
+// Single-level fixtures retain the chapter 2 60-second baseline for core-rule regressions.
+const definitions = (map) => [{ map, duration: 60000 }];
+const createState = (map, now = 0) => createGameState(definitions(map), now);
+const createTitleState = (map) => createGameTitle(definitions(map));
+const transition = (state, event, map, now) => transitionGame(state, event, definitions(map), now);
+const screenLines = (state) => gameScreenLines(state, 1);
 
 const down = (state, key, now, map = level, repeat = false) => transition(state, { type: 'keydown', key, repeat }, map, now);
 const up = (state, key, now, map = level) => transition(state, { type: 'keyup', key }, map, now);
 
 test('AC-1: actual map and palette match chapters 5 and 6', () => {
   const design = readFileSync(new URL('../GAME_DESIGN.md', import.meta.url), 'utf8');
-  assert.deepEqual(level, design.match(/```text\n([\s\S]*?)\n```/)[1].split('\n'));
+  const chapter = design.split('## 5 레벨 맵')[1].split('## 6 팔레트')[0];
+  assert.deepEqual(level, chapter.split('### 레벨 1')[1].split('### 레벨 2')[0].match(/```text\n([\s\S]*?)\n```/)[1].split('\n'));
   assert.equal(level.length, 11);
   assert.ok(level.every((row) => row.length === 15 && /^[#.PLa]+$/.test(row)));
   assert.equal(level.join('').split('P').length - 1, 1);
@@ -469,7 +478,7 @@ test('AC-28/29: scored timeout returns to zero-score title; next start resets th
   assert.equal(state.animation, null);
 });
 
-test('AC-27/30: clear displays 620 points once; Enter and arrows never leave R2 clear', () => {
+test('AC-27/39: a last-level clear displays 620 points once and cannot leave clear', () => {
   const map = ['PLLLLL'];
   let state = down(createTitleState(map), 'Enter', 0, map);
   state = up(state, 'Enter', 0, map);
@@ -543,4 +552,246 @@ test('AC-24~32: only documented strings appear; keypress and unknown controls do
   assert.deepEqual(screenLines(playing), []);
   const main = readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
   assert.ok(!/[가-힣]/.test(main), 'Korean UI copy belongs in strings.js, not the renderer');
+});
+
+const gameKey = (state, type, key, now, repeat = false, campaign = levels) => transitionGame(state, { type, key, repeat }, campaign, now);
+const gameTick = (state, now, campaign = levels) => transitionGame(state, { type: 'tick' }, campaign, now);
+const steps = [['ArrowUp', 0, -1], ['ArrowDown', 0, 1], ['ArrowLeft', -1, 0], ['ArrowRight', 1, 0]];
+
+function safeRoute(map, origin, target) {
+  const queue = [{ ...origin, keys: [] }];
+  const visited = new Set([`${origin.x},${origin.y}`]);
+  for (const { x, y, keys } of queue) {
+    if (x === target.x && y === target.y) return keys;
+    for (const [key, dx, dy] of steps) {
+      const nx = x + dx;
+      const ny = y + dy;
+      const id = `${nx},${ny}`;
+      if (!isPassable(map, nx, ny) || 'abc'.includes(map[ny][nx]) || visited.has(id)) continue;
+      visited.add(id);
+      queue.push({ x: nx, y: ny, keys: [...keys, key] });
+    }
+  }
+  assert.fail('Every approved lantern must be reachable without entering a patrol path');
+}
+
+function clearActualLevel(initial) {
+  let state = initial;
+  let now = state.startedAt;
+  const map = levels[state.levelIndex].map;
+  for (const target of initial.lanterns) {
+    if (state.lanterns.find((lamp) => lamp.x === target.x && lamp.y === target.y).lit) continue;
+    for (const key of safeRoute(map, state.position, target)) {
+      state = gameKey(state, 'keydown', key, now);
+      state = gameKey(state, 'keyup', key, now);
+      assert.notEqual(state.status, 'failed');
+      now += 240;
+    }
+  }
+  assert.equal(state.status, 'cleared');
+  assert.ok(state.finishedAt - state.startedAt < levels[state.levelIndex].duration);
+  return state;
+}
+
+test('AC-33/34: every actual map matches its chapter 5 grid, counts, connectivity and straight patrols', () => {
+  const design = readFileSync(new URL('../GAME_DESIGN.md', import.meta.url), 'utf8');
+  const chapter = design.split('## 5 레벨 맵')[1].split('## 6 팔레트')[0];
+  assert.equal(levels.length, 3);
+  for (const [index, { map, duration }] of levels.entries()) {
+    const section = chapter.split(`### 레벨 ${index + 1}`)[1].split('### 레벨 ')[0];
+    assert.deepEqual(map, section.match(/```text\n([\s\S]*?)\n```/)[1].split('\n'));
+    assert.equal(duration, [60000, 75000, 90000][index]);
+    assert.equal(map.length, 11);
+    assert.ok(map.every((row) => row.length === 15 && /^[#.PLa-c]+$/.test(row)));
+    assert.ok(map[0] === '#'.repeat(15) && map[10] === '#'.repeat(15));
+    assert.ok(map.every((row) => row[0] === '#' && row[14] === '#'));
+    assert.equal(map.join('').split('P').length - 1, 1);
+    const state = createGameState(levels, 10000, index);
+    assert.equal(state.lanterns.length, [5, 7, 9][index]);
+    assert.equal(state.ghosts.length, [1, 2, 3][index]);
+    assert.deepEqual(hudValues(state), { time: [60, 75, 90][index], score: 0, remaining: [5, 7, 9][index] });
+    for (const patrol of state.ghosts) {
+      const label = map[patrol.path[0].y][patrol.path[0].x];
+      assert.equal(patrol.path.length, { a: 5, b: 3, c: 4 }[label]);
+      assert.equal(patrol.index, 0);
+      assert.equal(patrol.direction, 1);
+      assert.deepEqual(patrol.position, patrol.path[0]);
+      assert.ok(patrol.path.every((cell, offset) => cell.y === patrol.path[0].y && cell.x === patrol.path[0].x + offset));
+    }
+    const seen = new Set([`${state.position.x},${state.position.y}`]);
+    const queue = [state.position];
+    for (const { x, y } of queue) {
+      for (const [, dx, dy] of steps) {
+        const id = `${x + dx},${y + dy}`;
+        if (isPassable(map, x + dx, y + dy) && !seen.has(id)) {
+          seen.add(id);
+          queue.push({ x: x + dx, y: y + dy });
+        }
+      }
+    }
+    assert.equal(seen.size, [...map.join('')].filter((tile) => tile !== '#').length);
+    for (const lamp of state.lanterns) assert.ok(safeRoute(map, state.position, lamp).length > 0);
+  }
+});
+
+test('AC-34/38/40: 75/90-second clocks and every catch-up deadline use the active level from nonzero start', () => {
+  for (const [index, duration] of [[1, 75000], [2, 90000]]) {
+    const initial = createGameState(levels, 10000, index, 620);
+    const snapshot = structuredClone(initial);
+    for (const elapsed of [duration - 1, duration, duration + 1]) {
+      const state = gameTick(initial, 10000 + elapsed);
+      assert.equal(state.status, elapsed < duration ? 'playing' : 'failed');
+      assert.equal(hudValues(state).time, elapsed < duration ? 1 : 0);
+      assert.equal(state.remainingMs, elapsed < duration ? 1 : 0);
+      assert.equal(state.score, 620);
+      if (elapsed >= duration) {
+        assert.equal(state.failureReason, 'timeout');
+        assert.equal(state.finishedAt, 10000 + duration);
+        assert.equal(gameTick(state, 999999), state);
+      }
+    }
+    const blurred = transitionGame(initial, { type: 'blur' }, levels, 10000 + duration + 1);
+    assert.equal(blurred.finishedAt, 10000 + duration);
+    assert.equal(blurred.status, 'failed');
+    assert.deepEqual(initial, snapshot);
+  }
+});
+
+test('AC-34: all due ghosts move together with 5/3/4-cell periods and no endpoint wait', () => {
+  const initial = createGameState(levels, 10000, 2);
+  for (const [elapsed, indices] of [
+    [399, [0, 0, 0]], [400, [1, 1, 1]], [800, [2, 2, 2]],
+    [1200, [3, 1, 3]], [1600, [4, 0, 2]], [2000, [3, 1, 1]],
+    [2400, [2, 2, 0]], [3200, [0, 0, 2]],
+  ]) {
+    const state = gameTick(initial, 10000 + elapsed);
+    const byLabel = Object.fromEntries(state.ghosts.map((patrol) => [levels[2].map[patrol.path[0].y][patrol.path[0].x], patrol.index]));
+    assert.deepEqual([byLabel.a, byLabel.b, byLabel.c], indices);
+    assert.equal(state.status, 'playing');
+  }
+  assert.deepEqual(initial.ghosts.map((patrol) => patrol.index), [0, 0, 0]);
+});
+
+test('AC-38: b/c collisions and swaps cannot be hidden by the first ghost or a late input', () => {
+  for (const label of ['b', 'c']) {
+    const base = createGameState(levels, 10000, 2, 1440);
+    const patrol = base.ghosts.find((ghost) => levels[2].map[ghost.path[0].y][ghost.path[0].x] === label);
+    const initial = { ...base, position: patrol.path[1] };
+    const snapshot = structuredClone(initial);
+    for (const state of [gameTick(initial, 10400), gameKey(initial, 'keydown', 'ArrowLeft', 10400), gameKey(initial, 'keydown', 'ArrowRight', 12000)]) {
+      assert.equal(state.failureReason, 'collision');
+      assert.equal(state.finishedAt, 10400);
+      assert.equal(state.remainingMs, 89600);
+      assert.equal(state.score, 1440);
+      assert.ok(state.ghosts.every((patrol) => patrol.index === 1));
+      assert.equal(gameTick(state, 20000), state);
+    }
+    assert.deepEqual(initial, snapshot);
+  }
+});
+
+test('AC-35/36/37/39: actual three-level campaign clears safely, carries score once and consumes Enter', () => {
+  let state = gameKey(createGameTitle(levels), 'keydown', 'Enter', 10000);
+  state = gameKey(state, 'keyup', 'Enter', 10000);
+  for (let index = 0; index < 3; index += 1) {
+    const previousScore = state.score;
+    const cleared = clearActualLevel(state);
+    const expected = previousScore + [500, 700, 900][index] + Math.floor(cleared.remainingMs / 1000) * 10;
+    assert.equal(cleared.score, expected);
+    assert.equal(cleared.levelIndex, index);
+    assert.equal(hudValues(cleared).remaining, 0);
+    const lines = ['등불을 모두 켰다', `점수 ${expected}`];
+    if (index < 2) lines.push('ENTER로 다음 레벨');
+    assert.deepEqual(gameScreenLines(cleared, levels.length), lines);
+    const now = cleared.finishedAt + 100000;
+    assert.equal(gameTick(cleared, now), cleared);
+    assert.equal(gameKey(cleared, 'keydown', 'ArrowRight', now), cleared);
+    const snapshot = structuredClone(cleared);
+    state = gameKey(cleared, 'keydown', 'Enter', now);
+    assert.deepEqual(cleared, snapshot);
+    assert.equal(state.score, expected);
+    if (index === 2) {
+      assert.equal(state.status, 'cleared');
+      assert.equal(state.levelIndex, 2);
+      assert.equal(gameKey(state, 'keydown', 'Enter', now + 1, true).status, 'cleared');
+      continue;
+    }
+    assert.equal(state.status, 'playing');
+    assert.equal(state.levelIndex, index + 1);
+    assert.equal(state.startedAt, now);
+    assert.equal(state.updatedAt, now);
+    assert.equal(state.nextGhostAt, now + 400);
+    assert.equal(state.remainingMs, [75000, 90000][index]);
+    assert.deepEqual(state.position, createGameState(levels, now, index + 1).position);
+    assert.deepEqual(state.pressed, []);
+    assert.equal(state.animation, null);
+    assert.ok(state.lanterns.every((lamp) => !lamp.lit));
+    assert.ok(state.ghosts.every((patrol) => patrol.index === 0 && patrol.direction === 1));
+    state = gameKey(state, 'keydown', 'Enter', now, true);
+    state = gameKey(state, 'keydown', 'Enter', now);
+    assert.equal(state.levelIndex, index + 1);
+    assert.equal(state.score, expected);
+    state = gameKey(state, 'keyup', 'Enter', now);
+  }
+});
+
+test('AC-35/37: documented 12999ms bonus accumulates 620 to 1440 to 2460 exactly once', () => {
+  const campaign = [5, 7, 9].map((count, index) => ({ map: [`P${'L'.repeat(count)}`], duration: [60000, 75000, 90000][index] }));
+  let state = createGameState(campaign, 10000);
+  for (let index = 0; index < 3; index += 1) {
+    state = gameKey(state, 'keyup', 'Enter', state.startedAt, false, campaign);
+    for (let lamp = 0; lamp < [5, 7, 9][index]; lamp += 1) {
+      const now = state.startedAt + (lamp === [4, 6, 8][index] ? campaign[index].duration - 12999 : lamp * 240);
+      state = gameKey(state, 'keydown', 'ArrowRight', now, false, campaign);
+      state = gameKey(state, 'keyup', 'ArrowRight', now, false, campaign);
+    }
+    assert.equal(state.status, 'cleared');
+    assert.deepEqual(hudValues(state), { time: 13, score: [620, 1440, 2460][index], remaining: 0 });
+    assert.equal(gameTick(state, state.finishedAt + 100000, campaign), state);
+    const next = gameKey(state, 'keydown', 'Enter', state.finishedAt + 100000, false, campaign);
+    assert.equal(next.score, [620, 1440, 2460][index]);
+    state = next;
+  }
+  assert.equal(state.status, 'cleared');
+  assert.equal(state.levelIndex, 2);
+});
+
+test('AC-38/36: later-level failure resets to level one and a late Enter cannot skip its result', () => {
+  for (const index of [1, 2]) {
+    const playing = createGameState(levels, 10000, index, 620);
+    const now = 10000 + [60000, 75000, 90000][index];
+    const failed = gameKey(playing, 'keydown', 'Enter', now + 1);
+    assert.equal(failed.status, 'failed');
+    assert.equal(failed.finishedAt, now);
+    assert.equal(failed.score, 620);
+    assert.equal(gameKey(failed, 'keydown', 'Enter', now + 2, true).status, 'failed');
+    const title = gameKey(gameKey(failed, 'keyup', 'Enter', now + 3), 'keydown', 'Enter', now + 4);
+    assert.equal(title.status, 'title');
+    assert.equal(title.levelIndex, 0);
+    assert.equal(title.score, 0);
+    assert.equal(gameKey(title, 'keydown', 'Enter', now + 5).status, 'title');
+    const restarted = gameKey(gameKey(title, 'keyup', 'Enter', now + 6), 'keydown', 'Enter', now + 7);
+    assert.equal(restarted.levelIndex, 0);
+    assert.deepEqual(hudValues(restarted), { time: 60, score: 0, remaining: 5 });
+    assert.equal(restarted.animation, null);
+    assert.deepEqual(restarted.pressed, []);
+  }
+});
+
+test('AC-38: exact 75/90-second final light loses to timeout and cannot earn new points', () => {
+  for (const duration of [75000, 90000]) {
+    const campaign = [{ map: ['PLL'], duration }];
+    let state = createGameState(campaign, 10000, 0, 620);
+    state = gameKey(state, 'keydown', 'ArrowRight', 10000, false, campaign);
+    state = gameKey(state, 'keyup', 'ArrowRight', 10000, false, campaign);
+    assert.equal(state.score, 720);
+    const exact = gameKey(state, 'keydown', 'ArrowRight', 10000 + duration, false, campaign);
+    assert.equal(exact.failureReason, 'timeout');
+    assert.equal(hudValues(exact).remaining, 0);
+    assert.equal(exact.score, 720);
+    const late = gameKey(state, 'keydown', 'ArrowRight', 10000 + duration + 1, false, campaign);
+    assert.equal(hudValues(late).remaining, 1);
+    assert.equal(late.finishedAt, 10000 + duration);
+    assert.equal(late.score, 720);
+  }
 });
