@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: AC-1: actual map and palette match chapters 5 and 6
+ok 1 - AC-1: actual map and palette match chapters 5 and 6
+  ---
+  duration_ms: 2.292958
+  type: 'test'
+  ...
+# Subtest: AC-2/3: immediate four-direction logical movement, display-only 120ms interpolation
+ok 2 - AC-2/3: immediate four-direction logical movement, display-only 120ms interpolation
+  ---
+  duration_ms: 0.648834
+  type: 'test'
+  ...
+# Subtest: AC-4: locked inputs are discarded and held keys never replay
+ok 3 - AC-4: locked inputs are discarded and held keys never replay
+  ---
+  duration_ms: 0.212625
+  type: 'test'
+  ...
+# Subtest: AC-5: holding does not repeat; release/repress does, including release while moving
+ok 4 - AC-5: holding does not repeat; release/repress does, including release while moving
+  ---
+  duration_ms: 0.195125
+  type: 'test'
+  ...
+# Subtest: AC-6: every actual adjacent wall rejects without animation/lock and a fresh open key works
+ok 5 - AC-6: every actual adjacent wall rejects without animation/lock and a fresh open key works
+  ---
+  duration_ms: 1.888375
+  type: 'test'
+  ...
+# Subtest: AC-6: open-edge fixture exercises actual bounds branch in all four directions
+ok 6 - AC-6: open-edge fixture exercises actual bounds branch in all four directions
+  ---
+  duration_ms: 0.087334
+  type: 'test'
+  ...
+# Subtest: input lifecycle tracks Enter without restarting play and recovers from missing keyup on blur
+ok 7 - input lifecycle tracks Enter without restarting play and recovers from missing keyup on blur
+  ---
+  duration_ms: 0.288375
+  type: 'test'
+  ...
+# Subtest: AC-6: expired animation followed by wall cannot restart animation or lock
+ok 8 - AC-6: expired animation followed by wall cannot restart animation or lock
+  ---
+  duration_ms: 0.068791
+  type: 'test'
+  ...
+# Subtest: AC-8/12/15: chapter 5 supplies five lanterns and one five-cell patrol, all passable
+ok 9 - AC-8/12/15: chapter 5 supplies five lanterns and one five-cell patrol, all passable
+  ---
+  duration_ms: 0.349792
+  type: 'test'
+  ...
+# Subtest: AC-9/10/11: first logical contact earns 100 immediately; revisit earns zero
+ok 10 - AC-9/10/11: first logical contact earns 100 immediately; revisit earns zero
+  ---
+  duration_ms: 0.309
+  type: 'test'
+  ...
+# Subtest: AC-13/14: 400ms horizontal patrol reverses at endpoints without a wait
+ok 11 - AC-13/14: 400ms horizontal patrol reverses at endpoints without a wait
+  ---
+  duration_ms: 0.16525
+  type: 'test'
+  ...
+# Subtest: AC-15/16/17: real elapsed time, ceiling HUD and exact 60000ms timeout
+ok 12 - AC-15/16/17: real elapsed time, ceiling HUD and exact 60000ms timeout
+  ---
+  duration_ms: 0.080375
+  type: 'test'
+  ...
+# Subtest: AC-18/19: player enters ghost, ghost enters player, but adjacency is safe
+ok 13 - AC-18/19: player enters ghost, ghost enters player, but adjacency is safe
+  ---
+  duration_ms: 0.052083
+  type: 'test'
+  ...
+# Subtest: same-update exchange fails; equal deadline is coupled and never replayed
+ok 14 - same-update exchange fails; equal deadline is coupled and never replayed
+  ---
+  duration_ms: 0.049042
+  type: 'test'
+  ...
+# Subtest: catch-up checks each intermediate deadline and stops before a later input
+ok 15 - catch-up checks each intermediate deadline and stops before a later input
+  ---
+  duration_ms: 0.055625
+  type: 'test'
+  ...
+# Subtest: AC-20/22: five lights earn 500 plus floor seconds times 10, once
+ok 16 - AC-20/22: five lights earn 500 plus floor seconds times 10, once
+  ---
+  duration_ms: 0.102208
+  type: 'test'
+  ...
+# Subtest: last-light collision and timeout take priority: light remains but new score is zero
+ok 17 - last-light collision and timeout take priority: light remains but new score is zero
+  ---
+  duration_ms: 0.061208
+  type: 'test'
+  ...
+# Subtest: AC-21/23: failure freezes score, patrol, clock, input and displayed animation
+ok 18 - AC-21/23: failure freezes score, patrol, clock, input and displayed animation
+  ---
+  duration_ms: 0.112541
+  type: 'test'
+  ...
+# Subtest: X1 / AC-20: final light shows the destination cell immediately, including upward movement
+ok 19 - X1 / AC-20: final light shows the destination cell immediately, including upward movement
+  ---
+  duration_ms: 0.075
+  type: 'test'
+  ...
+# Subtest: X2 / AC-16: fixed palette digits preserve the 4 crossbar and descending stem
+ok 20 - X2 / AC-16: fixed palette digits preserve the 4 crossbar and descending stem
+  ---
+  duration_ms: 0.097208
+  type: 'test'
+  ...
+# Subtest: AC-24/25: title waits beyond 60000ms; fresh Enter starts a new full 60 seconds
+ok 21 - AC-24/25: title waits beyond 60000ms; fresh Enter starts a new full 60 seconds
+  ---
+  duration_ms: 0.302584
+  type: 'test'
+  ...
+# Subtest: AC-26: play Enter advances real time but cannot restart, pause, or skip failure
+ok 22 - AC-26: play Enter advances real time but cannot restart, pause, or skip failure
+  ---
+  duration_ms: 0.156834
+  type: 'test'
+  ...
+# Subtest: AC-28/29: scored timeout returns to zero-score title; next start resets the whole level
+ok 23 - AC-28/29: scored timeout returns to zero-score title; next start resets the whole level
+  ---
+  duration_ms: 0.455375
+  type: 'test'
+  ...
+# Subtest: AC-27/30: clear displays 620 points once; Enter and arrows never leave R2 clear
+ok 24 - AC-27/30: clear displays 620 points once; Enter and arrows never leave R2 clear
+  ---
+  duration_ms: 0.155625
+  type: 'test'
+  ...
+# Subtest: AC-28/31: held Enter cannot pass through collision failure and title in one press
+ok 25 - AC-28/31: held Enter cannot pass through collision failure and title in one press
+  ---
+  duration_ms: 0.070334
+  type: 'test'
+  ...
+# Subtest: AC-32: blur clears both key lifetimes without pausing time or accepting auto-repeat
+ok 26 - AC-32: blur clears both key lifetimes without pausing time or accepting auto-repeat
+  ---
+  duration_ms: 0.172459
+  type: 'test'
+  ...
+# Subtest: AC-24~32: only documented strings appear; keypress and unknown controls do not transition
+ok 27 - AC-24~32: only documented strings appear; keypress and unknown controls do not transition
+  ---
+  duration_ms: 0.366
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 55.003291

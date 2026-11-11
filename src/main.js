@@ -1,52 +1,61 @@
 import { level } from './levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from './sprites.js';
-import { createState, transition, displayPosition, hudValues } from './logic.js';
-import { hudText } from './strings.js';
+import { createTitleState, transition, displayPosition, hudValues } from './logic.js';
+import { hudText, screenLines } from './strings.js';
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 context.imageSmoothingEnabled = false;
-let state = createState(level, performance.now());
-const hudCanvas = document.createElement('canvas');
-hudCanvas.width = 240;
-hudCanvas.height = 16;
-const hudContext = hudCanvas.getContext('2d', { willReadFrequently: true });
-let previousHud = null;
-let hudPixels = [];
+let state = createTitleState(level);
+const textCanvas = document.createElement('canvas');
+textCanvas.width = 240;
+textCanvas.height = 16;
+const textContext = textCanvas.getContext('2d', { willReadFrequently: true });
+const textCache = new Map();
 
-function drawHud() {
-  const text = hudText(hudValues(state));
-  if (text !== previousHud) {
-    hudContext.clearRect(0, 0, 240, 16);
-    hudContext.font = '10px monospace';
-    hudContext.fillStyle = palette[6];
-    let cursor = 3;
-    for (const character of text) {
-      if (/^[0-9]$/.test(character)) {
-        const sprite = hudDigits[Number(character)];
-        for (let y = 0; y < sprite.length; y += 1) {
-          for (let x = 0; x < sprite[y].length; x += 1) {
-            if (sprite[y][x] !== null) hudContext.fillRect(cursor + x, 4 + y, 1, 1);
+function textMask(text, fontSize) {
+  const cacheKey = `${fontSize}:${text}`;
+  if (textCache.has(cacheKey)) return textCache.get(cacheKey);
+  textContext.clearRect(0, 0, 240, 16);
+  textContext.font = `${fontSize}px monospace`;
+  textContext.fillStyle = palette[6];
+  const digitScale = fontSize === 14 ? 2 : 1;
+  const digitTop = digitScale === 2 ? 1 : 4;
+  let cursor = 0;
+  for (const character of text) {
+    if (/^[0-9]$/.test(character)) {
+      const sprite = hudDigits[Number(character)];
+      for (let y = 0; y < sprite.length; y += 1) {
+        for (let x = 0; x < sprite[y].length; x += 1) {
+          if (sprite[y][x] !== null) {
+            textContext.fillRect(cursor + x * digitScale, digitTop + y * digitScale, digitScale, digitScale);
           }
         }
-        cursor += 6;
-      } else {
-        hudContext.fillText(character, cursor, 11);
-        cursor += character === ' ' ? 3 : 10;
       }
+      cursor += 6 * digitScale;
+    } else {
+      textContext.fillText(character, cursor, fontSize + 1);
+      cursor += character === ' ' ? 3 : /^[A-Za-z]$/.test(character) ? Math.ceil(fontSize * 0.6) : fontSize;
     }
-    const { data } = hudContext.getImageData(0, 0, 240, 16);
-    hudPixels = [];
-    // Threshold label glyphs; bitmap digits already have fully opaque pixels.
-    for (let y = 0; y < 16; y += 1) {
-      for (let x = 0; x < 240; x += 1) {
-        if (data[(y * 240 + x) * 4 + 3] >= 128) hudPixels.push({ x, y });
-      }
-    }
-    previousHud = text;
   }
+  const { data } = textContext.getImageData(0, 0, 240, 16);
+  const pixels = [];
+  // Threshold label glyphs; bitmap digits already have fully opaque pixels.
+  for (let y = 0; y < 16; y += 1) {
+    for (let x = 0; x < 240; x += 1) {
+      if (data[(y * 240 + x) * 4 + 3] >= 128) pixels.push({ x, y });
+    }
+  }
+  const mask = { pixels, width: cursor };
+  textCache.set(cacheKey, mask);
+  return mask;
+}
+
+function drawText(text, x, y, fontSize) {
+  const { pixels, width } = textMask(text, fontSize);
+  const left = x === null ? Math.floor((canvas.width - width) / 2) : x;
   context.fillStyle = palette[6];
-  for (const { x, y } of hudPixels) context.fillRect(x, y, 1, 1);
+  for (const pixel of pixels) context.fillRect(left + pixel.x, y + pixel.y, 1, 1);
 }
 
 function drawSprite(sprite, x, y) {
@@ -62,7 +71,7 @@ function drawSprite(sprite, x, y) {
 
 for (const type of ['keydown', 'keyup']) {
   window.addEventListener(type, (event) => {
-    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(event.key)) return;
     event.preventDefault();
     state = transition(state, event, level, performance.now());
   });
@@ -76,20 +85,28 @@ function render() {
   state = transition(state, { type: 'tick' }, level, now);
   context.fillStyle = palette[0];
   context.fillRect(0, 0, canvas.width, canvas.height);
-  for (let y = 0; y < level.length; y += 1) {
-    for (let x = 0; x < level[y].length; x += 1) {
-      drawSprite(level[y][x] === '#' ? wall : floor, x * 16, 16 + y * 16);
+  if (state.status === 'playing') {
+    for (let y = 0; y < level.length; y += 1) {
+      for (let x = 0; x < level[y].length; x += 1) {
+        drawSprite(level[y][x] === '#' ? wall : floor, x * 16, 16 + y * 16);
+      }
+    }
+    for (const lantern of state.lanterns) {
+      drawSprite(lantern.lit ? lanternOn : lanternOff, lantern.x * 16, 16 + lantern.y * 16);
+    }
+    for (const patrol of state.ghosts) {
+      drawSprite(ghost, patrol.position.x * 16, 16 + patrol.position.y * 16);
+    }
+    const position = displayPosition(state, now);
+    drawSprite(player, Math.round(position.x * 16), 16 + Math.round(position.y * 16));
+    drawText(hudText(hudValues(state)), 3, 0, 10);
+  } else {
+    const lines = screenLines(state);
+    const top = lines.length === 2 ? 64 : 48;
+    for (let index = 0; index < lines.length; index += 1) {
+      drawText(lines[index], null, top + index * 32, 14);
     }
   }
-  for (const lantern of state.lanterns) {
-    drawSprite(lantern.lit ? lanternOn : lanternOff, lantern.x * 16, 16 + lantern.y * 16);
-  }
-  for (const patrol of state.ghosts) {
-    drawSprite(ghost, patrol.position.x * 16, 16 + patrol.position.y * 16);
-  }
-  const position = displayPosition(state, now);
-  drawSprite(player, Math.round(position.x * 16), 16 + Math.round(position.y * 16));
-  drawHud();
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);

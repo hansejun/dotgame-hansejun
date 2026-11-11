@@ -41,12 +41,19 @@ export function createState(map, now = 0) {
     return { path, index: 0, direction: 1, position: path[0] };
   });
   return {
-    position: starts[0], pressed: [], animation: null,
+    position: starts[0], pressed: [], enterPressed: false, animation: null,
     lanterns, ghosts, score: 0, remainingMs: levelDuration,
     status: 'playing', failureReason: null,
     startedAt: now, updatedAt: now,
     nextGhostAt: ghosts.length ? now + ghostInterval : Infinity,
     finishedAt: null,
+  };
+}
+
+export function createTitleState(map) {
+  return {
+    ...createState(map),
+    status: 'title', startedAt: null, updatedAt: null, nextGhostAt: Infinity,
   };
 }
 
@@ -112,7 +119,7 @@ function update(state, event, map, now) {
   };
 }
 
-export function transition(state, event, map, now) {
+function advancePlaying(state, event, map, now) {
   if (state.status !== 'playing') return state;
   if (event.type !== 'tick' && event.type !== 'blur'
     && !((event.type === 'keydown' || event.type === 'keyup') && Object.hasOwn(directions, event.key))) return state;
@@ -125,6 +132,27 @@ export function transition(state, event, map, now) {
     due = Math.min(next.nextGhostAt, next.startedAt + levelDuration);
   }
   return update(next, event, map, now);
+}
+
+export function transition(state, event, map, now) {
+  if (event.type === 'blur') {
+    const next = advancePlaying(state, event, map, now);
+    if (!next.enterPressed && next.pressed.length === 0) return next;
+    return { ...next, enterPressed: false, pressed: [] };
+  }
+  if (event.key !== 'Enter' || (event.type !== 'keydown' && event.type !== 'keyup')) {
+    return advancePlaying(state, event, map, now);
+  }
+  const pressed = event.type === 'keydown';
+  const freshPress = pressed && !event.repeat && !state.enterPressed;
+  if (freshPress && state.status === 'title') {
+    return { ...createState(map, now), enterPressed: true };
+  }
+  if (freshPress && state.status === 'failed') {
+    return { ...createTitleState(map), enterPressed: true };
+  }
+  const next = advancePlaying(state, { type: 'tick' }, map, now);
+  return next.enterPressed === pressed ? next : { ...next, enterPressed: pressed };
 }
 
 export function hudValues(state) {

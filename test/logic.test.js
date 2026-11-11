@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { level } from '../src/levels.js';
 import { palette, floor, wall, player, lanternOff, lanternOn, ghost, hudDigits } from '../src/sprites.js';
-import { createState, transition, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
-import { hudText } from '../src/strings.js';
+import { createState, createTitleState, transition, displayPosition, isMoving, isPassable, hudValues } from '../src/logic.js';
+import { hudText, screenLines } from '../src/strings.js';
 
 const down = (state, key, now, map = level, repeat = false) => transition(state, { type: 'keydown', key, repeat }, map, now);
 const up = (state, key, now, map = level) => transition(state, { type: 'keyup', key }, map, now);
@@ -126,9 +126,11 @@ test('AC-6: open-edge fixture exercises actual bounds branch in all four directi
   }
 });
 
-test('input lifecycle ignores other controls and recovers from missing keyup on blur', () => {
+test('input lifecycle tracks Enter without restarting play and recovers from missing keyup on blur', () => {
   const initial = createState(level);
-  assert.equal(down(initial, 'Enter', 0), initial);
+  const entered = down(initial, 'Enter', 0);
+  assert.deepEqual(entered, { ...initial, enterPressed: true });
+  assert.deepEqual(up(entered, 'Enter', 0), initial);
   assert.equal(transition(initial, { type: 'keypress', key: 'ArrowRight' }, level, 0), initial);
   let state = down(initial, 'ArrowRight', 0);
   state = transition(state, { type: 'blur' }, level, 60);
@@ -336,9 +338,10 @@ test('AC-21/23: failure freezes score, patrol, clock, input and displayed animat
   const map = ['Paaa.'];
   const failed = down(createState(map), 'ArrowRight', 0, map);
   const snapshot = structuredClone(failed);
-  for (const event of [{ type: 'tick' }, { type: 'blur' }, { type: 'keyup', key: 'ArrowRight' }, { type: 'keydown', key: 'ArrowRight', repeat: true }]) {
+  for (const event of [{ type: 'tick' }, { type: 'keyup', key: 'ArrowRight' }, { type: 'keydown', key: 'ArrowRight', repeat: true }]) {
     assert.equal(transition(failed, event, map, 90000), failed);
   }
+  assert.deepEqual(transition(failed, { type: 'blur' }, map, 90000), { ...failed, pressed: [] });
   assert.deepEqual(failed, snapshot);
   assert.deepEqual(displayPosition(failed, 0), failed.position);
   assert.deepEqual(displayPosition(failed, 90000), failed.position);
@@ -381,4 +384,163 @@ test('X2 / AC-16: fixed palette digits preserve the 4 crossbar and descending st
   }
   assert.equal(four[0][0], null);
   assert.equal(four[3][0], 6);
+});
+
+test('AC-24/25: title waits beyond 60000ms; fresh Enter starts a new full 60 seconds', () => {
+  const title = createTitleState(level);
+  const snapshot = structuredClone(title);
+  assert.equal(tick(title, 60000), title);
+  assert.equal(down(title, 'ArrowRight', 60000), title);
+  assert.equal(up(title, 'ArrowRight', 60000), title);
+  assert.equal(title.startedAt, null);
+  assert.equal(title.nextGhostAt, Infinity);
+  assert.deepEqual(screenLines(title), ['폭풍 전의 등불', 'ENTER로 시작']);
+  const playing = down(title, 'Enter', 60000);
+  assert.equal(playing.status, 'playing');
+  assert.equal(playing.startedAt, 60000);
+  assert.equal(playing.updatedAt, 60000);
+  assert.equal(playing.nextGhostAt, 60400);
+  assert.deepEqual(hudValues(playing), { time: 60, score: 0, remaining: 5 });
+  assert.deepEqual(playing.position, title.position);
+  assert.deepEqual(playing.pressed, []);
+  assert.equal(playing.animation, null);
+  assert.equal(playing.enterPressed, true);
+  assert.deepEqual(title, snapshot);
+  assert.equal(tick(playing, 119999).status, 'playing');
+  assert.equal(tick(playing, 120000).failureReason, 'timeout');
+});
+
+test('AC-26: play Enter advances real time but cannot restart, pause, or skip failure', () => {
+  let state = down(createTitleState(level), 'Enter', 10000);
+  state = down(state, 'Enter', 10400, level, true);
+  assert.equal(state.startedAt, 10000);
+  assert.equal(state.ghosts[0].index, 1);
+  assert.equal(state.remainingMs, 59600);
+  state = up(state, 'Enter', 10400);
+  state = down(state, 'Enter', 10800);
+  assert.equal(state.startedAt, 10000);
+  assert.equal(state.ghosts[0].index, 2);
+  assert.equal(state.remainingMs, 59200);
+  state = up(state, 'Enter', 10800);
+  // A fresh press received while playing must not be reused on the failure it discovers.
+  state = down(state, 'Enter', 70000);
+  assert.equal(state.status, 'failed');
+  assert.equal(state.failureReason, 'timeout');
+  assert.equal(state.enterPressed, true);
+  assert.equal(down(state, 'Enter', 70001, level, true).status, 'failed');
+});
+
+test('AC-28/29: scored timeout returns to zero-score title; next start resets the whole level', () => {
+  let state = down(createTitleState(level), 'Enter', 1000);
+  state = up(state, 'Enter', 1000);
+  for (const now of [1000, 1120, 1240, 1360]) {
+    state = down(state, 'ArrowRight', now);
+    state = up(state, 'ArrowRight', now);
+  }
+  assert.equal(state.score, 100);
+  assert.equal(hudValues(state).remaining, 4);
+  const failed = tick(state, 61000);
+  const failedSnapshot = structuredClone(failed);
+  assert.deepEqual(screenLines(failed), ['폭풍이 왔다', '점수 100', 'ENTER로 타이틀']);
+  assert.equal(down(failed, 'ArrowLeft', 61001), failed);
+  state = down(failed, 'Enter', 61001);
+  assert.equal(state.status, 'title');
+  assert.equal(state.score, 0);
+  assert.equal(state.failureReason, null);
+  assert.equal(state.finishedAt, null);
+  assert.equal(state.animation, null);
+  assert.deepEqual(state.pressed, []);
+  assert.equal(state.startedAt, null);
+  assert.equal(state.lanterns.filter((lantern) => lantern.lit).length, 0);
+  assert.deepEqual(failed, failedSnapshot);
+  assert.equal(down(state, 'Enter', 62000, level, true).status, 'title');
+  assert.equal(down(state, 'Enter', 62000).status, 'title');
+  state = up(state, 'Enter', 62001);
+  state = down(state, 'Enter', 63000);
+  assert.equal(state.status, 'playing');
+  assert.equal(state.startedAt, 63000);
+  assert.equal(state.nextGhostAt, 63400);
+  assert.deepEqual(hudValues(state), { time: 60, score: 0, remaining: 5 });
+  assert.deepEqual(state.position, createTitleState(level).position);
+  assert.equal(state.ghosts[0].index, 0);
+  assert.equal(state.ghosts[0].direction, 1);
+  assert.deepEqual(state.ghosts[0].position, state.ghosts[0].path[0]);
+  assert.deepEqual(state.pressed, []);
+  assert.equal(state.animation, null);
+});
+
+test('AC-27/30: clear displays 620 points once; Enter and arrows never leave R2 clear', () => {
+  const map = ['PLLLLL'];
+  let state = down(createTitleState(map), 'Enter', 0, map);
+  state = up(state, 'Enter', 0, map);
+  for (const now of [0, 120, 240, 360, 47001]) {
+    state = down(state, 'ArrowRight', now, map);
+    state = up(state, 'ArrowRight', now, map);
+  }
+  const cleared = structuredClone(state);
+  assert.equal(state.status, 'cleared');
+  assert.deepEqual(screenLines(state), ['등불을 모두 켰다', '점수 620']);
+  for (const [type, repeat, now] of [
+    ['keydown', false, 47002], ['keydown', true, 90000],
+    ['keyup', false, 90001], ['keydown', false, 90002],
+  ]) {
+    state = transition(state, { type, key: 'Enter', repeat }, map, now);
+    assert.deepEqual({ ...state, enterPressed: cleared.enterPressed }, cleared);
+    assert.equal(tick(state, now + 1, map), state);
+    assert.equal(down(state, 'ArrowLeft', now + 1, map), state);
+  }
+});
+
+test('AC-28/31: held Enter cannot pass through collision failure and title in one press', () => {
+  const map = ['Paaa.'];
+  const playing = down(createTitleState(map), 'Enter', 0, map);
+  const failed = down(playing, 'ArrowRight', 1, map);
+  assert.equal(failed.failureReason, 'collision');
+  assert.deepEqual(screenLines(failed), ['유령에게 잡혔다', '점수 0', 'ENTER로 타이틀']);
+  assert.equal(down(failed, 'Enter', 500, map, true).status, 'failed');
+  assert.equal(down(failed, 'Enter', 500, map).status, 'failed');
+  const released = up(failed, 'Enter', 501, map);
+  const title = down(released, 'Enter', 502, map);
+  assert.equal(title.status, 'title');
+  assert.equal(title.score, 0);
+  assert.equal(down(title, 'Enter', 1000, map, true).status, 'title');
+  assert.equal(down(title, 'Enter', 1000, map).status, 'title');
+  assert.equal(down(title, 'ArrowRight', 1000, map), title);
+  const restarted = down(up(title, 'Enter', 1001, map), 'Enter', 1002, map);
+  assert.equal(restarted.status, 'playing');
+  assert.deepEqual(restarted.pressed, []);
+  assert.equal(restarted.animation, null);
+});
+
+test('AC-32: blur clears both key lifetimes without pausing time or accepting auto-repeat', () => {
+  let state = down(createTitleState(level), 'Enter', 10000);
+  state = down(state, 'ArrowRight', 10001);
+  state = transition(state, { type: 'blur' }, level, 69999);
+  assert.equal(state.status, 'playing');
+  assert.equal(state.remainingMs, 1);
+  assert.equal(state.enterPressed, false);
+  assert.deepEqual(state.pressed, []);
+  const failed = transition(state, { type: 'blur' }, level, 70000);
+  assert.equal(failed.status, 'failed');
+  assert.equal(failed.failureReason, 'timeout');
+  assert.equal(failed.finishedAt, 70000);
+  assert.deepEqual(screenLines(failed), ['폭풍이 왔다', '점수 0', 'ENTER로 타이틀']);
+  const repeated = down(failed, 'Enter', 70001, level, true);
+  assert.equal(repeated.status, 'failed');
+  state = down(up(repeated, 'Enter', 70002), 'Enter', 70003);
+  state = transition(state, { type: 'blur' }, level, 90000);
+  assert.equal(state.status, 'title');
+  assert.equal(state.enterPressed, false);
+  assert.equal(down(state, 'Enter', 90000, level, true).status, 'title');
+});
+
+test('AC-24~32: only documented strings appear; keypress and unknown controls do not transition', () => {
+  const title = createTitleState(level);
+  assert.equal(transition(title, { type: 'keypress', key: 'Enter' }, level, 60000), title);
+  assert.equal(down(title, 'Escape', 60000), title);
+  assert.equal(down(title, ' ', 60000), title);
+  const playing = down(title, 'Enter', 60000);
+  assert.deepEqual(screenLines(playing), []);
+  const main = readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
+  assert.ok(!/[가-힣]/.test(main), 'Korean UI copy belongs in strings.js, not the renderer');
 });

@@ -1,0 +1,56 @@
+{
+  "goal": "goal-3",
+  "durableGoalId": "G002",
+  "date": "2026-11-11",
+  "productVerification": "passed",
+  "commitCreated": false,
+  "verificationSkill": ".gjc/skills/verify/SKILL.md",
+  "checks": [
+    {"command": "node --test test/ > test/evidence/goal-3-tests.tap", "result": "27 passed, 0 failed", "artifact": "test/evidence/goal-3-tests.tap"},
+    {"command": "git diff --check -- src test GAME_DESIGN.md AGENTS.md", "result": "passed"},
+    {"command": "git diff --exit-code -- AGENTS.md", "result": "passed; AGENTS.md unchanged"},
+    {"command": "Python acceptance-record audit against HEAD:GAME_DESIGN.md", "result": "passed: AC-24 through AC-32 have the exact requested attribution; all AC prose and map unchanged; AC-1 through AC-23 historical lines unchanged"}
+  ],
+  "buildAndTypecheck": "Not applicable: dependency-free JavaScript ES modules, no build or typecheck configuration; no tooling added.",
+  "acceptedUserEvidence": {
+    "source": "Browser report supplied by the user, attributed to designated Claude Code delegate",
+    "attribution": "[x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code)",
+    "acceptedCriteria": ["AC-24", "AC-25", "AC-26", "AC-27", "AC-28", "AC-29", "AC-30", "AC-31", "AC-32"],
+    "observations": [
+      {"criterion": "AC-24", "reported": "타이틀 '폭풍 전의 등불/ENTER로 시작' O"},
+      {"criterion": "AC-25", "reported": "Enter로 시간60·점수0·등불5 새 플레이 O"},
+      {"criterion": "AC-26", "reported": "플레이 중 Enter 무반응·타이틀에서 Enter 1.2초 눌러도 한 화면만 넘어감 O"},
+      {"criterion": "AC-27", "reported": "클리어 '등불을 모두 켰다/점수 1010' O"},
+      {"criterion": "AC-28", "reported": "충돌 '유령에게 잡혔다/점수 100/ENTER로 타이틀', 시간소진 '폭풍이 왔다/점수 0' O"},
+      {"criterion": "AC-29", "reported": "실패 Enter→타이틀→Enter 새 게임 점수0 O"},
+      {"criterion": "AC-30", "reported": "클리어 Enter 무동작 O"},
+      {"criterion": "AC-31", "reported": "O; additional scenario detail not supplied"},
+      {"criterion": "AC-32", "reported": "blur 3초 동안 시간 진행·복귀 후 한 칸만 이동 O"}
+    ],
+    "decision": "문제 없음. User requests recording acceptance and goal-3 completion checkpoint, with rejection recorded rather than native-tool repair or bypass.",
+    "limitation": "User-supplied delegated browser evidence, not represented as this agent's new independent human observation. No new browser run or fixture screenshot is claimed in this verification turn."
+  },
+  "architectReview": {
+    "verdict": "APPROVE",
+    "status": "CLEAR",
+    "evidence": "agent://5-Goal3ScreenReview: implementation source review, findings and blockers empty; advisory review, not a native final-boundary receipt. Product source has not been changed during this acceptance-record turn."
+  },
+  "executorQa": {
+    "commands": ["node --test test/ > test/evidence/goal-3-tests.tap"],
+    "result": "27 passed, 0 failed",
+    "evidence": "Fresh suite includes title idle beyond 60000ms, full 60000ms new play, Enter repeat and same-press protection, scored failure reset, 620-point clear freeze, failure-specific messages, blur key cleanup and unpaused elapsed time. Earlier implementation-turn actual keyboard/browser observations are in the durable G002 ledger; they are not rerun or reattributed here."
+  },
+  "iteration": {
+    "evidence": "User accepted every goal-3 criterion. Previous terminal critic reviewed the human-acceptance pause only; no final native completion critic, cleanup receipt, or source-hash provenance is fabricated by this report."
+  },
+  "outOfScope": ["R3 level entry, later maps, audio and persistence remain outside this goal."],
+  "nativeCheckpoint": {
+    "status": "rejected",
+    "command": "gjc ultragoal checkpoint --goal-id G002 --status complete --evidence <user acceptance and verification> --quality-gate-json test/evidence/goal-3-verification.json --json",
+    "exitCode": 1,
+    "error": "unable to resolve an authoritative integration base",
+    "successfulCompletionReceipt": false,
+    "interpretation": "Native completion rejected at integration-base resolution. This does not establish that later quality gates would pass or diagnose the runtime root cause. Product acceptance and passing tests are recorded separately; no native completion receipt exists.",
+    "policy": "Per user instruction, preserve the rejection in the ledger without further retries or runtime repair. Do not claim this report is a validated native gate, forge reviews or hashes, edit goals.json, bypass native state, or commit."
+  }
+}

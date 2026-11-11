@@ -3,15 +3,15 @@
   "active": true,
   "skill": "ultragoal",
   "phase": "handoff",
-  "updated_at": "2026-11-11T04:40:06.481Z",
+  "updated_at": "2026-11-11T05:04:51.518Z",
   "session_id": "01a1c8b8-3cb7-725b-a85f-fa1d7b859952",
   "active_skills": [
     {
       "skill": "ultragoal",
       "phase": "handoff",
       "active": true,
-      "activated_at": "2026-11-11T04:40:06.481Z",
-      "updated_at": "2026-11-11T04:40:06.481Z",
+      "activated_at": "2026-11-11T05:04:51.518Z",
+      "updated_at": "2026-11-11T05:04:51.518Z",
       "session_id": "01a1c8b8-3cb7-725b-a85f-fa1d7b859952",
       "hud": {
         "version": 1,
@@ -43,7 +43,7 @@
             "priority": 35
           }
         ],
-        "updated_at": "2026-11-11T04:40:06.480Z"
+        "updated_at": "2026-11-11T05:04:51.517Z"
       },
       "receipt": {
         "version": 1,
@@ -52,16 +52,16 @@
         "command": "gjc state ultragoal write",
         "state_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c8b8-3cb7-725b-a85f-fa1d7b859952/state/skill-active-state.json",
         "storage_path": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun/.gjc/_session-01a1c8b8-3cb7-725b-a85f-fa1d7b859952/state/ultragoal-state.json",
-        "mutated_at": "2026-11-11T04:40:06.467Z",
-        "fresh_until": "2026-11-11T05:10:06.467Z",
+        "mutated_at": "2026-11-11T05:04:51.510Z",
+        "fresh_until": "2026-11-11T05:34:51.510Z",
         "status": "fresh",
-        "mutation_id": "ultragoal:2026-11-11T04:40:06.467Z"
+        "mutation_id": "ultragoal:2026-11-11T05:04:51.510Z"
       },
-      "source_state_revision": 24,
-      "state_revision": 19
+      "source_state_revision": 37,
+      "state_revision": 24
     }
   ],
   "active_subskills": [],
-  "source_state_revision": 46,
-  "state_revision": 46
+  "source_state_revision": 57,
+  "state_revision": 57
 }
