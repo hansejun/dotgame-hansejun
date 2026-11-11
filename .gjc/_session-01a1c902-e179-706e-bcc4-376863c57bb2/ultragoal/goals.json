@@ -41,19 +41,19 @@
       "id": "G002",
       "title": "goal-5 합성 효과음 최고점 최종 화면 수용 확인",
       "objective": "Record approved R3 goal-5 implementation and reported localhost AC41-48 acceptance. Preserve explicit AC43/44 limitation: synthesized audio start calls observed, not human listening. Verify node --test test/ and attempt native completion checkpoint; retain any native rejection reason without fabricating a source hash/review/receipt. Write requested README. Never edit AGENTS.md or commit.",
-      "status": "blocked",
+      "status": "active",
       "createdAt": "2026-11-11T06:30:54.281Z",
-      "updatedAt": "2026-11-11T07:27:17.011Z",
+      "updatedAt": "2026-11-11T07:46:29.319Z",
       "steering": {
         "kind": "add_subgoal",
         "evidence": "User explicitly approved goal5 after goal4 human gate and now reports localhost final4050,Entertitle/newgame,persistent one-key4050,lower score preservation,invalidabc->0,module/text checks;AC43/44 are calls only and Pages absent/deferred. Fresh43/43tests passed. Native source-hash currently rejects authoritative integration base.",
         "rationale": "Append the explicitly accepted later story with its own identity; preserve the prior blocked goal4 record and its audit trail."
       },
-      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
+      "evidence": "User authorizes remaining formal completion after goal4 native success. Activate goal5 for genuine fresh frozen-source four-lane review; no completion or new E2E claim."
     }
   ],
   "createdAt": "2026-11-11T05:50:05.128Z",
-  "updatedAt": "2026-11-11T07:46:12.640Z",
+  "updatedAt": "2026-11-11T07:46:29.319Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -62,5 +62,5 @@
     "head": "36ccdb6141352e2312ac4ea9d72d1fc8e2565490",
     "branch": "main"
   },
-  "state_revision": 20
+  "state_revision": 21
 }
