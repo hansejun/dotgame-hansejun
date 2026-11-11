@@ -8,15 +8,15 @@
       "id": "G001",
       "title": "goal-1: 맵 위에서 캐릭터가 한 칸씩 움직이고 벽에 막힌다. Approved plan .gjc/_session-01a1c888-b7d...",
       "objective": "goal-1: 맵 위에서 캐릭터가 한 칸씩 움직이고 벽에 막힌다. Approved plan .gjc/_session-01a1c888-b7d4-7698-a496-0d61e2135616/plans/ralplan/01a1c888-b7d4-7698-a496-0d61e2135616/pending-approval.md sha256 6ccdf14eeb6cd84dd7ceb620aa5773e1787779d20b6be5f477be83006cdda8ee. Implement GAME_DESIGN.md v1 chapters2/4/5/6 with AGENTS.md: Canvas 240x192 CSS720x576, actual15x11 grid16px tiles+16px blank HUD, palette indexed sprites, immediate logical move/120ms visual-only, no repeat/queued movement, wall/bounds no feedback/lock. Exactly one goal. No R2/R3, docs edits, package.json/deps, debug UI or commit. Complete only when actual human browser confirms chapter9 AC-1~AC-7; automatic tests/fixtures not sufficient. Tests node --test test/. Human confirmation may require human_blocked pause after all autonomous verification.",
-      "status": "blocked",
+      "status": "active",
       "createdAt": "2026-11-11T03:05:39.819Z",
-      "updatedAt": "2026-11-11T07:27:18.961Z",
+      "updatedAt": "2026-11-11T08:05:17.149Z",
       "startedAt": "2026-11-11T03:05:40.089Z",
-      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
+      "evidence": "User authorizes last formal goal1 completion after goals2-5 native receipts. Activate for genuine frozen-source four-lane review only; preserve historical acceptance and later authorized UI evolution, no new E2E/completion claim."
     }
   ],
   "createdAt": "2026-11-11T03:05:39.819Z",
-  "updatedAt": "2026-11-11T07:27:18.961Z",
+  "updatedAt": "2026-11-11T08:05:17.149Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -25,5 +25,5 @@
     "head": "f1319930345be137293abef716e02fce558a3504",
     "branch": "main"
   },
-  "state_revision": 13
+  "state_revision": 14
 }
