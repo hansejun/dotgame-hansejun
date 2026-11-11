@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: AC-1: actual map and palette match chapters 5 and 6
+ok 1 - AC-1: actual map and palette match chapters 5 and 6
+  ---
+  duration_ms: 1.418
+  type: 'test'
+  ...
+# Subtest: AC-2/3: immediate four-direction logical movement, display-only 120ms interpolation
+ok 2 - AC-2/3: immediate four-direction logical movement, display-only 120ms interpolation
+  ---
+  duration_ms: 0.496791
+  type: 'test'
+  ...
+# Subtest: AC-4: locked inputs are discarded and held keys never replay
+ok 3 - AC-4: locked inputs are discarded and held keys never replay
+  ---
+  duration_ms: 0.100542
+  type: 'test'
+  ...
+# Subtest: AC-5: holding does not repeat; release/repress does, including release while moving
+ok 4 - AC-5: holding does not repeat; release/repress does, including release while moving
+  ---
+  duration_ms: 0.143042
+  type: 'test'
+  ...
+# Subtest: AC-6: every actual adjacent wall rejects without animation/lock and a fresh open key works
+ok 5 - AC-6: every actual adjacent wall rejects without animation/lock and a fresh open key works
+  ---
+  duration_ms: 0.82775
+  type: 'test'
+  ...
+# Subtest: AC-6: open-edge fixture exercises actual bounds branch in all four directions
+ok 6 - AC-6: open-edge fixture exercises actual bounds branch in all four directions
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  ...
+# Subtest: input lifecycle ignores other controls and recovers from missing keyup on blur
+ok 7 - input lifecycle ignores other controls and recovers from missing keyup on blur
+  ---
+  duration_ms: 0.240708
+  type: 'test'
+  ...
+# Subtest: AC-6: expired animation followed by wall cannot restart animation or lock
+ok 8 - AC-6: expired animation followed by wall cannot restart animation or lock
+  ---
+  duration_ms: 0.059041
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47.291

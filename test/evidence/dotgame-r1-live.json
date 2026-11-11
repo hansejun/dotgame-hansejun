@@ -1,0 +1,1299 @@
+{
+  "schemaVersion": 1,
+  "kind": "browser-automation-transcript",
+  "surface": "web",
+  "tool": "Chrome CDP via Node WebSocket",
+  "url": "http://127.0.0.1:53669/index.html",
+  "actions": [
+    {
+      "type": "goto",
+      "url": "http://127.0.0.1:53669/index.html",
+      "timestamp": 1794368255311
+    },
+    {
+      "type": "observe",
+      "selector": "canvas",
+      "timestamp": 1794368255450,
+      "result": {
+        "width": 240,
+        "height": 192,
+        "displayWidth": 720,
+        "displayHeight": 576,
+        "colors": [
+          "16,24,32,255",
+          "120,144,154,255",
+          "73,97,108,255",
+          "35,59,77,255",
+          "227,195,157,255",
+          "214,154,58,255",
+          "246,231,176,255"
+        ],
+        "text": ""
+      }
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255660,
+      "eventType": "keyDown",
+      "key": "ArrowUp",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255661,
+      "eventType": "keyUp",
+      "key": "ArrowUp",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255731,
+      "eventType": "keyDown",
+      "key": "ArrowRight",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255741,
+      "eventType": "keyDown",
+      "key": "ArrowDown",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255966,
+      "eventType": "keyDown",
+      "key": "ArrowRight",
+      "repeat": true
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368255975,
+      "eventType": "keyDown",
+      "key": "ArrowDown",
+      "repeat": true
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368256173,
+      "eventType": "keyUp",
+      "key": "ArrowRight",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368256174,
+      "eventType": "keyUp",
+      "key": "ArrowDown",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368256174,
+      "eventType": "keyDown",
+      "key": "ArrowDown",
+      "repeat": false
+    },
+    {
+      "type": "press",
+      "selector": "canvas",
+      "timestamp": 1794368256175,
+      "eventType": "keyUp",
+      "key": "ArrowDown",
+      "repeat": false
+    },
+    {
+      "type": "screenshot",
+      "selector": "canvas",
+      "timestamp": 1794368256492
+    }
+  ],
+  "assertions": [
+    {
+      "timestamp": 1794368256492,
+      "status": "passed",
+      "selector": "canvas",
+      "description": "All actual game pixel, input, interpolation, dimension, palette, console and network assertions completed without failure",
+      "checks": [
+        {
+          "action": "observe actual loaded game",
+          "result": {
+            "width": 240,
+            "height": 192,
+            "displayWidth": 720,
+            "displayHeight": 576,
+            "colors": [
+              "16,24,32,255",
+              "120,144,154,255",
+              "73,97,108,255",
+              "35,59,77,255",
+              "227,195,157,255",
+              "214,154,58,255",
+              "246,231,176,255"
+            ],
+            "text": ""
+          }
+        },
+        {
+          "action": "actual P start sprite bounds",
+          "result": [
+            19,
+            36,
+            28,
+            44
+          ]
+        },
+        {
+          "action": "actual start adjacent wall",
+          "verdict": "passed: no visual movement"
+        },
+        {
+          "action": "actual one-cell right, immediate logical target during visual interpolation, locked-key arrival",
+          "result": {
+            "frames": [
+              {
+                "now": 185.2,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 201.8,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 235.2,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 251.9,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 268.5,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 285.2,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 301.8,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 318.5,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 335.2,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 351.9,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 368.6,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 385.2,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 401.9,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 418.5,
+                "position": {
+                  "x": 1,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 435.2,
+                "position": {
+                  "x": 1.0116666670640309,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 451.8,
+                "position": {
+                  "x": 1.1500000003973643,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 468.5,
+                "position": {
+                  "x": 1.289166667064031,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 485.2,
+                "position": {
+                  "x": 1.4283333337306976,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 501.9,
+                "position": {
+                  "x": 1.5675000003973643,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 518.5,
+                "position": {
+                  "x": 1.7058333337306977,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 535.2,
+                "position": {
+                  "x": 1.8450000003973646,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 551.9,
+                "position": {
+                  "x": 1.9841666670640308,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 568.5,
+                "position": {
+                  "x": 2,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 585.2,
+                "position": {
+                  "x": 2,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 601.9,
+                "position": {
+                  "x": 2,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 618.5,
+                "position": {
+                  "x": 2,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              },
+              {
+                "now": 635.2,
+                "position": {
+                  "x": 2,
+                  "y": 1
+                },
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              }
+            ],
+            "inputs": [
+              {
+                "now": 364.40000009536743,
+                "key": "ArrowUp",
+                "type": "keydown",
+                "repeat": false,
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 365.40000009536743,
+                "key": "ArrowUp",
+                "type": "keyup",
+                "repeat": false,
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 433.7999999523163,
+                "key": "ArrowRight",
+                "type": "keydown",
+                "repeat": false,
+                "logical": {
+                  "x": 1,
+                  "y": 1
+                },
+                "animation": null
+              },
+              {
+                "now": 444.5,
+                "key": "ArrowDown",
+                "type": "keydown",
+                "repeat": false,
+                "logical": {
+                  "x": 2,
+                  "y": 1
+                },
+                "animation": {
+                  "from": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "to": {
+                    "x": 2,
+                    "y": 1
+                  },
+                  "startedAt": 433.7999999523163
+                }
+              }
+            ]
+          }
+        },
+        {
+          "action": "held/repeated key and animation-time second key",
+          "verdict": "passed: one movement, no replay"
+        },
+        {
+          "action": "release then fresh press",
+          "verdict": "passed: subsequent movement"
+        },
+        {
+          "action": "resize viewport",
+          "verdict": "passed: fixed720x576",
+          "result": [
+            720,
+            576
+          ]
+        },
+        {
+          "action": "console and favicon regression",
+          "result": {
+            "consoleErrors": [],
+            "runtimeErrors": [],
+            "failedResponses": [],
+            "requests": [
+              "/index.html",
+              "/src/main.js",
+              "/src/levels.js",
+              "/src/sprites.js",
+              "/src/logic.js"
+            ]
+          },
+          "verdict": "passed: no favicon.ico request and zero console/network errors"
+        }
+      ]
+    }
+  ],
+  "source": "actual index.html and modules; no fixture rendering",
+  "transcript": [
+    {
+      "action": "observe actual loaded game",
+      "result": {
+        "width": 240,
+        "height": 192,
+        "displayWidth": 720,
+        "displayHeight": 576,
+        "colors": [
+          "16,24,32,255",
+          "120,144,154,255",
+          "73,97,108,255",
+          "35,59,77,255",
+          "227,195,157,255",
+          "214,154,58,255",
+          "246,231,176,255"
+        ],
+        "text": ""
+      }
+    },
+    {
+      "action": "actual P start sprite bounds",
+      "result": [
+        19,
+        36,
+        28,
+        44
+      ]
+    },
+    {
+      "action": "actual start adjacent wall",
+      "verdict": "passed: no visual movement"
+    },
+    {
+      "action": "actual one-cell right, immediate logical target during visual interpolation, locked-key arrival",
+      "result": {
+        "frames": [
+          {
+            "now": 185.2,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 201.8,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 235.2,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 251.9,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 268.5,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 285.2,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 301.8,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 318.5,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 335.2,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 351.9,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 368.6,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 385.2,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 401.9,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 418.5,
+            "position": {
+              "x": 1,
+              "y": 1
+            },
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 435.2,
+            "position": {
+              "x": 1.0116666670640309,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 451.8,
+            "position": {
+              "x": 1.1500000003973643,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 468.5,
+            "position": {
+              "x": 1.289166667064031,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 485.2,
+            "position": {
+              "x": 1.4283333337306976,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 501.9,
+            "position": {
+              "x": 1.5675000003973643,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 518.5,
+            "position": {
+              "x": 1.7058333337306977,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 535.2,
+            "position": {
+              "x": 1.8450000003973646,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 551.9,
+            "position": {
+              "x": 1.9841666670640308,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 568.5,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 585.2,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 601.9,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 618.5,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          },
+          {
+            "now": 635.2,
+            "position": {
+              "x": 2,
+              "y": 1
+            },
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          }
+        ],
+        "inputs": [
+          {
+            "now": 364.40000009536743,
+            "key": "ArrowUp",
+            "type": "keydown",
+            "repeat": false,
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 365.40000009536743,
+            "key": "ArrowUp",
+            "type": "keyup",
+            "repeat": false,
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 433.7999999523163,
+            "key": "ArrowRight",
+            "type": "keydown",
+            "repeat": false,
+            "logical": {
+              "x": 1,
+              "y": 1
+            },
+            "animation": null
+          },
+          {
+            "now": 444.5,
+            "key": "ArrowDown",
+            "type": "keydown",
+            "repeat": false,
+            "logical": {
+              "x": 2,
+              "y": 1
+            },
+            "animation": {
+              "from": {
+                "x": 1,
+                "y": 1
+              },
+              "to": {
+                "x": 2,
+                "y": 1
+              },
+              "startedAt": 433.7999999523163
+            }
+          }
+        ]
+      }
+    },
+    {
+      "action": "held/repeated key and animation-time second key",
+      "verdict": "passed: one movement, no replay"
+    },
+    {
+      "action": "release then fresh press",
+      "verdict": "passed: subsequent movement"
+    },
+    {
+      "action": "resize viewport",
+      "verdict": "passed: fixed720x576",
+      "result": [
+        720,
+        576
+      ]
+    },
+    {
+      "action": "console and favicon regression",
+      "result": {
+        "consoleErrors": [],
+        "runtimeErrors": [],
+        "failedResponses": [],
+        "requests": [
+          "/index.html",
+          "/src/main.js",
+          "/src/levels.js",
+          "/src/sprites.js",
+          "/src/logic.js"
+        ]
+      },
+      "verdict": "passed: no favicon.ico request and zero console/network errors"
+    }
+  ],
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "failedResponses": [],
+  "screenshot": "test/evidence/dotgame-r1-live.png"
+}

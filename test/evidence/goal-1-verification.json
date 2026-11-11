@@ -1,0 +1,73 @@
+{
+  "goal": "goal-1",
+  "date": "2026-11-11",
+  "productVerification": "passed",
+  "ultragoalCompletion": "blocked",
+  "branch": "goal-1",
+  "baseBranch": "main",
+  "commitCreated": false,
+  "changes": [
+    "index.html declares rel=icon href=data:, so Chrome no longer requests missing favicon.ico",
+    "Substantive tests remain test/logic.test.js; test/index.js contains exactly import './logic.test.js'; as the explicitly requested Node 22 directory entry",
+    "Restored AGENTS.md original test command node --test test/; git diff --exit-code -- AGENTS.md passed, confirming template matches HEAD",
+    "Marked GAME_DESIGN.md AC-1 through AC-7 with exact user-requested date and designated Claude Code browser confirmation attribution; did not change acceptance prose"
+  ],
+  "checks": [
+    {"command":"node --test test/","result":"8 passed, 0 failed","artifact":"/tmp/goal-1-directory-tests.tap"},
+    {"command":"node --test test/*.test.js","result":"8 passed, 0 failed after restoring directory entry","artifact":"/tmp/goal-1-glob-tests.tap"},
+    {"command":"git diff --exit-code -- AGENTS.md","result":"passed; original human-copied template preserved"},
+    {"command":"node --test test/*.test.js","result":"8 passed, 0 failed","artifact":"test/evidence/goal-1-tests.tap"},
+    {"command":"git diff --check","result":"passed"},
+    {"command":"OUTPUT_DIR=test/evidence node /tmp/dotgame-r1-live.mjs","result":"passed; real isolated Chrome loads actual repository modules, not fixture rendering","artifacts":["test/evidence/dotgame-r1-live.json","test/evidence/dotgame-r1-live.png"]}
+  ],
+  "liveBrowserObservations": {
+    "consoleErrors": 0,
+    "runtimeErrors": 0,
+    "networkErrors": 0,
+    "faviconIcoRequests": 0,
+    "logicalCanvas": [240,192],
+    "fixedCssDisplay": [720,576],
+    "movement": "P start pixel bounds, exact one-tile right/down, immediate logical target while display interpolates over 120ms, animation-time second key discarded, no held/repeat replay, fresh press works, start wall causes no movement",
+    "palette": "Only the specified palette colors occur in actual canvas pixels"
+  },
+  "acceptedUserEvidence": {
+    "source": "User-designated Claude Code delegate browser report supplied by user",
+    "url": "http://localhost:8000/index.html",
+    "acceptedCriteria": ["AC-1","AC-2","AC-3","AC-4","AC-5","AC-6","AC-7"],
+    "attribution": "[x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code)",
+    "limitation": "Recorded exactly as user-supplied delegate evidence; not represented as independent human observation by this agent or reviewers"
+  },
+  "explicitHumanCompletionApproval": {
+    "date": "2026-11-11",
+    "decision": "User approves goal-1 completion based on AC-1 through AC-7 browser confirmation and classifies .gjc self-modifying runtime hash drift as a tool problem, not a product defect",
+    "ledgerRecorded": true,
+    "overrideCommand": "gjc ultragoal record-critic-gate-override --evidence <explicit human approval> --json",
+    "overrideResult": "Rejected: record-critic-gate-override requires a durably recorded terminal critic hard stop",
+    "permittedRecordMethod": "gjc ultragoal steer --kind annotate_ledger recorded the full human approval and template/test decisions successfully",
+    "completeCheckpointAttempts": "First rejected because G001 was review_blocked. After supported checkpoint to active succeeded, complete was rejected by source hash, terminal critic, and screenshot validation. No completed aggregate receipt exists.",
+    "commitInstruction": "No commit; user creates goal-1 commit"
+  },
+  "reviews": {
+    "cleanup": "PASS, no blocking findings",
+    "architect": "architecture/product/code CLEAR, APPROVE, no product blockers",
+    "qa": "passed contract coverage from actual execution evidence; no product defect",
+    "terminalCritic": "ITERATE: native provenance and artifact acceptance must pass before complete checkpoint"
+  },
+  "nativeGate": {
+    "command": "gjc ultragoal quality-gate validate --quality-gate-json /tmp/dotgame-r1-quality-gate.json --goal-id G001 --json",
+    "valid": false,
+    "errors": [
+      {"code":"source_hash_mismatch","path":"iteration.reviewCohort.sourceHash","detail":"Native current digest differs from review generation; source capture includes changing generated .gjc runtime files. Later evidence additions also change the capture. No hash was fabricated or rebound to reviews of another snapshot."},
+      {"code":"critic_verdict_not_okay","path":"criticReview.verdict","detail":"Terminal completion critic has not approved completion; actual verdict ITERATE must not be replaced with OKAY."},
+      {"code":"executor_qa_evidence_invalid","path":"executorQa","detail":"Latest native validator rejects the actual non-uniform gameplay PNG as blank/solid/placeholder. This is a directly captured real game screenshot, read and visually inspected; not a fixture. No colors/noise or fake image were added to pass the detector."}
+    ],
+    "resolvedEarlierDiagnostics": [
+      "No integration base on current-main-only repository: ordinary goal-1 feature branch now uses genuine existing main at f131993 without commits or moving files",
+      "Evidence outside cwd: actual regenerated proof now under test/evidence",
+      "Transcript schemaVersion: actual actions/assertions now serialized as schemaVersion 1, web, Chrome CDP tool, with real monotonic timestamps and selectors"
+    ],
+    "completeCheckpointPerformed": false,
+    "completeCheckpointAttempted": true,
+    "reason": "Explicit human approval is durably recorded, but native complete checkpoint rejected it despite an active G001. No successful goal completion or aggregate receipt is claimed. No fake critic hard stop, ignored .gjc paths, fabricated reviews/hashes, direct goals.json edit, or installed-runtime patch was used. User retains commit ownership."
+  }
+}
