@@ -41,19 +41,43 @@
       "id": "G002",
       "title": "goal-5 합성 효과음 최고점 최종 화면 수용 확인",
       "objective": "Record approved R3 goal-5 implementation and reported localhost AC41-48 acceptance. Preserve explicit AC43/44 limitation: synthesized audio start calls observed, not human listening. Verify node --test test/ and attempt native completion checkpoint; retain any native rejection reason without fabricating a source hash/review/receipt. Write requested README. Never edit AGENTS.md or commit.",
-      "status": "active",
+      "status": "complete",
       "createdAt": "2026-11-11T06:30:54.281Z",
-      "updatedAt": "2026-11-11T07:46:29.319Z",
+      "updatedAt": "2026-11-11T07:53:41.725Z",
       "steering": {
         "kind": "add_subgoal",
         "evidence": "User explicitly approved goal5 after goal4 human gate and now reports localhost final4050,Entertitle/newgame,persistent one-key4050,lower score preservation,invalidabc->0,module/text checks;AC43/44 are calls only and Pages absent/deferred. Fresh43/43tests passed. Native source-hash currently rejects authoritative integration base.",
         "rationale": "Append the explicitly accepted later story with its own identity; preserve the prior blocked goal4 record and its audit trail."
       },
-      "evidence": "User authorizes remaining formal completion after goal4 native success. Activate goal5 for genuine fresh frozen-source four-lane review; no completion or new E2E claim."
+      "evidence": "Actual current cleanerPASS architectCLEAR QApassed criticOKAY; accepted qualifiedAC41-48; retained real335e9cb E2E supports unchanged product/test-source; current43pass tests; lossy JPEG copies with original PNGs; audio calls-only, no listening/newbrowser/Pages claim.",
+      "completedAt": "2026-11-11T07:53:41.725Z",
+      "completionVerification": {
+        "schemaVersion": 1,
+        "receiptId": "31bed6ab-4410-4f77-a0d6-2d05742c919c",
+        "verifiedAt": "2026-11-11T07:53:41.725Z",
+        "goalId": "G002",
+        "receiptKind": "final-aggregate",
+        "goalStatusBeforeCheckpoint": "active",
+        "gjcGoalMode": "aggregate",
+        "gjcObjective": "Complete the durable ultragoal plan in .gjc/ultragoal/goals.json, including later accepted/appended stories, under the original brief constraints; use .gjc/ultragoal/ledger.jsonl as the audit trail.",
+        "qualityGateHash": "467c92621d9a45a62a236145edffbb1d0d3aa8bd72a841e407f377bda44bf6ed",
+        "planGeneration": "a41492a9ae6d351b750a0e26047faa2712b84115403db0b0f94e78f24a9ca550",
+        "basis": {
+          "planHashBeforeCheckpoint": "9cf152a88a5f5d678a22eea915d73e6a81fb8d257cef1f81553445fd4641bdd8",
+          "latestRelevantLedgerEventIdBeforeCheckpoint": "5369cf9a-a199-4aff-b468-866827b25f4e",
+          "goalUpdatedAtBeforeCheckpoint": "2026-11-11T07:53:41.725Z",
+          "relevantGoalIdsBeforeCheckpoint": [
+            "G001",
+            "G002"
+          ],
+          "requiredGoalSetHashBeforeCheckpoint": "2d9d183ca2def0de6f974790b80d662d63afad84026689f78fea026b6ac5d9ad"
+        },
+        "checkpointLedgerEventId": "5556a16e-dc55-4254-9f60-e9c8df20ee48"
+      }
     }
   ],
   "createdAt": "2026-11-11T05:50:05.128Z",
-  "updatedAt": "2026-11-11T07:46:29.319Z",
+  "updatedAt": "2026-11-11T07:53:41.725Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -62,5 +86,5 @@
     "head": "36ccdb6141352e2312ac4ea9d72d1fc8e2565490",
     "branch": "main"
   },
-  "state_revision": 21
+  "state_revision": 22
 }
