@@ -41,14 +41,14 @@
       "id": "G002",
       "title": "goal-3 승패·화면 전환",
       "objective": "goal-2 사람 확인 후 타이틀/플레이/클리어/실패·최소문구 strings.js·Enter/reset 구현. R2클리어Enter무동작, 다음레벨R3goal4. 실패Enter타이틀점수0, 반복/동일누름재사용방지. test/logic.test.js 숫자기반 테스트와 node --test test/ 통과. 실제 사람이 AC24-32와 core회귀 확인해야 완료.",
-      "status": "blocked",
+      "status": "active",
       "createdAt": "2026-11-11T04:11:43.328Z",
-      "updatedAt": "2026-11-11T07:27:22.883Z",
-      "evidence": "Explicituserrequestedfinalretryafteractual43passfullsuite andrealPython/Chromium1→2→3clear4090,collision100,real61.136sectimeout0,title/reset/solekeyhighest4090/reload. 16unmodified1440x1152canvasPNGs,rawandchronologicalactualtranscripts preserved. Gen3architectureCLEAR/APPROVE,QApassed,cleanerPASS,NEWcompletioncriticOKAY withdisclosedsummaryduplication. fullReruntrueactual;sourcehashreviewede78abcNOTrebound;no product/AGENTS/GAME_DESIGN edit,no commit. EXACT finalnative refusal: iteration.reviewCohort.sourceHash must equal the runtime-computed digest of the authoritative current source basis\nqualityGate executorQa.artifactRefs.play screenshot artifact must be non-uniform, not blank, solid, tiny, or placeholder imagery. Proof:test/evidence/final-rerun/. Actualqualitygate/commands/errors:/tmp/dotgame-final-rerun-gates"
+      "updatedAt": "2026-11-11T07:59:36.887Z",
+      "evidence": "User authorizes goal3 formal completion after goal2 native receipt. Activate only for genuine frozen-source four-lane review, no completion or new E2E claim."
     }
   ],
   "createdAt": "2026-11-11T04:11:43.328Z",
-  "updatedAt": "2026-11-11T07:59:25.543Z",
+  "updatedAt": "2026-11-11T07:59:36.887Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -57,5 +57,5 @@
     "head": "debba1252d8664e78626982f622dfe674fa81d6c",
     "branch": "main"
   },
-  "state_revision": 30
+  "state_revision": 31
 }
