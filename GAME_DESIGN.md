@@ -177,8 +177,8 @@ Web Audio API oscillator와 gain만 사용한다. AudioContext 최대 1개, mast
 자동 재생하지 않는다. 실제 최초 타이틀 시작 새 Enter keydown 제스처에서만 AudioContext를 지연 생성/resume한다. 후속 실제 승인된 Enter 전환에서 suspended면 resume 재시도 가능하다. repeat/합성 이벤트/RAF만으로 활성화하지 않는다. 비동기 resume을 게임이 기다리지 않는다. 미지원·생성 실패·resume 거절·아직 suspended면 해당 음을 버리고 나중에 재생할 큐를 남기지 않는다. 소리 실패는 승패/시간/점수에 영향 없고 설정/뮤트 UI는 없다.
 
 ## 8 기술 스펙
-- HTML + Canvas 2D + JavaScript ES modules, 의존성 0·빌드 없음. 실행은 `python3 -m http.server 8000` 후 `http://localhost:8000/` 또는 기존 GitHub Pages HTTPS다. ES modules의 CORS 제한 때문에 file:// 더블클릭은 지원하지 않는다. 정적 서빙은 게임 백엔드가 아니다.
-- localhost 실제 사람 확인이 필수다. 기존 Pages가 있을 때만 선택적·비게이팅 보조 확인을 한다. 없으면 Pages/교차 origin 확인은 deferred(환경 없음)로 기록하고 로컬 완료를 막지 않는다. 배포/설정/커밋/푸시는 요구하거나 수행하지 않는다.
+- HTML + Canvas 2D + JavaScript ES modules, 의존성 0·빌드 없음. 실행은 `python3 -m http.server 8000` 후 `http://localhost:8000/` 또는 배포된 GitHub Pages https://hansejun.github.io/dotgame-hansejun/ 에서 한다. ES modules의 CORS 제한 때문에 file:// 더블클릭은 지원하지 않는다. 정적 서빙은 게임 백엔드가 아니다.
+- localhost 실제 사람 확인이 필수다. 배포된 Pages는 선택적·비게이팅 보조 확인 대상이며 localhost와 별개 origin이므로 최고 점수 기록도 분리된다. 2026-11-13 Pages 브라우저 사람 확인에서 첫 로드·새로고침의 정상 모듈 로딩과 Pages 기록 1110·localhost 기록 4050의 분리를 확인했다(AC-46·48). 보조 확인 자체는 배포/설정/커밋/푸시를 요구하지 않는다.
 - `src/logic.js`는 Canvas/DOM/AudioContext/localStorage/내부 clock 없이 상태·입력·외부 now로 새 상태를 반환한다. 활성 레벨의 duration을 초기 시간·경과시간·모든 catch-up 기한에 동일하게 쓴다. `src/levels.js`는 5장의 격자 원문과 60000/75000/90000만 정의한다. 좌표·개수는 격자에서 파싱한다.
 - `src/main.js`는 입력/RAF/blur의 단일 dispatch, 활성 맵 그리기, 브라우저 효과 연결만 담당한다. 렌더 자체에는 소리/저장 부작용이 없다. 상대 import로 Pages 하위 경로를 지원한다. sprites는 기존 8색 팔레트 인덱스 배열, UI 문구는 strings 한 곳이다.
 
@@ -260,11 +260,11 @@ Web Audio API oscillator와 gain만 사용한다. AudioContext 최대 1개, mast
 - AC-43: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) (청음 대신 합성음 호출 확인) 페이지를 열고 기다리면 무음이다. 실제 Enter로 시작한 뒤 신규 등불/중간 클리어/실패/전체 완료에서 7장의 짧은 합성음을 듣는다. 외부 오디오 다운로드·BGM은 없다.
 - AC-44: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) (청음 대신 합성음 호출 확인) 벽·재방문·반복·결과 대기·Enter 복귀 자체에는 추가음이 없다. 마지막 등불은 별도 등불음 없이 결과음 하나다. 단, 지연 terminal을 발견한 입력은 결과음 1회가 우선한다. 오디오 차단/미지원에서도 게임은 계속된다.
 - AC-45: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) 저장 없는 origin의 타이틀은 '최고 점수 0'이다. 실제 실패/전체 완료에서 더 높은 누적을 기록하면 새 최고점이 보이며 같은 origin 새로고침 후 유지된다. 게임은 타이틀·현재 점수 0으로 시작한다.
-- AC-46: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) 낮거나 같은 기록으로 마쳐도 최고점이 내려가지 않고 중간 클리어는 저장하지 않는다. 게임은 키 하나만 사용한다. 기존 Pages가 있을 때만 localhost와 기록이 별개인지 선택적으로 확인하며 없으면 deferred로 기록한다.
+- AC-46: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) 낮거나 같은 기록으로 마쳐도 최고점이 내려가지 않고 중간 클리어는 저장하지 않는다. 게임은 키 하나만 사용한다. 사람 확인 2026-11-13 (Pages 브라우저, 사용자 대행 Claude Code) Pages의 선택적 교차 origin 확인: 저장 키가 없는 타이틀의 최고 점수 0에서 레벨 1 클리어 후 레벨 2 충돌로 점수 1110을 저장했고, 같은 시점 localhost 기록 4050과 별개임을 확인했다.
 - AC-47: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) 비정상 저장값은 최고점 0으로 시작하고 저장 접근 차단에서도 플레이/결과/복귀가 가능하다. 탭의 새 최고점은 보이며 쓰기 실패값은 재로드 후 사라질 수 있다. 무한 재시도·경고 화면은 없다.
-- AC-48: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) localhost의 실제 게임이 ES module 오류 없이 열리고 7장의 전체 문구가 잘리지 않으며 8색·고정 크기를 유지한다. 실제 입력·청음·새로고침으로 확인하고 fixture 캡처는 쓰지 않는다. 기존 Pages HTTPS 확인은 선택적·비게이팅이며 환경이 없으면 deferred로 남기고 배포를 요구하지 않는다.
+- AC-48: [x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code) localhost의 실제 게임이 ES module 오류 없이 열리고 7장의 전체 문구가 잘리지 않으며 8색·고정 크기를 유지한다. 실제 입력·청음·새로고침으로 확인하고 fixture 캡처는 쓰지 않는다. 사람 확인 2026-11-13 (Pages 브라우저, 사용자 대행 Claude Code) 선택적·비게이팅 Pages HTTPS 확인: 새 Chromium 프로필에서 첫 로드·새로고침 모두 콘솔 메시지 0개(에러 0·경고 0), main.js의 type=module 정상 로드를 확인했다. 추가 배포를 요구하지 않는다.
 
-사용자 보고 근거: localhost에서 레벨 1→2→3 클리어 직후 최종 점수/최고점 4050, Enter 복귀·새 게임·새로고침 후 최고점 유지, 단일 키 `dotgame.bestScore`에 4050 저장, 낮은 실패 점수 후 기록 유지, 저장값 `abc`에서 최고점 0 시작, ES module 오류와 문구 잘림 없음을 확인했다. AC-43·44는 페이지 대기 중 `OscillatorNode.start` 0회·첫 등불 후 1회·전체 완료까지 합성음 호출을 확인한 것으로 기록한다. 대행자가 직접 듣지 못했으므로 실제 청음 결과를 주장하지 않는다. 저장 차단/예외는 기존 자동 검증 근거와 구분하며 이번 사용자 보고는 비정상 값 `abc` 재현이다. Pages/교차 origin 확인은 환경 없음으로 deferred다.
+사용자 보고 근거: localhost에서 레벨 1→2→3 클리어 직후 최종 점수/최고점 4050, Enter 복귀·새 게임·새로고침 후 최고점 유지, 단일 키 `dotgame.bestScore`에 4050 저장, 낮은 실패 점수 후 기록 유지, 저장값 `abc`에서 최고점 0 시작, ES module 오류와 문구 잘림 없음을 확인했다. AC-43·44는 페이지 대기 중 `OscillatorNode.start` 0회·첫 등불 후 1회·전체 완료까지 합성음 호출을 확인한 것으로 기록한다. 대행자가 직접 듣지 못했으므로 실제 청음 결과를 주장하지 않는다. 저장 차단/예외는 기존 자동 검증 근거와 구분하며 이번 사용자 보고는 비정상 값 `abc` 재현이다. 당시 Pages/교차 origin 확인은 환경 없음으로 deferred였다. 2026-11-13 사용자 대행 Claude Code의 새 Chromium 프로필 확인 보고로 Pages 보조 확인을 추가한다. https://hansejun.github.io/dotgame-hansejun/ 첫 로드·새로고침 모두 콘솔 메시지 0개(에러 0·경고 0), main.js의 type=module 정상 로드를 확인했다. origin `https://hansejun.github.io`의 `dotgame.bestScore`가 없는 타이틀 '최고 점수 0'에서 레벨 1 클리어→레벨 2 충돌 '유령에게 잡혔다/점수 1110'→저장값 1110을 확인했다. 같은 시점 localhost 기록 4050과 분리됨을 확인했다. 이 보고는 Pages에서의 실제 청음이나 저장 후 새로고침 유지까지 확인했다는 뜻은 아니다.
 
 ### 수치 검증과 사람 확인의 구분 — R3 추가
 각 goal은 `test/logic.test.js`에 기획 숫자 기반 테스트를 추가하고 `node --test test/` 통과를 유지한다. goal-4는 세 격자 원문 일치·11×15·P1·L5/7/9·경로1/2/3·외곽 벽·BFS 연결·경로를 피해 모든 L 도달·유령 활성 정상 keydown/keyup 안전 클리어를 검증한다. 입력 간격 240ms는 테스트 일정일 뿐 새 게임 규칙이 아니며 특정 이동 횟수를 요구하지 않는다.
@@ -273,7 +273,7 @@ Web Audio API oscillator와 gain만 사용한다. AudioContext 최대 1개, mast
 
 goal-5는 final 직행/복귀, 주입 AudioContext의 파형/주파수/길이/gain/정리·제스처·무큐·실패 예외, 저장 유효성/예외/재로드/쓰기 횟수를 검증한다. 이미 오디오 running·점수100/B0인 레벨2 playing에서 시작+75001ms의 keyup으로 지연 timeout을 발견하면 실패음1·저장1, 후속 tick/keyup/Enter/repeat/blur에는 추가0이다. N<=B면 저장0, 소리 불가면 음0이다. 합성 상태는 정밀 분기 테스트용이며 실제 사람 증거가 아니다.
 
-테스트 통과는 완료가 아니다. localhost 실제 사람 확인이 필수이며 goal-4 사람 승인 전 goal-5 금지다. 새 [x]는 사람 확인 뒤에만 기록한다. 기존 Pages가 없으면 선택적 부분만 deferred로 남긴다.
+테스트 통과는 완료가 아니다. localhost 실제 사람 확인이 필수이며 goal-4 사람 승인 전 goal-5 금지다. 새 [x]는 사람 확인 뒤에만 기록한다. 배포된 Pages의 선택적 확인 결과는 localhost와 구분해 기록한다. AC-46·48의 Pages 보조 확인은 2026-11-13 사람 확인 보고에 근거하며, 확인 범위는 위 사용자 보고 근거를 따른다.
 
 ### R2 수치 검증 이력과 회귀
 각 goal은 `test/logic.test.js`에 기획서 숫자 기반 테스트를 추가하고 `node --test test/` 통과를 유지한다. goal-2는 100점·재방문 0점, 유령 399/400/800ms 및 5칸 경로 1600/2000/3200ms 왕복, 59,999/60,000/60,001ms 시간 경계, 잔여 1ms의 HUD 1·보너스 0, 잔여 12,999ms의 HUD 13·보너스 120·등불 500점 합계 620, 13,000ms의 보너스 130을 검증한다. 즉시 논리 점등·120ms 표시 분리, 기존 이동·입력·벽·불변성 회귀도 유지한다.

@@ -4,3 +4,4 @@
 .gjc/**/state/
 .gjc/**/token-logs/
 .gjc/state/
+.gjc/**/locks/

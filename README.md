@@ -13,7 +13,7 @@ python3 -m http.server 8000
 브라우저에서 **http://localhost:8000/** 를 엽니다. 서버 종료는 실행한 터미널에서 `Ctrl+C`입니다. 이는 파일을 제공하는 정적 서버이며 게임 백엔드는 아닙니다.
 
 - GitHub Pages: https://hansejun.github.io/dotgame-hansejun/
-- GitHub Pages에 배포한 경우 해당 HTTPS 주소로도 실행할 수 있습니다.
+- 배포된 GitHub Pages의 위 HTTPS 주소에서도 실행할 수 있습니다. localhost와는 별개 origin이므로 최고 점수 기록은 공유되지 않습니다.
 - `index.html`을 더블클릭해 `file://`로 열지 않습니다. ES modules의 모듈 로딩이 브라우저의 로컬 파일 origin/CORS 보안 제한에 막히므로 HTTP 또는 HTTPS로 제공해야 합니다.
 
 ## 조작
