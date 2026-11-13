@@ -1,0 +1,33 @@
+{
+  "goal": "goal-4",
+  "humanAcceptance": "pending; AC-33 through AC-40 remain unchecked",
+  "goal5": "not implemented; blocked on actual human goal-4 confirmation and approval",
+  "tests": {
+    "command": "node --test test/",
+    "tests": 35,
+    "passed": 35,
+    "failed": 0,
+    "outputArtifact": "artifact://32",
+    "coverage": ["all chapter 5 grids and connectivity", "75/90 second nonzero-start deadline boundaries", "a/b/c patrol periods and b/c collision/swap catch-up", "actual-grid safe clears with active ghosts and ordinary input", "620 to 1440 to 2460 cumulative score", "fresh Enter, resets, freeze, failure priority and existing movement regressions"]
+  },
+  "liveBrowser": {
+    "url": "http://localhost:8000/",
+    "browser": "headless Chromium",
+    "method": "Trusted keyboard input through Puppeteer; route planning from fetched actual levels.js. No fixture, no state injection, no virtual clock, no product test hook.",
+    "logicalCanvas": [240, 192],
+    "displayCanvas": [720, 576],
+    "observations": [
+      {"screen": "title", "visible": ["폭풍 전의 등불", "ENTER로 시작"]},
+      {"screen": "level1 cleared", "keyboardMoves": 49, "score": 1020, "visible": ["등불을 모두 켰다", "점수 1020", "ENTER로 다음 레벨"]},
+      {"screen": "level2 start", "input": "fresh Enter plus repeated keydown then release", "time": 75, "score": 1020, "remaining": 7, "visibleGhosts": 2},
+      {"screen": "level2 cleared", "keyboardMoves": 55, "score": 2260, "visible": ["등불을 모두 켰다", "점수 2260", "ENTER로 다음 레벨"]},
+      {"screen": "level3 start", "time": 90, "score": 2260, "remaining": 9, "visibleGhosts": 3},
+      {"screen": "level3 cleared", "keyboardMoves": 62, "score": 3840, "visible": ["등불을 모두 켰다", "점수 3840"], "canvasUnchangedAfter": ["fresh Enter", "repeated Enter keydown", "ArrowLeft", "300ms wait"]},
+      {"screen": "level2 collision in a second actual campaign", "score": 1220, "visible": ["유령에게 잡혔다", "점수 1220", "ENTER로 타이틀"], "method": "49 ordinary moves clear level1, Enter next level, 17 ordinary moves score lanterns and enter b path, wait 1800ms; failure canvas frozen after ArrowRight and wait"},
+      {"screen": "failure return and restart", "input": "Enter held plus repeated keydown returns only to title, release and new Enter restarts", "visible": ["폭풍 전의 등불", "ENTER로 시작"], "restartedHud": {"time": 60, "score": 0, "remaining": 5}}
+    ],
+    "runtimeDiagnostics": "No captured Runtime.exceptionThrown/console.error metadata reported during successful browser calls",
+    "screenshots": ["goal-4-level2-start.png", "goal-4-level3-start.png", "goal-4-level3-cleared.png", "goal-4-level2-failed.png", "goal-4-restarted.png"],
+    "limitations": "Automated live browser evidence is not the required human signoff. Real 75/90-second browser timeout is not claimed here; exact boundaries are covered by numeric tests. Optional Pages not exercised. Initial browser route script using dynamic import failed before input because browser tool import rewriting was unavailable; route planning was replaced with fetch and parsing actual grid text."
+  }
+}

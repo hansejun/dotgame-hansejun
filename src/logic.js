@@ -7,142 +7,67 @@ const directions = {
 
 export const moveDuration = 120;
 export const ghostInterval = 400;
-export const timeLimit = 60000;
-export const lanternScore = 100;
-export const bonusPerSecond = 10;
-
-const ghostLetters = ['a', 'b', 'c'];
 
 const sameCell = (a, b) => a.x === b.x && a.y === b.y;
-const cellKey = ({ x, y }) => `${x},${y}`;
 
-// 격자를 행 순서로 읽으므로 가로 경로는 맨 왼쪽, 세로 경로는 맨 위 칸이 path[0]이 된다
-function findGhosts(map) {
-  const ghosts = [];
-  for (const letter of ghostLetters) {
-    const path = [];
-    for (let y = 0; y < map.length; y += 1) {
-      for (let x = 0; x < map[y].length; x += 1) {
-        if (map[y][x] === letter) path.push({ x, y });
+export function createState(levels, now = 0, levelIndex = 0, score = 0) {
+  const { map, duration } = levels[levelIndex];
+  const starts = [];
+  const lanterns = [];
+  const paths = new Map();
+  if (!map.length || !map[0].length || map.some((row) => row.length !== map[0].length || /[^#.PLa-c]/.test(row))) {
+    throw new Error('Map requires rectangular rows and known tiles');
+  }
+  for (let y = 0; y < map.length; y += 1) {
+    for (let x = 0; x < map[y].length; x += 1) {
+      const tile = map[y][x];
+      if (tile === 'P') starts.push({ x, y });
+      if (tile === 'L') lanterns.push({ x, y, lit: false });
+      if ('abc'.includes(tile)) {
+        if (!paths.has(tile)) paths.set(tile, []);
+        paths.get(tile).push({ x, y });
       }
     }
-    if (path.length > 0) ghosts.push({ path, index: 0, step: 1 });
   }
-  return ghosts;
-}
-
-export function createState(map, now = 0) {
-  for (let y = 0; y < map.length; y += 1) {
-    const x = map[y].indexOf('P');
-    if (x !== -1) {
-      return {
-        position: { x, y },
-        pressed: [],
-        animation: null,
-        startedAt: now,
-        ghosts: findGhosts(map),
-        ghostTicks: 0,
-        lit: [],
-        lanternCount: [...map.join('')].filter((cell) => cell === 'L').length,
-        score: 0,
-        status: 'playing',
-        failReason: null,
-        endedAt: null,
-      };
+  if (starts.length !== 1) throw new Error('Map requires a unique player start');
+  const ghosts = [...paths.values()].map((path) => {
+    const horizontal = path.every((cell) => cell.y === path[0].y);
+    const vertical = path.every((cell) => cell.x === path[0].x);
+    if (path.length < 2 || (!horizontal && !vertical)
+      || path.some((cell, index) => index > 0
+        && Math.abs(cell.x - path[index - 1].x) + Math.abs(cell.y - path[index - 1].y) !== 1)) {
+      throw new Error('Ghost path requires a continuous straight line of at least two cells');
     }
-  }
-  throw new Error('Map requires a player start');
-}
-
-export function isPassable(map, x, y) {
-  return y >= 0 && y < map.length && x >= 0 && x < map[y].length && map[y][x] !== '#';
-}
-
-export function isMoving(state, now) {
-  return state.animation !== null && now - state.animation.startedAt < moveDuration;
-}
-
-export function ghostCell(ghost) {
-  return ghost.path[ghost.index];
-}
-
-// 끝 칸에 도착하면 방향만 바꾸고, 다음 기한에 반대쪽 인접 칸으로 간다
-function moveGhost(ghost) {
-  if (ghost.path.length === 1) return ghost;
-  const index = ghost.index + ghost.step;
-  const atEnd = index === 0 || index === ghost.path.length - 1;
-  return { ...ghost, index, step: atEnd ? -ghost.step : ghost.step };
-}
-
-export function remainingLanterns(state) {
-  return state.lanternCount - state.lit.length;
-}
-
-export function isLit(state, x, y) {
-  return state.lit.includes(cellKey({ x, y }));
-}
-
-export function remainingMs(state, now) {
-  const at = state.endedAt ?? now;
-  return Math.max(0, timeLimit - (at - state.startedAt));
-}
-
-export function hudSeconds(state, now) {
-  return Math.ceil(remainingMs(state, now) / 1000);
-}
-
-// 시각 t의 갱신 1회. 유령 기한·입력 이동·시간 소진을 함께 판정하고 실패를 클리어보다 우선한다
-function step(state, map, t, target) {
-  const ghostDue = t === state.startedAt + ghostInterval * (state.ghostTicks + 1);
-  const ghosts = ghostDue ? state.ghosts.map(moveGhost) : state.ghosts;
-  const before = state.position;
-  const position = target ?? before;
-  const collided = ghosts.some((ghost, i) => sameCell(ghostCell(ghost), position)
-    || (sameCell(ghostCell(state.ghosts[i]), position) && sameCell(ghostCell(ghost), before)));
-  const timeUp = t - state.startedAt >= timeLimit;
-  const failed = collided || timeUp;
-  const key = cellKey(position);
-  const newlyLit = map[position.y][position.x] === 'L' && !state.lit.includes(key);
-  const lit = newlyLit ? [...state.lit, key] : state.lit;
-  let score = state.score + (newlyLit && !failed ? lanternScore : 0);
-  const cleared = !failed && newlyLit && lit.length === state.lanternCount;
-  if (cleared) {
-    score += Math.floor((timeLimit - (t - state.startedAt)) / 1000) * bonusPerSecond;
-  }
-  let status = state.status;
-  if (failed) status = 'failed';
-  else if (cleared) status = 'cleared';
+    return { path, index: 0, direction: 1, position: path[0] };
+  });
   return {
-    ...state,
-    position,
-    animation: target ? { from: before, to: position, startedAt: t } : state.animation,
-    ghosts,
-    ghostTicks: ghostDue ? state.ghostTicks + 1 : state.ghostTicks,
-    lit,
-    score,
-    status,
-    failReason: failed ? (collided ? 'ghost' : 'time') : null,
-    endedAt: status === 'playing' ? null : t,
+    position: starts[0], pressed: [], enterPressed: false, animation: null,
+    lanterns, ghosts, score, levelIndex, remainingMs: duration,
+    status: 'playing', failureReason: null,
+    startedAt: now, updatedAt: now,
+    nextGhostAt: ghosts.length ? now + ghostInterval : Infinity,
+    finishedAt: null,
   };
 }
 
-// now 이전(inclusive면 now 포함)의 미처리 기한을 시간순으로 처리하고 최초 terminal에서 멈춘다
-function advance(state, map, now, inclusive) {
-  let current = state;
-  while (current.status === 'playing') {
-    const nextGhost = current.startedAt + ghostInterval * (current.ghostTicks + 1);
-    const t = Math.min(nextGhost, current.startedAt + timeLimit);
-    if (t > now || (t === now && !inclusive)) break;
-    current = step(current, map, t, null);
-  }
-  return current;
+export function createTitleState(levels) {
+  return {
+    ...createState(levels),
+    status: 'title', startedAt: null, updatedAt: null, nextGhostAt: Infinity,
+  };
 }
 
-export function tick(state, map, now) {
-  return advance(state, map, now, true);
+export function isPassable(map, x, y) {
+  return y >= 0 && y < map.length && x >= 0 && x < map[y].length
+    && '.PLabc'.includes(map[y][x]);
 }
 
-export function transition(state, event, map, now) {
+export function isMoving(state, now) {
+  return state.status === 'playing' && state.animation !== null
+    && now - state.animation.startedAt < moveDuration;
+}
+
+function movePlayer(state, event, map, now) {
   if (event.type === 'blur') return { ...state, pressed: [] };
   if (!Object.hasOwn(directions, event.key)) return state;
   if (event.type === 'keyup') {
@@ -150,19 +75,111 @@ export function transition(state, event, map, now) {
   }
   if (event.type !== 'keydown') return state;
   const wasPressed = state.pressed.includes(event.key);
-  const pressed = wasPressed ? state.pressed : [...state.pressed, event.key];
-  const next = { ...advance(state, map, now, false), pressed };
-  if (next.status !== 'playing' || wasPressed || event.repeat || isMoving(next, now)) {
-    return tick(next, map, now);
-  }
+  const next = wasPressed ? state : { ...state, pressed: [...state.pressed, event.key] };
+  if (wasPressed || event.repeat || isMoving(state, now)) return next;
   const [dx, dy] = directions[event.key];
-  const position = { x: next.position.x + dx, y: next.position.y + dy };
-  if (!isPassable(map, position.x, position.y)) return tick(next, map, now);
-  return step(next, map, now, position);
+  const position = { x: state.position.x + dx, y: state.position.y + dy };
+  if (!isPassable(map, position.x, position.y)) return next;
+  return {
+    ...next,
+    position,
+    animation: { from: state.position, to: position, startedAt: now },
+  };
+}
+
+function update(state, event, map, now, duration, lastLevel) {
+  const moved = movePlayer(state, event, map, now);
+  const ghostDue = state.nextGhostAt === now;
+  const ghosts = ghostDue ? state.ghosts.map((ghost) => {
+    const index = ghost.index + ghost.direction;
+    const direction = index === 0 ? 1 : index === ghost.path.length - 1 ? -1 : ghost.direction;
+    return { ...ghost, index, direction, position: ghost.path[index] };
+  }) : state.ghosts;
+  let newLights = 0;
+  const lanterns = moved.lanterns.map((lantern) => {
+    if (lantern.lit || !sameCell(lantern, moved.position)) return lantern;
+    newLights += 1;
+    return { ...lantern, lit: true };
+  });
+  const remainingMs = Math.max(0, duration - (now - state.startedAt));
+  const collision = ghosts.some((ghost, index) => sameCell(ghost.position, moved.position)
+    || (sameCell(state.position, ghost.position)
+      && sameCell(moved.position, state.ghosts[index].position)));
+  const failureReason = remainingMs === 0 ? 'timeout' : collision ? 'collision' : null;
+  const cleared = !failureReason && lanterns.length > 0 && lanterns.every((lantern) => lantern.lit);
+  return {
+    ...moved, ghosts, lanterns, remainingMs,
+    nextGhostAt: ghostDue ? state.nextGhostAt + ghostInterval : state.nextGhostAt,
+    score: state.score + (failureReason ? 0 : newLights * 100)
+      + (cleared ? Math.floor(remainingMs / 1000) * 10 : 0),
+    status: failureReason ? 'failed' : cleared ? (lastLevel ? 'final' : 'cleared') : 'playing',
+    failureReason,
+    updatedAt: now,
+    finishedAt: failureReason || cleared ? now : null,
+  };
+}
+
+function advancePlaying(state, event, { map, duration }, now, lastLevel) {
+  if (state.status !== 'playing') return state;
+  if (event.type !== 'tick' && event.type !== 'blur'
+    && !((event.type === 'keydown' || event.type === 'keyup') && Object.hasOwn(directions, event.key))) return state;
+  if (now < state.updatedAt) throw new Error('Time must not move backwards');
+  let next = state;
+  let due = Math.min(next.nextGhostAt, next.startedAt + duration);
+  while (due < now) {
+    next = update(next, { type: 'tick' }, map, due, duration, lastLevel);
+    if (next.status !== 'playing') return next;
+    due = Math.min(next.nextGhostAt, next.startedAt + duration);
+  }
+  return update(next, event, map, now, duration, lastLevel);
+}
+
+export function transition(state, event, levels, now) {
+  const definition = levels[state.levelIndex];
+  const lastLevel = state.levelIndex === levels.length - 1;
+  if (event.type === 'blur') {
+    const next = advancePlaying(state, event, definition, now, lastLevel);
+    if (!next.enterPressed && next.pressed.length === 0) return next;
+    return { ...next, enterPressed: false, pressed: [] };
+  }
+  if (event.key !== 'Enter' || (event.type !== 'keydown' && event.type !== 'keyup')) {
+    return advancePlaying(state, event, definition, now, lastLevel);
+  }
+  const pressed = event.type === 'keydown';
+  const freshPress = pressed && !event.repeat && !state.enterPressed;
+  if (freshPress && state.status === 'title') {
+    return { ...createState(levels, now), enterPressed: true };
+  }
+  if (freshPress && (state.status === 'failed' || state.status === 'final')) {
+    return { ...createTitleState(levels), enterPressed: true };
+  }
+  if (freshPress && state.status === 'cleared' && state.levelIndex + 1 < levels.length) {
+    return { ...createState(levels, now, state.levelIndex + 1, state.score), enterPressed: true };
+  }
+  const next = advancePlaying(state, { type: 'tick' }, definition, now, lastLevel);
+  return next.enterPressed === pressed ? next : { ...next, enterPressed: pressed };
+}
+
+export function transitionEffects(previous, next) {
+  if (previous.status !== 'playing') return { sound: null, recordScore: null };
+  if (next.status === 'failed' || next.status === 'final') {
+    return { sound: next.status, recordScore: next.score };
+  }
+  if (next.status === 'cleared') return { sound: 'cleared', recordScore: null };
+  const newLight = next.lanterns.some((lamp, index) => lamp.lit && !previous.lanterns[index].lit);
+  return { sound: newLight ? 'lantern' : null, recordScore: null };
+}
+
+export function hudValues(state) {
+  return {
+    time: Math.ceil(state.remainingMs / 1000),
+    score: state.score,
+    remaining: state.lanterns.filter((lantern) => !lantern.lit).length,
+  };
 }
 
 export function displayPosition(state, now) {
-  if (!state.animation) return { ...state.position };
+  if (!state.animation || state.status !== 'playing') return { ...state.position };
   const { from, to, startedAt } = state.animation;
   const progress = Math.max(0, Math.min(1, (now - startedAt) / moveDuration));
   return {

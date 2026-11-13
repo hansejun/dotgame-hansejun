@@ -1,0 +1,233 @@
+{
+  "method": "Read-only decoding of the actual unmodified screenshot PNGs into a separate offscreen image-analysis canvas;no screenshot alterations or fixture rendering",
+  "images": [
+    {
+      "path": "test/evidence/final-rerun/00-title.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8620,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9760416666666667,
+      "colors": {
+        "16,24,32,255": 1619136,
+        "246,231,176,255": 39744
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/01-level1-start.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 12972,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5932074652777778,
+      "colors": {
+        "16,24,32,255": 348984,
+        "246,231,176,255": 10188,
+        "120,144,154,255": 70200,
+        "73,97,108,255": 240480,
+        "35,59,77,255": 984060,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1368,
+        "159,214,210,255": 2736
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/02-level1-clear.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8740,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9709852430555556,
+      "colors": {
+        "16,24,32,255": 1610748,
+        "246,231,176,255": 48132
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/03-level2-start.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 13288,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5869140625,
+      "colors": {
+        "16,24,32,255": 351432,
+        "246,231,176,255": 11268,
+        "120,144,154,255": 72360,
+        "73,97,108,255": 242496,
+        "35,59,77,255": 973620,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1368,
+        "159,214,210,255": 5472
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/04-level2-clear.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8753,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9707248263888889,
+      "colors": {
+        "16,24,32,255": 1610316,
+        "246,231,176,255": 48564
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/05-level3-start.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 13484,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5806206597222222,
+      "colors": {
+        "16,24,32,255": 354420,
+        "246,231,176,255": 11808,
+        "120,144,154,255": 74520,
+        "73,97,108,255": 244512,
+        "35,59,77,255": 963180,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1368,
+        "159,214,210,255": 8208
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/06-final-clear.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 9028,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9613932291666667,
+      "colors": {
+        "16,24,32,255": 1594836,
+        "246,231,176,255": 64044
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/07-return-title.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8688,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9717881944444444,
+      "colors": {
+        "16,24,32,255": 1612080,
+        "246,231,176,255": 46800
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/08-reloaded-title.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8688,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9717881944444444,
+      "colors": {
+        "16,24,32,255": 1612080,
+        "246,231,176,255": 46800
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/09-new-game.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 12972,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5932074652777778,
+      "colors": {
+        "16,24,32,255": 348984,
+        "246,231,176,255": 10188,
+        "120,144,154,255": 70200,
+        "73,97,108,255": 240480,
+        "35,59,77,255": 984060,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1368,
+        "159,214,210,255": 2736
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/10-first-lantern.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 12987,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5948784722222222,
+      "colors": {
+        "16,24,32,255": 347364,
+        "246,231,176,255": 11052,
+        "120,144,154,255": 69120,
+        "73,97,108,255": 239472,
+        "35,59,77,255": 986832,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1440,
+        "159,214,210,255": 2736
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/11-collision-failure.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8702,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9730685763888889,
+      "colors": {
+        "16,24,32,255": 1614204,
+        "246,231,176,255": 44676
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/12-collision-return-title.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8688,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9717881944444444,
+      "colors": {
+        "16,24,32,255": 1612080,
+        "246,231,176,255": 46800
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/13-timeout-start.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 12972,
+      "uniqueColors": 8,
+      "mostCommonFraction": 0.5932074652777778,
+      "colors": {
+        "16,24,32,255": 348984,
+        "246,231,176,255": 10188,
+        "120,144,154,255": 70200,
+        "73,97,108,255": 240480,
+        "35,59,77,255": 984060,
+        "227,195,157,255": 864,
+        "214,154,58,255": 1368,
+        "159,214,210,255": 2736
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/14-timeout-failure.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8558,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9790364583333333,
+      "colors": {
+        "16,24,32,255": 1624104,
+        "246,231,176,255": 34776
+      }
+    },
+    {
+      "path": "test/evidence/final-rerun/15-timeout-return-title.png",
+      "width": 1440,
+      "height": 1152,
+      "bytes": 8688,
+      "uniqueColors": 2,
+      "mostCommonFraction": 0.9717881944444444,
+      "colors": {
+        "16,24,32,255": 1612080,
+        "246,231,176,255": 46800
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "goal": "goal-2",
+  "durableGoalId": "G001",
+  "date": "2026-11-11",
+  "productVerification": "passed",
+  "commitCreated": false,
+  "verificationSkill": ".gjc/skills/verify/SKILL.md",
+  "checks": [
+    {
+      "command": "node --test test/ > test/evidence/goal-2-tests.tap",
+      "result": "20 passed, 0 failed",
+      "artifact": "test/evidence/goal-2-tests.tap",
+      "scope": "Pure movement and input regression; map and palette; lighting and revisit score; 400ms patrol and catch-up; same-cell and exchange collisions; 60000ms timeout; score and failure priority; terminal destination; fixed HUD digits"
+    },
+    {
+      "command": "git diff --check -- src test GAME_DESIGN.md AGENTS.md",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --exit-code -- AGENTS.md",
+      "result": "passed; AGENTS.md unchanged"
+    },
+    {
+      "command": "Python acceptance-record audit against HEAD:GAME_DESIGN.md",
+      "result": "passed: exact AC-8 through AC-23 confirmation attribution; acceptance prose and map unchanged; AC-1 through AC-7 historical lines unchanged; AC-24 through AC-32 remain unchecked"
+    }
+  ],
+  "buildAndTypecheck": "Not applicable: dependency-free JavaScript ES modules with no package.json, build pipeline, or typecheck configuration; none added.",
+  "acceptedUserEvidence": {
+    "source": "User-provided reports from designated Claude Code browser delegate",
+    "browser": "Chrome",
+    "url": "http://localhost:8000/index.html",
+    "attribution": "[x] 사람 확인 2026-11-11 (브라우저, 사용자 대행 Claude Code)",
+    "acceptedCriteria": ["AC-8", "AC-9", "AC-10", "AC-11", "AC-12", "AC-13", "AC-14", "AC-15", "AC-16", "AC-17", "AC-18", "AC-19", "AC-20", "AC-21", "AC-22", "AC-23"],
+    "regressionCriteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"],
+    "observations": [
+      {"criteria": ["AC-8"], "reported": "Five lanterns and one ghost visible; path letter a not visible."},
+      {"criteria": ["AC-9", "AC-10"], "reported": "Entering a lantern tile lights it yellow; score 0 to 100 and remaining lanterns 5 to 4."},
+      {"criteria": ["AC-11"], "reported": "Revisiting a lit lantern causes no change."},
+      {"criteria": ["AC-12"], "reported": "Passed; no additional detailed observation supplied."},
+      {"criteria": ["AC-13", "AC-14"], "reported": "Ghost patrols back and forth on path a."},
+      {"criteria": ["AC-15"], "reported": "Initial HUD shows time 60, score 0, lanterns 5."},
+      {"criteria": ["AC-17", "AC-21"], "reported": "After lighting one lantern and waiting 62 seconds: time 0, score remains 100, arrows do not move."},
+      {"criteria": ["AC-18", "AC-19", "AC-23"], "reported": "Collision on ghost path preserves score 100; still frozen two seconds later; arrows do not move."},
+      {"criteria": ["AC-22"], "reported": "All five lit: final score 1010 = 500 + 51 seconds times 10; score remains fixed."},
+      {"criteria": ["AC-20"], "reported": "After X1 fix, repeating the same upward final-lantern route leaves the player standing on the final lantern tile."},
+      {"criteria": ["AC-16"], "reported": "After X2 fix, HUD numbers 52, 1010, and 0 are clearly legible."},
+      {"criteria": ["AC-1", "AC-2", "AC-3", "AC-4", "AC-5", "AC-6", "AC-7"], "reported": "Movement regression has no issues."}
+    ],
+    "limitation": "User-supplied delegated browser confirmation, recorded with the requested attribution; not represented as this agent's independent human observation or new browser execution in this verification turn. No fixture screenshot is used. Acceptance confirmation is not a claim that a person measured every exact millisecond or recreated synthetic simultaneous branches."
+  },
+  "fixedDefects": [
+    {
+      "id": "X1",
+      "criterion": "AC-20",
+      "cause": "Freezing interpolation at terminal input time kept the displayed player at the departure tile.",
+      "fix": "Terminal display returns the final logical tile; non-terminal 120ms interpolation is unchanged.",
+      "regressionTest": "X1 / AC-20: final light shows the destination cell immediately, including upward movement",
+      "userRecheck": "passed"
+    },
+    {
+      "id": "X2",
+      "criterion": "AC-16",
+      "cause": "Thresholded small font rasterization lost digit strokes.",
+      "fix": "HUD numerals use fixed 5-by-7 palette-index bitmap digits; label mask preserves the eight-color palette.",
+      "regressionTest": "X2 / AC-16: fixed palette digits preserve the 4 crossbar and descending stem",
+      "userRecheck": "passed"
+    }
+  ],
+  "unverifiedOrOutOfScope": [
+    "goal-3 screens and Enter transitions (AC-24 through AC-32) are not implemented or accepted.",
+    "Precise exchange, final-light collision, and exact 60000ms overlap branches are proven by injected-time unit tests, not claimed as human real-map reproduction."
+  ],
+  "nativeCheckpoint": {
+    "status": "rejected",
+    "goalId": "G001",
+    "qualityGate": "test/evidence/goal-2-quality-gate.json",
+    "validationCommand": "gjc ultragoal quality-gate validate --quality-gate-json test/evidence/goal-2-quality-gate.json --goal-id G001 --json",
+    "completionCommand": "gjc ultragoal checkpoint --goal-id G001 --status complete --evidence <accepted browser and verification evidence> --quality-gate-json test/evidence/goal-2-quality-gate.json --json",
+    "exitCode": 1,
+    "error": "unable to resolve an authoritative integration base",
+    "successfulCompletionReceipt": false,
+    "interpretation": "Native provenance/integration-base resolution rejected both validation and completion before accepting the intermediate checkpoint. This is distinct from the passed product tests and user-confirmed acceptance criteria; no deeper runtime diagnosis or repair is claimed.",
+    "policy": "Per user instruction, retain the exact rejection in the native ledger and stop retrying. Do not edit goals.json, fabricate completion, create a branch or commit, bypass a gate, or alter installed tools. goal-3 remains unimplemented."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "lossless-transcript-normalization-report",
+  "raw": "test/evidence/final-rerun/browser-transcript.json",
+  "native": "test/evidence/final-rerun/browser-transcript-native.json",
+  "rawUnchanged": true,
+  "allOriginalActionsAndAssertionsPreserved": true,
+  "originalEventCount": 229,
+  "nativeChronologicalEventCount": 229,
+  "allOriginalTimestampsPreserved": true,
+  "nativeFinalAssertionExactCopyOfActualLastAssertion": true,
+  "why": "Native validator concatenates actions then assertions;raw has two separately monotonic arrays with per-step assertions. Interleave actual recorded assertion observations chronologically and retain actual last assertion at end.No fabricated/retimed event.",
+  "actualFullRerunUnchanged": true,
+  "allOriginalFileHashesUnchanged": true,
+  "nativePreflightRemainingErrors": [
+    "source_hash_mismatch",
+    "executor_qa_evidence_invalid: actual play screenshot rejected as blank/solid/tiny/placeholder despite real1440x1152/8colors/noimagechanges"
+  ],
+  "noProductChangesOrCommit": true
+}

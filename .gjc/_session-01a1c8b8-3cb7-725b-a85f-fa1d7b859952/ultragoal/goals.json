@@ -8,24 +8,71 @@
       "id": "G001",
       "title": "goal-2 목표물·위협·타이머·HUD",
       "objective": "문서 선행 갱신·사람 검토 후 L5·유령1·400ms 왕복·60초·100점·보너스floor초*10·같은칸/맞교환 충돌·실패우선·HUDceil·terminal 구현. test/logic.test.js 숫자기반 회귀 추가와 node --test test/ 통과. 실제 사람이 AC8-23과 이동회귀를 확인해야 완료.",
-      "status": "blocked",
+      "status": "complete",
       "createdAt": "2026-11-11T04:11:43.328Z",
-      "updatedAt": "2026-11-11T04:13:48.654Z",
+      "updatedAt": "2026-11-11T07:59:25.543Z",
       "startedAt": "2026-11-11T04:11:43.602Z",
-      "evidence": "GAME_DESIGN.md v2의 2/3/4/5/9장 문서 선행 갱신 완료. 정적 검사 및 git diff --check 통과:15x11,P/벽 보존,L5/a5,전부 도달가능,AC1-7 원문 유지,새 AC25개 미확인. 제품 코드/테스트 변경 없음. 승인 계획이 요구한 사람의 문서 검토 전에는 구현 불가. node 테스트는 문서-소스 격자 선행 불일치 단계이므로 미실행이며 통과 주장 없음."
+      "evidence": "Actual current four-lane review passed; historical delegatedAC8-23/X1X2 acceptance preserved, authorized later UI supersession, retained real335e9cb E2E with unchanged source/tests and current43pass TAP. JPEG lossy copies/PNG originals; exact boundary tests distinguished from live evidence.",
+      "completedAt": "2026-11-11T07:59:25.543Z",
+      "completionVerification": {
+        "schemaVersion": 1,
+        "receiptId": "05bcd33e-7194-4589-aa3c-73d7cf3f016a",
+        "verifiedAt": "2026-11-11T07:59:25.543Z",
+        "goalId": "G001",
+        "receiptKind": "per-goal",
+        "goalStatusBeforeCheckpoint": "active",
+        "gjcGoalMode": "aggregate",
+        "gjcObjective": "Complete the durable ultragoal plan in .gjc/ultragoal/goals.json, including later accepted/appended stories, under the original brief constraints; use .gjc/ultragoal/ledger.jsonl as the audit trail.",
+        "qualityGateHash": "25aeefd1081a6a87efe941a0a66ef0fb8fbd083a82d0ba1e459815695e6a024e",
+        "planGeneration": "b528724161af23cd799f2914347e5ffc726bafca08454294566174353ecca526",
+        "basis": {
+          "planHashBeforeCheckpoint": "02536a0ea7c122b569a76e8c8b4d2839453ec8a45c2e0672018e3499188333fa",
+          "latestRelevantLedgerEventIdBeforeCheckpoint": "e989dd0e-38a3-4848-bb73-b931a2ac65a9",
+          "goalUpdatedAtBeforeCheckpoint": "2026-11-11T07:59:25.543Z",
+          "relevantGoalIdsBeforeCheckpoint": [
+            "G001"
+          ],
+          "requiredGoalSetHashBeforeCheckpoint": "36d02dcdb7fdbd3db4e9a736223f266facb27f064fcac6ad5ed9bbd7cdbcd6b7"
+        },
+        "checkpointLedgerEventId": "65ef186e-5735-4697-ace5-6da6cc17ccb0"
+      }
     },
     {
       "id": "G002",
       "title": "goal-3 승패·화면 전환",
       "objective": "goal-2 사람 확인 후 타이틀/플레이/클리어/실패·최소문구 strings.js·Enter/reset 구현. R2클리어Enter무동작, 다음레벨R3goal4. 실패Enter타이틀점수0, 반복/동일누름재사용방지. test/logic.test.js 숫자기반 테스트와 node --test test/ 통과. 실제 사람이 AC24-32와 core회귀 확인해야 완료.",
-      "status": "blocked",
+      "status": "complete",
       "createdAt": "2026-11-11T04:11:43.328Z",
-      "updatedAt": "2026-11-11T04:15:00.749Z",
-      "evidence": "G002는 승인 계획 및 brief상 goal-2 실제 사람 브라우저 확인 이후에만 착수 가능하다. 선행 G001은 기획서 사람 검토가 아직 없어 코드 미착수 blocked다. 따라서 G002도 동일한 사람 전용 선행조건에 의해 blocked이며 구현 가능한 독립 작업으로 앞당길 수 없다. 완료나 실패로 대체하지 않는다."
+      "updatedAt": "2026-11-11T08:05:03.455Z",
+      "evidence": "Actual current four-lane review passed; attributed historicalAC24-32 acceptance and authorized laterAC30 supersession; retained actual335e9cb E2E and unchanged product/test-source,current43pass TAP. Blur/heldEnter/AC31 evidence limits explicit, JPEG lossy copies/PNG originals retained. No newbrowser/hearing/Pages claims.",
+      "completedAt": "2026-11-11T08:05:03.455Z",
+      "completionVerification": {
+        "schemaVersion": 1,
+        "receiptId": "7bc6e464-3bd0-4431-8b48-270cd1426785",
+        "verifiedAt": "2026-11-11T08:05:03.455Z",
+        "goalId": "G002",
+        "receiptKind": "final-aggregate",
+        "goalStatusBeforeCheckpoint": "active",
+        "gjcGoalMode": "aggregate",
+        "gjcObjective": "Complete the durable ultragoal plan in .gjc/ultragoal/goals.json, including later accepted/appended stories, under the original brief constraints; use .gjc/ultragoal/ledger.jsonl as the audit trail.",
+        "qualityGateHash": "4d6a6e3b2ba9bb5af6fb6f4c82ef3aa194bca34a6a08b3d71be6145048763d79",
+        "planGeneration": "03f37862f88e19a7e27d4daa2b84c6813064a051bd51a865efcda5d97148bcb3",
+        "basis": {
+          "planHashBeforeCheckpoint": "09143896934c7fdcce51aa8f2b4c807b4b834b4726c55ca0bdc5269127e08a6b",
+          "latestRelevantLedgerEventIdBeforeCheckpoint": "07783a00-22a9-470c-9837-7c20a47948bd",
+          "goalUpdatedAtBeforeCheckpoint": "2026-11-11T08:05:03.455Z",
+          "relevantGoalIdsBeforeCheckpoint": [
+            "G001",
+            "G002"
+          ],
+          "requiredGoalSetHashBeforeCheckpoint": "6863972c4574a70ad1f077cf7ad9cc444f89793280e5619a75500387e00968ae"
+        },
+        "checkpointLedgerEventId": "4bb685b2-043c-483c-a645-eb77bebb05aa"
+      }
     }
   ],
   "createdAt": "2026-11-11T04:11:43.328Z",
-  "updatedAt": "2026-11-11T04:15:00.749Z",
+  "updatedAt": "2026-11-11T08:05:03.455Z",
   "repositoryBinding": {
     "schema": "gjc.repository_binding.v1",
     "worktreeRoot": "/Users/hansejun/Desktop/fastcampus/dotgame-hansejun",
@@ -34,5 +81,5 @@
     "head": "debba1252d8664e78626982f622dfe674fa81d6c",
     "branch": "main"
   },
-  "state_revision": 4
+  "state_revision": 32
 }

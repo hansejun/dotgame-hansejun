@@ -1,0 +1,14 @@
+{
+  "deferredToBatch": {
+    "ranLanes": ["targetedVerification"],
+    "targetedVerification": {
+      "status": "passed",
+      "commands": [
+        "node --test test/ > test/evidence/goal-2-tests.tap",
+        "git diff --check -- src test GAME_DESIGN.md AGENTS.md",
+        "git diff --exit-code -- AGENTS.md"
+      ],
+      "evidence": "20/20 tests passed in test/evidence/goal-2-tests.tap. test/evidence/goal-2-verification.json records the exact user-provided Chrome confirmation for AC-8 through AC-23, X1/X2 rechecks and AC-1 through AC-7 movement regression. Acceptance prose and map are unchanged; AC-24 through AC-32 remain unchecked. This is an intermediate aggregate story checkpoint, not a final boundary review or aggregate completion."
+    }
+  }
+}
